@@ -1,4 +1,4 @@
-package com.escuela.entities;
+package entities;
 
 import javax.persistence.*;
 
