@@ -1,20 +1,39 @@
 package negocio;
 
-public class Titular {
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="Titulares")
+public class Titular implements Serializable{
+	
+	@Column(name="nombre")
 	private String nombre;
+	
+	@Id
+	@Column(name="dni")
 	private int DNI;
+	
+	@Column(name="direccion")
 	private String direccion;
+	
+	@Column(name="mail")
 	private String mail;
+	
+	@Column(name="telefono")
 	private String telefono;
 	
-	public Titular(String nombre, int dNI, String direccion, String mail, String telefono) {
-		this.nombre = nombre;
-		DNI = dNI;
-		this.direccion = direccion;
-		this.mail = mail;
-		this.telefono = telefono;
+	public Titular(){
 	}
-
+	
+	public Titular(String nombre, int DNI, String dire, String mail, String tel){
+		this.nombre = nombre;
+		this.DNI = DNI;
+		this.direccion = dire;
+		this.mail = mail;
+		this.telefono = tel;
+	}
 	public String getNombre() {
 		return nombre;
 	}

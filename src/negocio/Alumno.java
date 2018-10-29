@@ -1,69 +1,54 @@
 package negocio;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
-public class Alumno {
-	private String nombre;
-	private int legajo;
-	private Titular titular;
-	private String direccion;
-	private String mail;
-	private String telefono;
-	private Escolaridad escolaridad;
-	private List<Adicional> adicionales;
-	
-	
-	
+import javax.persistence.*;
 
-	public Alumno(String nombre, Titular titular, String direccion, String mail, String telefono,
-			Escolaridad escolaridad) {
+@Entity
+@Table(name="Alumnos")
+public class Alumno implements Serializable{
+
+	@Column(name="nombre")
+	private String nombre;
+
+	@Id
+	@Column(name="legajo")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int legajo;
+
+	@OneToOne (cascade=CascadeType.ALL)
+	@JoinColumn(name="dni")
+	private Titular titular;
+
+	@OneToOne 
+	@JoinColumn(name="id")
+	private Escolaridad escolaridad;
+
+	@OneToMany (cascade=CascadeType.ALL)
+	@JoinColumn(name="id")
+	private List<Adicional> adicionales;
+
+	@Column(name="direccion")
+	private String direccion;
+	
+	@Column(name="mail")
+	private String mail;
+	
+	@Column(name="telefono")
+	private String telefono;
+	
+	public Alumno(){
+	}
+	public Alumno(String nombre, Titular titular, String dire, String mail, String tel, Escolaridad esc){
 		this.nombre = nombre;
 		this.titular = titular;
-		this.direccion = direccion;
+		this.direccion = dire;
 		this.mail = mail;
-		this.telefono = telefono;
-		this.escolaridad = escolaridad;
-		this.adicionales = new ArrayList<Adicional>();
+		this.telefono = tel;
+		this.escolaridad = esc;
+		
 	}
-
-
-
-	public String getDireccion() {
-		return direccion;
-	}
-
-
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-
-
-	public String getMail() {
-		return mail;
-	}
-
-
-
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-
-
-
-	public String getTelefono() {
-		return telefono;
-	}
-
-
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
-
 
 	public String getNombre() {
 		return nombre;
@@ -105,11 +90,6 @@ public class Alumno {
 		this.adicionales = adicionales;
 	}
 
-	public void addCuota(Cuota c) {
-		this.adicionales.add((Adicional)c);
-		
-	}
-	
-	
-	
+
+
 }

@@ -1,36 +1,39 @@
 package negocio;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Factura {
-	private int numero;
-	private String tipo;
-	private LocalDateTime fechaEmision;
-	private LocalDateTime fechaPago;
-	private Boolean Pago;	
-	private Alumno alumno;
-	private List<ItemFactura> items;	
+import javax.persistence.*;
+
+@Entity
+@Table(name="Facturas")
+public class Factura implements Serializable{
 	
-	public Factura(int numero, String tipo, LocalDateTime fechaEmision, LocalDateTime fechaPago, Boolean pago) {
-
-		this.numero = numero;
-		this.tipo = tipo;
-		this.fechaEmision = fechaEmision;
-		this.fechaPago = null;
-		this.Pago = false;
-		items = null;
+	@Id
+	@Column(name="numero")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int numero;
+	
+	@Column(name="tipo")
+	private String tipo;
+	
+	@Column(name="fechaEmision")
+	private LocalDateTime fechaEmision;
+	
+	@Column(name="fechaPago")
+	private LocalDateTime fechaPago;
+	
+	@OneToMany (cascade=CascadeType.ALL)
+	private List<ItemFactura> items;
+	
+	@OneToOne (cascade=CascadeType.ALL)
+	@JoinColumn(name="legajo")
+	private Alumno alumno;
+	
+	public Factura(){
 	}
-
-	public Boolean getPago() {
-		return Pago;
-	}
-
-	public void setPago(Boolean pago) {
-		this.Pago = pago;
-	}
-
-
+	
 	public int getNumero() {
 		return numero;
 	}

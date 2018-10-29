@@ -1,14 +1,12 @@
 
-package dao;
+package bean.dao;
 
 import java.util.List;
 import hbt.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import negocio.Titular;
 
-import com.escuela.negocio.Titular;
-
-import java.util.List;
 
 public class HibernateTitularDAO {
 	private static HibernateTitularDAO instancia = null;

@@ -1,12 +1,24 @@
 package negocio;
 
-public class Cuota {
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+@MappedSuperclass
+public class Cuota implements Serializable{
+	
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(name="descripcion")
 	private String descripcion;
+	
+	@Column(name="costo")
 	private float costo;
 	
-	public Cuota(String descripcion, float costo) {
-		this.descripcion = descripcion;
-		this.costo = costo;
+	public Cuota(){
 	}
 
 
@@ -25,7 +37,6 @@ public class Cuota {
 	public void setCosto(float costo) {
 		this.costo = costo;
 	}
-	
 	
 	
 }

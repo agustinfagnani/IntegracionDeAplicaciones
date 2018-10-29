@@ -1,51 +1,48 @@
 
-package dao;
+package bean.dao;
 
 import java.util.List;
 import hbt.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import negocio.Empleado;
 
-import com.escuela.negocio.Adicional;
 
-import bean.Cliente;
-import java.util.List;
-
-public class HibernateAdicionalDAO {
-	private static HibernateAdicionalDAO instancia = null;
+public class HibernateEmpleadoDAO {
+	private static HibernateEmpleadoDAO instancia = null;
 	private static SessionFactory sf = null;
 
-	public static HibernateAdicionalDAO getInstancia(){
+	public static HibernateEmpleadoDAO getInstancia(){
 		if(instancia == null){
 			sf = HibernateUtil.getSessionFactory();
-			instancia = new HibernateAdicionalDAO();
+			instancia = new HibernateEmpleadoDAO();
 		} 
 		return instancia;
 	}
 	
-	public void grabarAdicional(List<Adicional> adicionales){
+	public void grabarEmpleados(List<Empleado> empleados){
 		Session session = sf.openSession();
 		session.beginTransaction();
-		for(Adicional adicional:adicionales)
-			session.merge(adicional);
+		for(Empleado empleado:empleados)
+			session.merge(empleado);
 		session.flush();
 		session.getTransaction().commit();
 		session.close();
 	}
 	
-	public List<Adicional> leerAdicionales(){
+	public List<Empleado> leerEmpleados(){
 		Session session = sf.openSession();
 		@SuppressWarnings("unchecked")
-		List<Adicional> list = session.createQuery("from Adicional").list();
+		List<Empleado> list = session.createQuery("from Empleado").list();
 		session.close();
 		return list;
 	}
 
-	public void grabarAdicional(Adicional adic) 
+	public void grabarEmpleado(Empleado Emplead) 
 	{
 		Session session = sf.openSession(); // session factory
 		session.beginTransaction();
-		session.merge(adic); // bajamos los cambios es decir actualiza de la base de datos
+		session.merge(Emplead); // bajamos los cambios es decir actualiza de la base de datos
 		session.flush();
 		session.getTransaction().commit();
 		session.close();

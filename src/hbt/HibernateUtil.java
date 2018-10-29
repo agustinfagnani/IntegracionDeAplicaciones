@@ -5,14 +5,9 @@ package hbt;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import entities.AdicionalEntity;
-import entities.AlumnoEntity;
-import entities.CuotaEntity;
-import entities.EmpleadoEntity;
-import entities.EscolaridadEntity;
-import entities.FacturaEntity;
-import entities.ItemFacturaEntity;
-import entities.TitularEntity;
+import negocio.*;
+
+
 
  
 public class HibernateUtil
@@ -23,14 +18,14 @@ public class HibernateUtil
         try
         {
         	Configuration config = new Configuration();
-            config.addAnnotatedClass(AdicionalEntity.class);
-            config.addAnnotatedClass(AlumnoEntity.class);
-            config.addAnnotatedClass(CuotaEntity.class);
-            config.addAnnotatedClass(EmpleadoEntity.class);
-            config.addAnnotatedClass(EscolaridadEntity.class);
-            config.addAnnotatedClass(FacturaEntity.class);
-            config.addAnnotatedClass(ItemFacturaEntity.class);
-            config.addAnnotatedClass(TitularEntity.class);
+            config.addAnnotatedClass(Alumno.class);
+            config.addAnnotatedClass(Adicional.class);
+            config.addAnnotatedClass(Cuota.class);
+            config.addAnnotatedClass(Empleado.class);
+            config.addAnnotatedClass(Escolaridad.class);
+            config.addAnnotatedClass(Factura.class);
+            config.addAnnotatedClass(ItemFactura.class);
+            config.addAnnotatedClass(Titular.class);
             sessionFactory = config.buildSessionFactory();
                  
         }

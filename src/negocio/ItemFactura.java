@@ -1,13 +1,29 @@
 package negocio;
 
-public class ItemFactura {
-	private int id;
-	private String descripcion;
-	private float costo;
+import java.io.Serializable;
 
-	public ItemFactura(String descripcion, float costo) {
-		this.descripcion = descripcion;
-		this.costo = costo;
+import javax.persistence.*;
+
+@Entity
+@Table(name="ItemsFactura")
+public class ItemFactura implements Serializable{
+	
+	@ManyToOne 
+    @JoinColumn(name="numero", nullable=false)
+	private Factura factura;
+	
+	@Column(name="descripcion")
+	private String descripcion;
+	
+	@Column(name="costo")
+	private float costo;
+	
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	public ItemFactura(){
 	}
 
 	public String getDescripcion() {

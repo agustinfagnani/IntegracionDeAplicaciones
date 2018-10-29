@@ -1,51 +1,47 @@
 
-package dao;
+package bean.dao;
 
 import java.util.List;
 import hbt.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import negocio.Cuota;
 
-import com.escuela.negocio.Alumno;
-
-import bean.Cliente;
-import java.util.List;
-
-public class HibernateAlumnoDAO {
-	private static HibernateAlumnoDAO instancia = null;
+public class HibernateCuotaDAO {
+	private static HibernateCuotaDAO instancia = null;
 	private static SessionFactory sf = null;
 
-	public static HibernateAlumnoDAO getInstancia(){
+	public static HibernateCuotaDAO getInstancia(){
 		if(instancia == null){
 			sf = HibernateUtil.getSessionFactory();
-			instancia = new HibernateAlumnoDAO();
+			instancia = new HibernateCuotaDAO();
 		} 
 		return instancia;
 	}
 	
-	public void grabarAlumno(List<Alumno> alumnos){
+	public void grabarCuotas(List<Cuota> cuotas){
 		Session session = sf.openSession();
 		session.beginTransaction();
-		for(Alumno cliente:alumnos)
-			session.merge(cliente);
+		for(Cuota cuota:cuotas)
+			session.merge(cuota);
 		session.flush();
 		session.getTransaction().commit();
 		session.close();
 	}
 	
-	public List<Cliente> leerClientes(){
+	public List<Cuota> leerCuotas(){
 		Session session = sf.openSession();
 		@SuppressWarnings("unchecked")
-		List<Cliente> list = session.createQuery("from Cliente").list();
+		List<Cuota> list = session.createQuery("from Cuota").list();
 		session.close();
 		return list;
 	}
 
-	public void grabarCliente(Cliente cli) 
+	public void grabarCuota(Cuota c) 
 	{
 		Session session = sf.openSession(); // session factory
 		session.beginTransaction();
-		session.merge(cli); // bajamos los cambios es decir actualiza de la base de datos
+		session.merge(c); // bajamos los cambios es decir actualiza de la base de datos
 		session.flush();
 		session.getTransaction().commit();
 		session.close();

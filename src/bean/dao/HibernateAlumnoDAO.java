@@ -1,50 +1,48 @@
 
-package dao;
+package bean.dao;
 
 import java.util.List;
 import hbt.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import com.escuela.negocio.ItemFactura;
+import negocio.Alumno;
 
-import java.util.List;
-
-public class HibernateItemFacturaDAO {
-	private static HibernateItemFacturaDAO instancia = null;
+public class HibernateAlumnoDAO {
+	private static HibernateAlumnoDAO instancia = null;
 	private static SessionFactory sf = null;
 
-	public static HibernateItemFacturaDAO getInstancia(){
+	public static HibernateAlumnoDAO getInstancia(){
 		if(instancia == null){
 			sf = HibernateUtil.getSessionFactory();
-			instancia = new HibernateItemFacturaDAO();
+			instancia = new HibernateAlumnoDAO();
 		} 
 		return instancia;
 	}
 	
-	public void grabarItemFactura(List<ItemFactura> ItemFactura){
+	public void grabarAlumno(List<Alumno> alumnos){
 		Session session = sf.openSession();
 		session.beginTransaction();
-		for(ItemFactura item:ItemFactura)
-			session.merge(ItemFactura);
+		for(Alumno alumno:alumnos)
+			session.merge(alumno);
 		session.flush();
 		session.getTransaction().commit();
 		session.close();
 	}
 	
-	public List<ItemFactura> leeFactura(){
+	public List<Alumno> leerAlumnos(){
 		Session session = sf.openSession();
 		@SuppressWarnings("unchecked")
-		List<ItemFactura> list = session.createQuery("from ItemFactura").list();
+		List<Alumno> list = session.createQuery("from Alumno").list();
 		session.close();
 		return list;
 	}
 
-	public void grabarItemFactura(ItemFactura itemfact) 
+	public void grabarAlumno(Alumno Alumn) 
 	{
 		Session session = sf.openSession(); // session factory
 		session.beginTransaction();
-		session.merge(itemfact); // bajamos los cambios es decir actualiza de la base de datos
+		session.merge(Alumn); // bajamos los cambios es decir actualiza de la base de datos
 		session.flush();
 		session.getTransaction().commit();
 		session.close();
