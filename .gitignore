@@ -7,3 +7,5 @@
 lib/
 
 src/hibernate\.properties
+
+\.metadata/
