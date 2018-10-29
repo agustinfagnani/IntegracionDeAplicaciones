@@ -1,11 +1,11 @@
-package com.escuela.entities;
+package entities;
 
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="alumnos")
+@Table(name="Alumnos")
 public class AlumnoEntity {
 	
 	@Column(name="nombre")
@@ -17,15 +17,14 @@ public class AlumnoEntity {
 	private int legajo;
 	
 	@OneToOne
-	@Column(name="titular")
+	@JoinColumn(name="dni")
 	private TitularEntity titular;
 	
 	@OneToOne
-	@Column(name="escolaridad")
+	@JoinColumn(name="id")
 	private EscolaridadEntity escolaridad;
 	
-	@OneToMany
-	@Column(name="adicionales")
+	@OneToMany(mappedBy = "alumno")
 	private List<AdicionalEntity> adicionales;
 	
 	public AlumnoEntity(){

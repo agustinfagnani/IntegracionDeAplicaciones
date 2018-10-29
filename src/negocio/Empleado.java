@@ -1,4 +1,4 @@
-package com.escuela.negocio;
+package negocio;
 
 public class Empleado {
 	private String nombre;

@@ -1,11 +1,12 @@
-package com.escuela.entities;
+package entities;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="escolaridad")
+@Table(name="Escolaridad")
 public class EscolaridadEntity extends CuotaEntity{
 
+	
 	public EscolaridadEntity(){
 	}
 

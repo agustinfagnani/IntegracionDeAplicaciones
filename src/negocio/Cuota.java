@@ -1,4 +1,4 @@
-package com.escuela.negocio;
+package negocio;
 
 public class Cuota {
 	private String descripcion;

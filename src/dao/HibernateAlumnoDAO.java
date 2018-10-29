@@ -1,5 +1,5 @@
 
-package bean.dao;
+package dao;
 
 import java.util.List;
 import hbt.HibernateUtil;

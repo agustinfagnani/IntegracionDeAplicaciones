@@ -1,9 +1,9 @@
-package com.escuela.entities;
+package entities;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="titulares")
+@Table(name="Titulares")
 public class TitularEntity {
 	
 	@Column(name="nombre")

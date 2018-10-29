@@ -1,11 +1,14 @@
-package com.escuela.entities;
+package entities;
 
 import javax.persistence.*;
 
 @MappedSuperclass
 public class CuotaEntity {
 	
-	//hay que poner ID??
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	
 	@Column(name="descripcion")
 	private String descripcion;
@@ -32,7 +35,6 @@ public class CuotaEntity {
 	public void setCosto(float costo) {
 		this.costo = costo;
 	}
-	
 	
 	
 }

@@ -1,4 +1,4 @@
-package com.escuela.entities;
+package entities;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name="facturas")
+@Table(name="Facturas")
 public class FacturaEntity {
 	
 	@Id
@@ -23,8 +23,7 @@ public class FacturaEntity {
 	@Column(name="fechaPago")
 	private LocalDateTime fechaPago;
 	
-	@OneToMany
-	@JoinColumn(name="id")
+	@OneToMany(mappedBy = "factura")
 	private List<ItemFacturaEntity> items;
 	
 	@OneToOne

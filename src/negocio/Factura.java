@@ -1,4 +1,4 @@
-package com.escuela.negocio;
+package negocio;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,11 +10,10 @@ public class Factura {
 	private LocalDateTime fechaPago;
 	private Boolean Pago;	
 	private Alumno alumno;
-	
+	private List<ItemFactura> items;	
 	
 	public Factura(int numero, String tipo, LocalDateTime fechaEmision, LocalDateTime fechaPago, Boolean pago) {
-	
-		private List<ItemFactura> items;
+
 		this.numero = numero;
 		this.tipo = tipo;
 		this.fechaEmision = fechaEmision;

@@ -1,10 +1,14 @@
-package com.escuela.entities;
+package entities;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="facturas")
+@Table(name="ItemsFactura")
 public class ItemFacturaEntity {
+	
+	@ManyToOne
+    @JoinColumn(name="numero", nullable=false)
+	private FacturaEntity factura;
 	
 	@Column(name="descripcion")
 	private String descripcion;
