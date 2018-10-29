@@ -35,14 +35,14 @@ public class ListAlumnos
 		return alumnos.remove(alumn);
 	}
 	
-	public Alumno getAlumnoPorId(int id){
-		for(Alumno u : alumnos){
-			if(u.getDni()== id)
-				return u;
-		}
-		return null;
-	}
-	
+//	public Alumno getAlumnoPorId(int id){
+//		for(Alumno u : alumnos){
+//			if(u.getDni()== id)
+//				return u;
+//		}
+//		return null;
+//	}
+//	
 	
 	
 	
