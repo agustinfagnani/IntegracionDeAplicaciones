@@ -45,7 +45,7 @@ public class Facturar extends JFrame {
 	 * Create the frame.
 	 */
 	public Facturar() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Facturar.class.getResource("/com/images/Escuela.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Facturar.class.getResource("/images/Escuela.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();

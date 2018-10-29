@@ -43,7 +43,7 @@ public class Menu extends JFrame {
 	 * Create the frame.
 	 */
 	public Menu() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Menu.class.getResource("/com/images/Escuela.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Menu.class.getResource("/images/Escuela.png")));
 		setForeground(Color.BLACK);
 		setFont(new Font("Century", Font.BOLD | Font.ITALIC, 17));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

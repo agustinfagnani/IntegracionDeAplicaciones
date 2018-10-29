@@ -45,7 +45,7 @@ public class CrearInscripcion extends JFrame {
 	 * Create the frame.
 	 */
 	public CrearInscripcion() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearInscripcion.class.getResource("/com/images/Escuela.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearInscripcion.class.getResource("/images/Escuela.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
