@@ -45,6 +45,9 @@ public class Cuota implements Serializable{
 	public void setCosto(float costo) {
 		this.costo = costo;
 	}
-	
+	@Override
+	public String toString(){
+		return "DNI: "+this.descripcion+" - "+this.costo; 
+	}
 	
 }

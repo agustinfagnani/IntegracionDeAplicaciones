@@ -98,7 +98,7 @@ public class Empleado implements Serializable{
 	
 	@Override
 	public String toString(){
-		return " "; 
+		return "DNI: "+this.DNI+" - "+this.nombre; 
 	}
 
 
