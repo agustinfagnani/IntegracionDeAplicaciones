@@ -5,6 +5,9 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import negocio.Factura;
 
@@ -20,6 +23,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
 
 public class VerFactura extends JFrame {
 
@@ -33,7 +40,7 @@ public class VerFactura extends JFrame {
 	public VerFactura(Factura f) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VerFactura.class.getResource("/images/Escuela.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 860, 810);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -64,10 +71,9 @@ public class VerFactura extends JFrame {
 		JLabel lblFchEmision = new JLabel("Fecha de Emision");
 		lblFchEmision.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		
-		Format formato=new SimpleDateFormat("yyyy-MM-dd");
-		String fecha=formato.format(f.getFechaEmision());
 		
-		JLabel lblFchEmsion2 = new JLabel(fecha);
+		
+		JLabel lblFchEmsion2 = new JLabel(f.getFechaEmision().toLocalDate().toString());
 		lblFchEmsion2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFchEmsion2.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 25));
 		
@@ -79,7 +85,7 @@ public class VerFactura extends JFrame {
 		lblAlumno2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlumno2.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 25));
 		
-		JLabel lblTotal2 = new JLabel("(Total)");
+		JLabel lblTotal2 = new JLabel(Float.toString(f.getCostoTotal()));
 		lblTotal2.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 30));
 		
 		JLabel lblNroFactura = new JLabel("Numero");
@@ -90,51 +96,56 @@ public class VerFactura extends JFrame {
 		
 		JLabel lbltipo = new JLabel(f.getTipo());
 		lbltipo.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 25));
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setBackground(Color.WHITE);
+		textPane.setEditable(false);
+		textPane.setFont(new Font("Century Gothic", Font.ITALIC, 20));
+		textPane.setText(f.toString());
+		StyledDocument doc = textPane.getStyledDocument();
+		SimpleAttributeSet center = new SimpleAttributeSet();
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(25)
-							.addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
-							.addGap(465))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(lblFactura, GroupLayout.PREFERRED_SIZE, 279, GroupLayout.PREFERRED_SIZE)
-							.addGap(121)))
-					.addComponent(lbltipo, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(84)
+							.addContainerGap(252, Short.MAX_VALUE)
+							.addComponent(lblFactura, GroupLayout.PREFERRED_SIZE, 279, GroupLayout.PREFERRED_SIZE)
+							.addGap(121)
+							.addComponent(lbltipo, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap(563, Short.MAX_VALUE)
+							.addComponent(lblTotal)
+							.addGap(29)
+							.addComponent(lblTotal2, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(62)
 							.addComponent(lblTitular, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblTitular2, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-							.addComponent(lblAlumno, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE))
+							.addComponent(lblTitular2, GroupLayout.PREFERRED_SIZE, 262, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+							.addComponent(lblAlumno, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lblAlumno2, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE)
+							.addGap(18))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblNroFactura, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-							.addGap(29)
-							.addComponent(lblNroFactura2, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
-							.addGap(27)
-							.addComponent(lblFchEmision, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblAlumno2, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE)
-							.addGap(40))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblFchEmsion2, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-							.addContainerGap())))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(242)
-					.addComponent(lblTotal)
-					.addGap(97)
-					.addComponent(lblTotal2, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(286, Short.MAX_VALUE))
+							.addGap(45)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(textPane, GroupLayout.PREFERRED_SIZE, 674, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(lblNroFactura, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+									.addGap(66)
+									.addComponent(lblNroFactura2, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
+									.addGap(77)
+									.addComponent(lblFchEmision, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblFchEmsion2, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
+								.addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -143,30 +154,27 @@ public class VerFactura extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lbltipo, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblFactura))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(56)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblFchEmsion2, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblFchEmision, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNroFactura2, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(57)
-							.addComponent(lblNroFactura, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)))
-					.addGap(81)
+					.addGap(56)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblFchEmsion2, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblFchEmision, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNroFactura2, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNroFactura, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
+					.addGap(48)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblTitular, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblAlumno, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblTitular2, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblAlumno, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblAlumno2, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-					.addGap(70)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblTotal)
-							.addPreferredGap(ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-							.addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+					.addGap(72)
+					.addComponent(textPane, GroupLayout.PREFERRED_SIZE, 315, GroupLayout.PREFERRED_SIZE)
+					.addGap(40)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblTotal)
 						.addComponent(lblTotal2, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addGap(31))
 		);
 		
 		contentPane.setLayout(gl_contentPane);
