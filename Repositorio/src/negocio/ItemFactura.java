@@ -59,6 +59,9 @@ public class ItemFactura implements Serializable{
 		return this.alumno;
 	}
 	
-	
+	@Override
+	public String toString(){
+		return " "; 
+	}
 	
 }

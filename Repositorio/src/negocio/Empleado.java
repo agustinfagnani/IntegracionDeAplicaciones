@@ -95,7 +95,11 @@ public class Empleado implements Serializable{
 	public void setSalario(float salario) {
 		this.salario = salario;
 	}
-
+	
+	@Override
+	public String toString(){
+		return " "; 
+	}
 
 
 
