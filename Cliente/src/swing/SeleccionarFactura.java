@@ -15,6 +15,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
 
 import Cliente.Cliente;
+import exception.PeriodoNoFacturadoException;
+import exception.TitularNoExisteException;
 import negocio.Alumno;
 import negocio.Factura;
 import negocio.Titular;
@@ -172,12 +174,18 @@ public class SeleccionarFactura extends JFrame {
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
 				try {
-					Factura f = Cliente.getInstance().getFactura(cmBoxTitular.getSelectedItem(),cm);
+					Factura f = Cliente.getInstance().verFacturaTitular(Integer.parseInt(cmBoxTitular.getSelectedItem().toString()),Integer.parseInt(comboBox.getSelectedItem().toString()),Integer.parseInt(comboBox_1.getSelectedItem().toString()));
 					VerFactura frame = new VerFactura(f);
 					frame.setVisible(true);
 					facturar.setVisible(false);
 				} catch (RemoteException e1) {
 					JOptionPane.showMessageDialog(new JFrame(),"No se puede crear la factura deseada", "Error", JOptionPane.ERROR_MESSAGE);
+				} catch (NumberFormatException e1) {
+					JOptionPane.showMessageDialog(new JFrame(),"No se puede crear la factura deseada", "Error", JOptionPane.ERROR_MESSAGE);
+				} catch (PeriodoNoFacturadoException e1) {
+					JOptionPane.showMessageDialog(new JFrame(),"Periodo no facturado", "Error", JOptionPane.ERROR_MESSAGE);
+				} catch (TitularNoExisteException e1) {
+					JOptionPane.showMessageDialog(new JFrame(),"El titular no existe", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
