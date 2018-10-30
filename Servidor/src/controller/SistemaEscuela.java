@@ -35,9 +35,8 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 
 	public void crearAlumno(String nombre, int dniTitular, String direccion, String mail, String telefono,
 			int idEscolarida) {
-		//AGREGAR FUNCIONES BUSCAR TITULAR Y BUSCAR ESCOLARIDAD AL DAO
 		Titular t = HibernateTitularDAO.getInstancia().buscarTitular(dniTitular);
-		Escolaridad e = HibernateEscolaridadDAO.getInstancia().leerEscolaridads().get(0);
+		Escolaridad e = HibernateEscolaridadDAO.getInstancia().buscarEscolaridad(idEscolarida);
 		Alumno newAlumno = new Alumno(nombre, t, direccion, mail, telefono, e);
 		HibernateAlumnoDAO.getInstancia().grabarAlumno(newAlumno);
 		
@@ -99,9 +98,8 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 	}
 	
 	public void pagarFactura(int numero) {
-		List<Factura> listadoFactura = HibernateFacturaDAO.getInstancia().leerFactura();
-		Factura f = null;/// HAY QUE TRAER LA FACTURA 
-		f.setFechaPago(LocalDateTime.now());
+		Factura f = HibernateFacturaDAO.getInstancia().buscarFactura(numero);
+		
 		HibernateFacturaDAO.getInstancia().grabarFactura(f);
 	}
 	

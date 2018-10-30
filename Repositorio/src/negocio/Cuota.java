@@ -20,7 +20,12 @@ public class Cuota implements Serializable{
 	
 	public Cuota(){
 	}
+	
+	public Cuota(String descr, float costo){
+		this.descripcion = descr;
+		this.costo = costo;
 
+	}
 
 	public String getDescripcion() {
 		return descripcion;
