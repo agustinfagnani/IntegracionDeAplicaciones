@@ -235,21 +235,17 @@ public class CrearAlumno extends JFrame {
 				//Persistir
 				Escolaridad escolaridad  = (Escolaridad) cmBoxEscolaridad.getSelectedItem();
 				try {
-					try {
-						Cliente.getInstance().crearAlumno(textField.getText(), Integer.parseInt(txtDniTitular.getText()), txtDireccion.getText(), txtMail.getText(), 
-								txtTelefono.getText(),escolaridad.getId());
-					} catch (TitularNoExisteException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (EscolaridadNoExisteException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					Cliente.getInstance().crearAlumno(textField.getText(), Integer.parseInt(txtDniTitular.getText()), txtDireccion.getText(), txtMail.getText(), 
+						txtTelefono.getText(),escolaridad.getId());
 					Menu frame = new Menu();
 					frame.setVisible(true);
 					crearAlumno.setVisible(false);
 				} catch (NumberFormatException | RemoteException e1) {
 					JOptionPane.showMessageDialog(new JFrame(),"Falla al crear Alumno", "Error", JOptionPane.ERROR_MESSAGE);
+				}catch (TitularNoExisteException e1) {
+					JOptionPane.showMessageDialog(new JFrame(),"Titular no existe", "Error", JOptionPane.ERROR_MESSAGE);
+				} catch (EscolaridadNoExisteException e1) {
+					JOptionPane.showMessageDialog(new JFrame(),"Escolaridad no existe", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
