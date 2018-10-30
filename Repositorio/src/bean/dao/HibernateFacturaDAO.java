@@ -63,10 +63,10 @@ public class HibernateFacturaDAO {
 	
 	public Factura buscarFactura(int periodo, int anio, int dniTitular){
 		Session session = sf.openSession();
-		Query<Factura> query = session.createQuery("From Factura where periodo = :periodo and anio = :anio and dniTitular = :dniTitular");
+		Query<Factura> query = session.createQuery("From Factura where periodo = :periodo and anio = :anio and dni = :dni");
 		query.setParameter("periodo", periodo);
 		query.setParameter("anio", anio);
-		query.setParameter("dniTitular", dniTitular);
+		query.setParameter("dni", dniTitular);
 		Factura factura = (Factura) query.uniqueResult();
 		session.close();
 		
