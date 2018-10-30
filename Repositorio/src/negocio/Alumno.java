@@ -98,6 +98,9 @@ public class Alumno implements Serializable{
 		return this.legajo == legajo;
 
 	}
+	public List<Adicional> getAdicionales() {
+		return this.adicionales;
+	}
 
 
 }
