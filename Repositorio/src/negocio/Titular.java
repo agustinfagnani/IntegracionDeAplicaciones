@@ -88,7 +88,9 @@ public class Titular implements Serializable{
 		return alumnos;
 	}
 	
-	
-	
+	@Override
+	public String toString(){
+		return "DNI:"+this.DNI+" - "+this.nombre; 
+	}
 	
 }
