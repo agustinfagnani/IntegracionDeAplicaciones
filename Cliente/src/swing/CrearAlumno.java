@@ -6,10 +6,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Cliente.Cliente;
+import negocio.Escolaridad;
 
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -33,7 +35,7 @@ public class CrearAlumno extends JFrame {
 	private JTextField txtDireccion;
 	private JTextField txtMail;
 	private JTextField txtTelefono;
-    private	JComboBox cmBoxEscolaridad;
+    private	JComboBox<Escolaridad> cmBoxEscolaridad;
 	/**
 	 * Launch the application.
 	 */
@@ -52,8 +54,9 @@ public class CrearAlumno extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws RemoteException 
 	 */
-	public CrearAlumno() {
+	public CrearAlumno() throws RemoteException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearAlumno.class.getResource("/images/Escuela.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -130,6 +133,10 @@ public class CrearAlumno extends JFrame {
 		cmBoxEscolaridad.setForeground(Color.WHITE);
 		cmBoxEscolaridad.setBackground(Color.BLACK);
 		cmBoxEscolaridad.setFont(new Font("Century Gothic", Font.ITALIC, 20));
+		
+		for(Escolaridad e: Cliente.getInstance().getEscolaridades()){
+			cmBoxEscolaridad.addItem(e);
+		}
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -230,10 +237,10 @@ public class CrearAlumno extends JFrame {
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
 				//Persistir
-				String escolaridad  = cmBoxEscolaridad.getSelectedItem().toString();
+				Escolaridad escolaridad  = (Escolaridad) cmBoxEscolaridad.getSelectedItem();
 				try {
 					Cliente.getInstance().crearAlumno(textField.getText(), Integer.parseInt(txtDniTitular.getText()), txtDireccion.getText(), txtMail.getText(), 
-							txtTelefono.getText(),Integer.parseInt(escolaridad));
+							txtTelefono.getText(),escolaridad.getId());
 				} catch (NumberFormatException | RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
