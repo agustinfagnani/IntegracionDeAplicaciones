@@ -43,7 +43,7 @@ public class Cliente {
 		});
 	}
 	
-	public TDAManejoDatos getInstance() {
+	public static TDAManejoDatos getInstance() {
 		return sistema;
 	}
 

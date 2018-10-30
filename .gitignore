@@ -12,6 +12,10 @@ src/hibernate\.properties
 
 \.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/
 
+<<<<<<< HEAD
+\.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/
+=======
 *.fdt
 
 \.recommenders/index/http___download_eclipse_org_recommenders_models_neon_/
+>>>>>>> master
