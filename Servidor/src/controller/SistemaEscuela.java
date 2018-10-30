@@ -154,6 +154,12 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 		Adicional ad = HibernateAdicionalDAO.getInstancia().buscarAdicional(id);
 		if(ad==null)
 			throw new AdicionalNoExisteException();
+		
+		for(Adicional adi: a.getAdicionales()) {
+			if(adi.getId() == id) {
+				throw new AdicionalYaAsignadoException();
+			}
+		}
 		a.addAdicional(ad);
 		HibernateAlumnoDAO.getInstancia().grabarAlumno(a);
 	}
