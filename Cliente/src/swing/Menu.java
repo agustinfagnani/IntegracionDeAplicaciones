@@ -136,8 +136,16 @@ public class Menu extends JFrame {
 		itemCrearInscripcion.setForeground(Color.WHITE);
 		itemCrearInscripcion.setBackground(Color.BLACK);
 		itemCrearInscripcion.addActionListener(mb);
+		
+		JMenuItem mntmVerFactura = new JMenuItem("Ver Factura");
+		mntmVerFactura.setForeground(Color.WHITE);
+		mntmVerFactura.setFont(new Font("Century Gothic", Font.ITALIC, 20));
+		mntmVerFactura.setBackground(Color.BLACK);
+		mnInscripcionesYFacturacion.add(mntmVerFactura);
 		itemCrearInscripcion.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		mnInscripcionesYFacturacion.add(itemCrearInscripcion);
+		mntmVerFactura.addActionListener(mb);
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -189,6 +197,12 @@ public class Menu extends JFrame {
 			}
 			if(e.getActionCommand().equals("Crear Empleado")) {
 				CrearEmpleado frame = new CrearEmpleado();
+				frame.setVisible(true);
+				menu.setVisible(false);
+				
+			}
+			if(e.getActionCommand().equals("Ver Factura")) {
+				SeleccionarFactura frame = new SeleccionarFactura();
 				frame.setVisible(true);
 				menu.setVisible(false);
 				
