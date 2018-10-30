@@ -9,11 +9,8 @@ import swing.Menu;
 public class Cliente {
     
 	static TDAManejoDatos sistema;
-<<<<<<< HEAD
 	static String IP = "192.168.157.80";
-=======
-	static String IP = "192.168.156.119";
->>>>>>> master
+
 	
 	public static void main(String[] args)
 	{

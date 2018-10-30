@@ -92,7 +92,7 @@ public class Alumno implements Serializable{
 	@Override
 	public String toString() {
 		//return  nombre +"," + "legajo: "+legajo;
-		return  "legajo: "+legajo + "-" +nombre;
+		return  "Legajo: "+legajo + " - " +nombre;
 	}
 	public boolean sosAlumn(int legajo) {
 		
