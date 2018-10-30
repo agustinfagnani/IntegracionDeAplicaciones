@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Cliente.Cliente;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -17,6 +20,7 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 public class CrearAlumno extends JFrame {
 
@@ -29,7 +33,7 @@ public class CrearAlumno extends JFrame {
 	private JTextField txtDireccion;
 	private JTextField txtMail;
 	private JTextField txtTelefono;
-
+    private	JComboBox cmBoxEscolaridad;
 	/**
 	 * Launch the application.
 	 */
@@ -122,7 +126,7 @@ public class CrearAlumno extends JFrame {
 		JLabel lblTelefono = new JLabel("Telefono");
 		lblTelefono.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		
-		JComboBox cmBoxEscolaridad = new JComboBox();
+		cmBoxEscolaridad = new JComboBox();
 		cmBoxEscolaridad.setForeground(Color.WHITE);
 		cmBoxEscolaridad.setBackground(Color.BLACK);
 		cmBoxEscolaridad.setFont(new Font("Century Gothic", Font.ITALIC, 20));
@@ -226,6 +230,15 @@ public class CrearAlumno extends JFrame {
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
 				//Persistir
+				String escolaridad  = cmBoxEscolaridad.getSelectedItem().toString();
+				try {
+					Cliente.getInstance().crearAlumno(textField.getText(), Integer.parseInt(txtDniTitular.getText()), txtDireccion.getText(), txtMail.getText(), 
+							txtTelefono.getText(),Integer.parseInt(escolaridad));
+				} catch (NumberFormatException | RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 				Menu frame = new Menu();
 				frame.setVisible(true);
 				crearAlumno.setVisible(false);

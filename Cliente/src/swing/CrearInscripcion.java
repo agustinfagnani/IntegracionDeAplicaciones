@@ -56,9 +56,9 @@ public class CrearInscripcion extends JFrame {
 		ManejoBotones mb = new ManejoBotones();
 		mb.obtenerFrame(this);
 		
-		JLabel lblFacturar = new JLabel("Facturar");
-		lblFacturar.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFacturar.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 30));
+		JLabel lblCrearInscripcion = new JLabel("Crear Inscripcion");
+		lblCrearInscripcion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCrearInscripcion.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 30));
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setFont(new Font("Century Gothic", Font.ITALIC, 20));
@@ -106,7 +106,7 @@ public class CrearInscripcion extends JFrame {
 							.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(lblFacturar, GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)))
+							.addComponent(lblCrearInscripcion, GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)))
 					.addContainerGap())
 				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
 					.addGap(226)
@@ -133,7 +133,7 @@ public class CrearInscripcion extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(26)
-					.addComponent(lblFacturar)
+					.addComponent(lblCrearInscripcion)
 					.addGap(51)
 					.addComponent(lblSeleccioneElAdicional, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 					.addGap(44)
