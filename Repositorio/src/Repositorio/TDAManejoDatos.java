@@ -5,20 +5,15 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Set;
 
+import bean.dao.HibernateAlumnoDAO;
 import negocio.Alumno;
+import negocio.Escolaridad;
+import negocio.Titular;
 
 
 
 public interface TDAManejoDatos extends Remote 
 {
-	/* retorna un alumno */
-	public Alumno obtengoAlumno(int nroAlumno) throws RemoteException;
-	
-	/* recibe un alumno */ 
-	public void envioAlumno(Alumno alumno)throws RemoteException;
-	 
-	/* retorna todos los alumnos */ 
-	public ArrayList<Alumno> obtengoAlumnos()throws RemoteException;
-	
-	public int cantidadAlumnos() throws RemoteException;
+	public void crearAlumno(String nombre, int dniTitular, String direccion, String mail, String telefono,
+			int idEscolarida) throws RemoteException;
 }

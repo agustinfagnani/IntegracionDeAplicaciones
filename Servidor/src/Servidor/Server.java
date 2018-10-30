@@ -4,6 +4,7 @@ import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
 
 import Repositorio.TDAManejoDatos;
+import controller.SistemaEscuela;
 
 
 
@@ -23,7 +24,7 @@ public class Server {
     public void iniciar() {
     	try {
     		LocateRegistry.createRegistry(1099);	
-            TDAManejoDatos gestionAlumnos = new GestionAlumnos();
+            TDAManejoDatos gestionAlumnos = new SistemaEscuela();
 //          Nombre publico para trabajar
             Naming.rebind ("//localhost/GestionAlumnos", gestionAlumnos);
             System.out.println("Fijado en //localhost/GestionAlumnos");

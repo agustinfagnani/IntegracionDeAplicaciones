@@ -1,9 +1,14 @@
 package controller;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import Repositorio.TDAManejoDatos;
 import bean.dao.HibernateAlumnoDAO;
 import bean.dao.HibernateEmpleadoDAO;
+import bean.dao.HibernateEscolaridadDAO;
 import bean.dao.HibernateFacturaDAO;
 import bean.dao.HibernateTitularDAO;
 import negocio.Escolaridad;
@@ -15,12 +20,24 @@ import negocio.Empleado;
 
 
 
-public class SistemaEscuela {
+public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDatos {
 	
 	
-	public void crearAlumno(String nombre, Titular titular, String direccion, String mail, String telefono,
-			Escolaridad escolarida) {
-		Alumno newAlumno = new Alumno(nombre, titular, direccion, mail, telefono, escolarida);
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5L;
+
+	public SistemaEscuela() throws RemoteException {
+		
+	}
+
+	public void crearAlumno(String nombre, int dniTitular, String direccion, String mail, String telefono,
+			int idEscolarida) {
+		//AGREGAR FUNCIONES BUSCAR TITULAR Y BUSCAR ESCOLARIDAD AL DAO
+		Titular t = HibernateTitularDAO.getInstancia().leerTitulares().get(0);
+		Escolaridad e = HibernateEscolaridadDAO.getInstancia().leerEscolaridads().get(0);
+		Alumno newAlumno = new Alumno(nombre, t, direccion, mail, telefono, e);
 		HibernateAlumnoDAO.getInstancia().grabarAlumno(newAlumno);
 		
 		
