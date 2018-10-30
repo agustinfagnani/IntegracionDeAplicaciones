@@ -51,10 +51,10 @@ public class HibernateEmpleadoDAO {
 		
 	}
 	
-	public Empleado buscarEmpleado(int idEmpleado){
+	public Empleado buscarEmpleado(int dniEmpleado){
 		Session session = sf.openSession();
-		Query<Empleado> query = session.createQuery("From Empleado where id = :id");
-		query.setParameter("dni", idEmpleado);
+		Query<Empleado> query = session.createQuery("From Empleado where dni = :dni");
+		query.setParameter("dni", dniEmpleado);
 		Empleado empleado = (Empleado) query.uniqueResult();
 		session.close();
 		
