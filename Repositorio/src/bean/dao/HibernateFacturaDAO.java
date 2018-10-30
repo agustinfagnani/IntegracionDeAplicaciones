@@ -60,5 +60,16 @@ public class HibernateFacturaDAO {
 		
 		return factura;
 	}
-
+	
+	public Factura buscarFactura(int periodo, int anio, int legajo){
+		Session session = sf.openSession();
+		Query<Factura> query = session.createQuery("From Factura where periodo = :periodo and anio = :anio and legajo = :legajo");
+		query.setParameter("periodo", periodo);
+		query.setParameter("anio", anio);
+		query.setParameter("legajo", legajo);
+		Factura factura = (Factura) query.uniqueResult();
+		session.close();
+		
+		return factura;
+	}
 }
