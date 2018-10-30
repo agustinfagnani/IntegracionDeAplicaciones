@@ -12,6 +12,8 @@ import bean.dao.HibernateEmpleadoDAO;
 import bean.dao.HibernateEscolaridadDAO;
 import bean.dao.HibernateFacturaDAO;
 import bean.dao.HibernateTitularDAO;
+import exception.EscolaridadNoExisteException;
+import exception.TitularNoExisteException;
 import negocio.Escolaridad;
 import negocio.Factura;
 import negocio.Titular;
@@ -36,9 +38,13 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 	}
 
 	public void crearAlumno(String nombre, int dniTitular, String direccion, String mail, String telefono,
-			int idEscolarida) {
+			int idEscolarida) throws TitularNoExisteException, EscolaridadNoExisteException {
 		Titular t = HibernateTitularDAO.getInstancia().buscarTitular(dniTitular);
+		if(t==null)
+			throw new TitularNoExisteException();
 		Escolaridad e = HibernateEscolaridadDAO.getInstancia().buscarEscolaridad(idEscolarida);
+		if(e==null)
+			throw new EscolaridadNoExisteException();
 		Alumno newAlumno = new Alumno(nombre, t, direccion, mail, telefono, e);
 		HibernateAlumnoDAO.getInstancia().grabarAlumno(newAlumno);
 		

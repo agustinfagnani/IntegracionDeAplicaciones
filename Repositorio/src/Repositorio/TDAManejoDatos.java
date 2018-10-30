@@ -8,6 +8,8 @@ import java.util.Set;
 
 import bean.dao.HibernateAlumnoDAO;
 import bean.dao.HibernateTitularDAO;
+import exception.EscolaridadNoExisteException;
+import exception.TitularNoExisteException;
 import negocio.Adicional;
 import negocio.Alumno;
 import negocio.Escolaridad;
@@ -19,7 +21,7 @@ import negocio.Titular;
 public interface TDAManejoDatos extends Remote 
 {
 	public void crearAlumno(String nombre, int dniTitular, String direccion, String mail, String telefono,
-			int idEscolarida) throws RemoteException;
+			int idEscolarida) throws RemoteException, TitularNoExisteException, EscolaridadNoExisteException;
 	
 	public void crearTitular(String nombre, int dNI, String direccion, String mail, String telefono) throws RemoteException;
 	
