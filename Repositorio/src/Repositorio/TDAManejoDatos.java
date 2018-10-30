@@ -41,7 +41,7 @@ public interface TDAManejoDatos extends Remote
 	
 	public List<Adicional> getAdicionales() throws RemoteException;
 	
-	public void asginarInscripcion(int legajo, int id) throws RemoteException;
+	public void asignarInscripcion(int legajo, int id) throws RemoteException;
 	
 	public Factura verFacturaTitular(int dni, int periodo, int anio) throws RemoteException, PeriodoNoFacturadoException, TitularNoExisteException;
 	

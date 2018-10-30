@@ -86,7 +86,7 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 	
 
 	public void crearEmpleado(int DNI, String cargo, String nombre, String direccion, String mail, String telefono, float salario) throws EmpleadoYaExisteException {
-		if(HibernateEmpleadoDAO.getInstancia().buscarEmpleado(DNI) == null)
+		if(HibernateEmpleadoDAO.getInstancia().buscarEmpleado(DNI) != null)
 			throw new EmpleadoYaExisteException();
 		Empleado newEmpleado = new Empleado(DNI, cargo, nombre, direccion, mail, telefono, salario);
 		HibernateEmpleadoDAO.getInstancia().grabarEmpleado(newEmpleado);
@@ -104,7 +104,7 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 	}
 	
 	public void crearTitular(String nombre, int dNI, String direccion, String mail, String telefono) throws TitularYaExisteException {
-		if(HibernateTitularDAO.getInstancia().buscarTitular(dNI) == null)
+		if(HibernateTitularDAO.getInstancia().buscarTitular(dNI) != null)
 			throw new TitularYaExisteException();
 		Titular newTitular = new Titular(nombre, dNI, direccion, mail, telefono);	
 		HibernateTitularDAO.getInstancia().grabarTitular(newTitular);
@@ -144,7 +144,7 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 		HibernateFacturaDAO.getInstancia().grabarFactura(f);
 	}
 	
-	public void asginarInscripcion(int legajo, int id) {
+	public void asignarInscripcion(int legajo, int id) {
 		Alumno a = HibernateAlumnoDAO.getInstancia().buscarAlumno(legajo);
 		Adicional ad = HibernateAdicionalDAO.getInstancia().buscarAdicional(id);
 		a.addAdicional(ad);

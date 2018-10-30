@@ -90,9 +90,9 @@ public class Main {
 	Adicional ad6 = new Adicional("Teatro", 200);
 	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad6);
 	
-	sistemaEscuela.asginarInscripcion(1,2);
-	sistemaEscuela.asginarInscripcion(1,3);
-	sistemaEscuela.asginarInscripcion(1,4);
+	sistemaEscuela.asignarInscripcion(1,2);
+	sistemaEscuela.asignarInscripcion(1,3);
+	sistemaEscuela.asignarInscripcion(1,4);
 	
 	sistemaEscuela.facturar(11, 2017);
 	
