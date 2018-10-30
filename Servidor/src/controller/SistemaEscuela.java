@@ -27,6 +27,7 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 	 * 
 	 */
 	private static final long serialVersionUID = 5L;
+	
 
 	public SistemaEscuela() throws RemoteException {
 		
@@ -35,11 +36,21 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 	public void crearAlumno(String nombre, int dniTitular, String direccion, String mail, String telefono,
 			int idEscolarida) {
 		//AGREGAR FUNCIONES BUSCAR TITULAR Y BUSCAR ESCOLARIDAD AL DAO
-		Titular t = HibernateTitularDAO.getInstancia().leerTitulares().get(0);
+		Titular t = HibernateTitularDAO.getInstancia().buscarTitular(dniTitular);
 		Escolaridad e = HibernateEscolaridadDAO.getInstancia().leerEscolaridads().get(0);
 		Alumno newAlumno = new Alumno(nombre, t, direccion, mail, telefono, e);
 		HibernateAlumnoDAO.getInstancia().grabarAlumno(newAlumno);
 		
+		
+	}
+	
+	public List<Titular> getTitulares(){
+		return HibernateTitularDAO.getInstancia().leerTitulares();
+		
+	}
+	
+	public List<Escolaridad> getEscolaridades(){
+		return HibernateEscolaridadDAO.getInstancia().leerEscolaridads();
 		
 	}
 	
