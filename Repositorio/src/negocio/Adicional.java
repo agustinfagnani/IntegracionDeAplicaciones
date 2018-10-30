@@ -22,5 +22,9 @@ public class Adicional extends Cuota implements Serializable {
 		super(descr, costo);
 	}	
 
+	@Override
+	public String toString() {
+		return  super.getDescripcion();
+	}
 
 }

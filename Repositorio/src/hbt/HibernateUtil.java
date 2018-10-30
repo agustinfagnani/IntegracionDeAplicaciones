@@ -18,14 +18,16 @@ public class HibernateUtil
         try
         {
         	Configuration config = new Configuration();
-            config.addAnnotatedClass(Alumno.class);
+        	config.addAnnotatedClass(Titular.class);
+        	 config.addAnnotatedClass(Escolaridad.class);
+        	config.addAnnotatedClass(Alumno.class);
             config.addAnnotatedClass(Adicional.class);
             config.addAnnotatedClass(Cuota.class);
             config.addAnnotatedClass(Empleado.class);
-            config.addAnnotatedClass(Escolaridad.class);
+           
             config.addAnnotatedClass(Factura.class);
             config.addAnnotatedClass(ItemFactura.class);
-            config.addAnnotatedClass(Titular.class);
+            
             sessionFactory = config.buildSessionFactory();
                  
         }
