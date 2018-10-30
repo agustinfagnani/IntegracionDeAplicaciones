@@ -86,5 +86,26 @@ public class Factura implements Serializable{
 		this.fechaPago = fechaPago;
 	}
 	
+	public float getCostoTotal() {
+		float total = 0;
+		for(ItemFactura i: items) {
+			total+=i.getCosto();
+		}
+		return total;
+	}
+	
+	@Override
+	public String toString() {
+		String state= "----------------------------------------------------------/n";
+		state = state + "Descripcion" + "/t|/t" + "Costo" + "/n";
+		state = state + "----------------------------------------------------------/n";
+		for(ItemFactura i: items) {
+			state = state + i.getDescripcion() + "/t|/t" + i.getCosto() + "/n";
+		}
+		state = state + "----------------------------------------------------------/n";
+		
+		
+		return state;
+	}
 	
 }
