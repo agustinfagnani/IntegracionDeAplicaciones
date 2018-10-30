@@ -79,6 +79,7 @@ public class Menu extends JFrame {
 		itemCrearEmpleado.setBackground(Color.BLACK);
 		itemCrearEmpleado.addActionListener(mb);
 		mnEmpleados.add(itemCrearEmpleado);
+		itemCrearEmpleado.addActionListener(mb);
 		
 		JMenuItem itemModificarEmpleado = new JMenuItem("Modificar Empleado");
 		itemModificarEmpleado.setFont(new Font("Century Gothic", Font.ITALIC, 20));
@@ -183,6 +184,12 @@ public class Menu extends JFrame {
 			}
 			if(e.getActionCommand().equals("Crear Inscripcion")) {
 				CrearInscripcion frame = new CrearInscripcion();
+				frame.setVisible(true);
+				menu.setVisible(false);
+				
+			}
+			if(e.getActionCommand().equals("Crear Empleado")) {
+				CrearEmpleado frame = new CrearEmpleado();
 				frame.setVisible(true);
 				menu.setVisible(false);
 				

@@ -1,14 +1,13 @@
 package swing;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Cliente.Cliente;
-
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
@@ -34,22 +33,6 @@ public class CrearEmpleado extends JFrame {
 	private JTextField txtTelefono;
 	private JTextField txtCargo;
 	private JTextField txtDni;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CrearEmpleado frame = new CrearEmpleado();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -81,8 +64,7 @@ public class CrearEmpleado extends JFrame {
 				try {
 					Cliente.getInstance().crearEmpleado(Integer.parseInt(txtDni.getText()), txtCargo.getText(), textNombre.getText(), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText(), Float.parseFloat(txtSalario.getText()));
 				} catch (NumberFormatException | RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(new JFrame(),"Falla al crear empleado", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -90,7 +72,11 @@ public class CrearEmpleado extends JFrame {
 		btnAceptar.setBackground(Color.BLACK);
 		btnAceptar.setForeground(Color.WHITE);
 		
+		ManejoBotones mb= new ManejoBotones();
+		mb.obtenerFrame(this);
+		
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(mb);
 		btnSalir.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		btnSalir.setForeground(Color.WHITE);
 		btnSalir.setBackground(Color.BLACK);
@@ -226,5 +212,24 @@ public class CrearEmpleado extends JFrame {
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+	
+	public class ManejoBotones implements ActionListener {
+		
+		JFrame crearInscripcion = new JFrame();
+		
+		public void obtenerFrame(JFrame crearInscripcion) {
+			this.crearInscripcion=crearInscripcion;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getActionCommand().equals("Salir")) {
+				Menu frame = new Menu();
+				frame.setVisible(true);
+				crearInscripcion.setVisible(false);
+			}
+		}
+		
 	}
 }

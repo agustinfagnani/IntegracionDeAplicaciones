@@ -85,6 +85,12 @@ public class Factura implements Serializable{
 	public void setFechaPago(LocalDateTime fechaPago) {
 		this.fechaPago = fechaPago;
 	}
+
+	public Alumno getAlumno() {
+		return alumno;
+	}
+	
+	
 	
 	public float getCostoTotal() {
 		float total = 0;
@@ -96,13 +102,13 @@ public class Factura implements Serializable{
 	
 	@Override
 	public String toString() {
-		String state= "----------------------------------------------------------/n";
-		state = state + "Descripcion" + "/t|/t" + "Costo" + "/n";
-		state = state + "----------------------------------------------------------/n";
+		String state= "----------------------------------------------------------\n";
+		state = state + "Descripcion" + " | " + "Costo" + "\n";
+		state = state + "----------------------------------------------------------\n";
 		for(ItemFactura i: items) {
-			state = state + i.getDescripcion() + "/t|/t" + i.getCosto() + "/n";
+			state = state + i.getDescripcion() + " | " + i.getCosto() + "\n";
 		}
-		state = state + "----------------------------------------------------------/n";
+		state = state + "----------------------------------------------------------\n";
 		
 		
 		return state;

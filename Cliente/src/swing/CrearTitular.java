@@ -1,7 +1,5 @@
 package swing;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -34,22 +32,6 @@ public class CrearTitular extends JFrame {
 	private JTextField txtDireccion;
 	private JTextField txtMail;
 	private JTextField txtTelefono;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CrearTitular frame = new CrearTitular();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

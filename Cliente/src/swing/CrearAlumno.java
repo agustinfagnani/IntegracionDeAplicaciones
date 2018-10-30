@@ -1,6 +1,5 @@
 package swing;
 
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,6 +8,8 @@ import Cliente.Cliente;
 import negocio.Escolaridad;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
@@ -35,21 +36,7 @@ public class CrearAlumno extends JFrame {
 	private JTextField txtMail;
 	private JTextField txtTelefono;
     private	JComboBox<Escolaridad> cmBoxEscolaridad;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CrearAlumno frame = new CrearAlumno();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
@@ -127,7 +114,7 @@ public class CrearAlumno extends JFrame {
 		JLabel lblTelefono = new JLabel("Telefono");
 		lblTelefono.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		
-		cmBoxEscolaridad = new JComboBox();
+		cmBoxEscolaridad = new JComboBox<Escolaridad>();
 		cmBoxEscolaridad.setForeground(Color.WHITE);
 		cmBoxEscolaridad.setBackground(Color.BLACK);
 		cmBoxEscolaridad.setFont(new Font("Century Gothic", Font.ITALIC, 20));
@@ -137,8 +124,7 @@ public class CrearAlumno extends JFrame {
 				cmBoxEscolaridad.addItem(e);
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(new JFrame(),"Falla al cargar escolaridades", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -244,14 +230,12 @@ public class CrearAlumno extends JFrame {
 				try {
 					Cliente.getInstance().crearAlumno(textField.getText(), Integer.parseInt(txtDniTitular.getText()), txtDireccion.getText(), txtMail.getText(), 
 							txtTelefono.getText(),escolaridad.getId());
+					Menu frame = new Menu();
+					frame.setVisible(true);
+					crearAlumno.setVisible(false);
 				} catch (NumberFormatException | RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(new JFrame(),"Falla al crear Alumno", "Error", JOptionPane.ERROR_MESSAGE);
 				}
-				
-				Menu frame = new Menu();
-				frame.setVisible(true);
-				crearAlumno.setVisible(false);
 			}
 		}
 		
