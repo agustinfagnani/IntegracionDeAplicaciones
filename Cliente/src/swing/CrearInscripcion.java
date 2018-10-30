@@ -19,6 +19,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class CrearInscripcion extends JFrame {
 
@@ -104,7 +105,7 @@ public class CrearInscripcion extends JFrame {
 		lblSeleccioneElAdicional.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -116,19 +117,19 @@ public class CrearInscripcion extends JFrame {
 							.addContainerGap()
 							.addComponent(lblCrearInscripcion, GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)))
 					.addContainerGap())
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-					.addGap(226)
-					.addComponent(lblLegajo, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(cmBoxLegajo, 0, 172, Short.MAX_VALUE)
-					.addGap(269))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(214, Short.MAX_VALUE)
+					.addGap(156)
+					.addComponent(lblLegajo, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+					.addGap(26)
+					.addComponent(cmBoxLegajo, GroupLayout.PREFERRED_SIZE, 287, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(216, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(143, Short.MAX_VALUE)
 					.addComponent(lblAdicional, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
-					.addGap(262))
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 285, GroupLayout.PREFERRED_SIZE)
+					.addGap(220))
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(104)
 					.addComponent(lblSeleccioneElLegajo)
 					.addContainerGap(109, Short.MAX_VALUE))
@@ -146,14 +147,14 @@ public class CrearInscripcion extends JFrame {
 					.addComponent(lblSeleccioneElAdicional, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 					.addGap(44)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblAdicional, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblAdicional, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
 					.addGap(42)
 					.addComponent(lblSeleccioneElLegajo, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 					.addGap(37)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(cmBoxLegajo, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblLegajo, GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+						.addComponent(lblLegajo, GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+						.addComponent(cmBoxLegajo, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
 					.addGap(50)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)

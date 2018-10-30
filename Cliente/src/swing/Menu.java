@@ -77,7 +77,6 @@ public class Menu extends JFrame {
 		itemCrearEmpleado.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		itemCrearEmpleado.setForeground(Color.WHITE);
 		itemCrearEmpleado.setBackground(Color.BLACK);
-		itemCrearEmpleado.addActionListener(mb);
 		mnEmpleados.add(itemCrearEmpleado);
 		itemCrearEmpleado.addActionListener(mb);
 		

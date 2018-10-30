@@ -57,23 +57,14 @@ public class CrearEmpleado extends JFrame {
 		txtSalario.setFont(new Font("Century Gothic", Font.ITALIC, 15));
 		txtSalario.setColumns(10);
 		
+		ManejoBotones mb= new ManejoBotones();
+		mb.obtenerFrame(this);
+		
 		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				try {
-					Cliente.getInstance().crearEmpleado(Integer.parseInt(txtDni.getText()), txtCargo.getText(), textNombre.getText(), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText(), Float.parseFloat(txtSalario.getText()));
-				} catch (NumberFormatException | RemoteException e) {
-					JOptionPane.showMessageDialog(new JFrame(),"Falla al crear empleado", "Error", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
+		btnAceptar.addActionListener(mb);
 		btnAceptar.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		btnAceptar.setBackground(Color.BLACK);
 		btnAceptar.setForeground(Color.WHITE);
-		
-		ManejoBotones mb= new ManejoBotones();
-		mb.obtenerFrame(this);
 		
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.addActionListener(mb);
@@ -228,6 +219,16 @@ public class CrearEmpleado extends JFrame {
 				Menu frame = new Menu();
 				frame.setVisible(true);
 				crearInscripcion.setVisible(false);
+			}
+			if(e.getActionCommand().equals("Aceptar")) {
+				try {
+					Cliente.getInstance().crearEmpleado(Integer.parseInt(txtDni.getText()), txtCargo.getText(), textNombre.getText(), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText(), Float.parseFloat(txtSalario.getText()));
+					Menu frame = new Menu();
+					frame.setVisible(true);
+					crearInscripcion.setVisible(false);
+				} catch (NumberFormatException | RemoteException e1) {
+					JOptionPane.showMessageDialog(new JFrame(),"Falla al crear empleado", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 		
