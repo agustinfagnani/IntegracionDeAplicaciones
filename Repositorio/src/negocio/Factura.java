@@ -84,6 +84,12 @@ public class Factura implements Serializable{
 	public void setFechaPago(LocalDateTime fechaPago) {
 		this.fechaPago = fechaPago;
 	}
+
+	public Alumno getAlumno() {
+		return alumno;
+	}
+	
+	
 	
 	
 }

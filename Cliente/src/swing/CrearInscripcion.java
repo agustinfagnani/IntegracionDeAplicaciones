@@ -1,15 +1,14 @@
 package swing;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
@@ -19,7 +18,6 @@ import negocio.Adicional;
 import negocio.Alumno;
 
 import javax.swing.JComboBox;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,22 +30,6 @@ public class CrearInscripcion extends JFrame {
 	private JPanel contentPane;
 	JComboBox<Adicional> comboBox;
 	JComboBox<Alumno> cmBoxLegajo;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CrearInscripcion frame = new CrearInscripcion();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -90,7 +72,7 @@ public class CrearInscripcion extends JFrame {
 		lblLegajo.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLegajo.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		
-		cmBoxLegajo = new JComboBox();
+		cmBoxLegajo = new JComboBox<Alumno>();
 		cmBoxLegajo.setForeground(Color.WHITE);
 		cmBoxLegajo.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		cmBoxLegajo.setBackground(Color.BLACK);
@@ -102,12 +84,11 @@ public class CrearInscripcion extends JFrame {
 				cmBoxLegajo.addItem(alu);
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(new JFrame(),"Falla al cargar los alumnos", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<Adicional>();
 		comboBox.setForeground(Color.WHITE);
 		comboBox.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		comboBox.setBackground(Color.BLACK);
@@ -118,8 +99,7 @@ public class CrearInscripcion extends JFrame {
 				comboBox.addItem(adic);
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(new JFrame(),"Falla al cargar los adicionales", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		
@@ -206,16 +186,14 @@ public class CrearInscripcion extends JFrame {
 				//Persistir
 				Alumno alum= (Alumno) cmBoxLegajo.getSelectedItem();
 				Adicional adic =(Adicional) comboBox.getSelectedItem();
-				
 				try {
 					Cliente.getInstance().asginarInscripcion(alum.getLegajo(), adic.getId());
+					Menu frame = new Menu();
+					frame.setVisible(true);
+					crearInscripcion.setVisible(false);
 				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(new JFrame(),"Falla al asignar el adicional", "Error", JOptionPane.ERROR_MESSAGE);
 				}
-				Menu frame = new Menu();
-				frame.setVisible(true);
-				crearInscripcion.setVisible(false);
 			}
 		}
 		

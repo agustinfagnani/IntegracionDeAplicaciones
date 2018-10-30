@@ -1,22 +1,25 @@
 package swing;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import negocio.Factura;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 
 public class VerFactura extends JFrame {
 
@@ -25,25 +28,9 @@ public class VerFactura extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VerFactura frame = new VerFactura();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public VerFactura() {
+	public VerFactura(Factura f) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VerFactura.class.getResource("/images/Escuela.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -77,15 +64,18 @@ public class VerFactura extends JFrame {
 		JLabel lblFchEmision = new JLabel("Fecha de Emision");
 		lblFchEmision.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		
-		JLabel lblFchEmsion2 = new JLabel("(Fecha Emision)");
+		Format formato=new SimpleDateFormat("yyyy-MM-dd");
+		String fecha=formato.format(f.getFechaEmision());
+		
+		JLabel lblFchEmsion2 = new JLabel(fecha);
 		lblFchEmsion2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFchEmsion2.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 25));
 		
-		JLabel lblTitular2 = new JLabel("(Titular)");
+		JLabel lblTitular2 = new JLabel(f.getAlumno().getTitular().getNombre());
 		lblTitular2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitular2.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 25));
 		
-		JLabel lblAlumno2 = new JLabel("(Alumno)");
+		JLabel lblAlumno2 = new JLabel(f.getAlumno().getNombre());
 		lblAlumno2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlumno2.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 25));
 		
@@ -95,10 +85,10 @@ public class VerFactura extends JFrame {
 		JLabel lblNroFactura = new JLabel("Numero");
 		lblNroFactura.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		
-		JLabel lblNroFactura2 = new JLabel("(Numero)");
+		JLabel lblNroFactura2 = new JLabel(Integer.toString(f.getNumero()));
 		lblNroFactura2.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 25));
 		
-		JLabel lbltipo = new JLabel("(Tipo)");
+		JLabel lbltipo = new JLabel(f.getTipo());
 		lbltipo.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 25));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -179,7 +169,6 @@ public class VerFactura extends JFrame {
 					.addContainerGap())
 		);
 		
-		lblTitular2.setVisible(false);
 		contentPane.setLayout(gl_contentPane);
 	}
 	

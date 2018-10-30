@@ -1,22 +1,28 @@
 package swing;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
+
+import Cliente.Cliente;
+import negocio.Alumno;
+import negocio.Factura;
+
 import javax.swing.JComboBox;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 public class Facturar extends JFrame {
 
@@ -24,22 +30,7 @@ public class Facturar extends JFrame {
 	
 	private JPanel contentPane;
 	private JTextField txtTipo;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Facturar frame = new Facturar();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JComboBox<Alumno> cmBoxLegajo;
 
 	/**
 	 * Create the frame.
@@ -86,10 +77,16 @@ public class Facturar extends JFrame {
 		lblLegajo.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLegajo.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		
-		JComboBox cmBoxLegajo = new JComboBox();
+		cmBoxLegajo = new JComboBox<Alumno>();
 		cmBoxLegajo.setForeground(Color.WHITE);
 		cmBoxLegajo.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		cmBoxLegajo.setBackground(Color.BLACK);
+		try {
+			for(Alumno f:Cliente.getInstance().getAlumnos())
+				cmBoxLegajo.addItem(f);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(new JFrame(),"Falla en la carga de los alumnos", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -163,9 +160,16 @@ public class Facturar extends JFrame {
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
 				//Persistir
-				VerFactura frame = new VerFactura();
-				frame.setVisible(true);
-				facturar.setVisible(false);
+				Alumno al= (Alumno) cmBoxLegajo.getSelectedItem();
+				Factura fac;
+				try {
+					fac = Cliente.getInstance().facturarAlumno(al.getLegajo(), txtTipo.getText());
+					VerFactura frame = new VerFactura(fac);
+					frame.setVisible(true);
+					facturar.setVisible(false);
+				} catch (RemoteException e1) {
+					JOptionPane.showMessageDialog(new JFrame(),"No se puede crear la factura deseada", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 		
