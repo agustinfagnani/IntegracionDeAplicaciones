@@ -13,17 +13,25 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
+
+import Cliente.Cliente;
+import negocio.Adicional;
+import negocio.Alumno;
+
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 public class CrearInscripcion extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
+	JComboBox<Adicional> comboBox;
+	JComboBox<Alumno> cmBoxLegajo;
 
 	/**
 	 * Launch the application.
@@ -82,15 +90,38 @@ public class CrearInscripcion extends JFrame {
 		lblLegajo.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLegajo.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		
-		JComboBox cmBoxLegajo = new JComboBox();
+		cmBoxLegajo = new JComboBox();
 		cmBoxLegajo.setForeground(Color.WHITE);
 		cmBoxLegajo.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		cmBoxLegajo.setBackground(Color.BLACK);
+	
 		
-		JComboBox comboBox = new JComboBox();
+		try {
+			for (Alumno alu: Cliente.getInstance().getAlumnos())
+			{
+				cmBoxLegajo.addItem(alu);
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		comboBox = new JComboBox();
 		comboBox.setForeground(Color.WHITE);
 		comboBox.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		comboBox.setBackground(Color.BLACK);
+		
+		try {
+			for (Adicional adic: Cliente.getInstance().getAdicionales())
+			{
+				comboBox.addItem(adic);
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		JLabel lblSeleccioneElAdicional = new JLabel("Seleccione el adicional que se quiere contratar para el alumno");
 		lblSeleccioneElAdicional.setFont(new Font("Century Gothic", Font.ITALIC, 20));
@@ -173,6 +204,15 @@ public class CrearInscripcion extends JFrame {
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
 				//Persistir
+				Alumno alum= (Alumno) cmBoxLegajo.getSelectedItem();
+				Adicional adic =(Adicional) comboBox.getSelectedItem();
+				
+				try {
+					Cliente.getInstance().asginarInscripcion(alum.getLegajo(), adic.getId());
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				Menu frame = new Menu();
 				frame.setVisible(true);
 				crearInscripcion.setVisible(false);
