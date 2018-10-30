@@ -35,8 +35,8 @@ public class Main {
 	HibernateEscolaridadDAO.getInstancia().grabarEscolaridad(esc3);
 	*/
 	sistemaEscuela.crearTitular("Alfredo Fernandez", 123, "San Martin 234", "aa@yahoo.com", "1111");
-	sistemaEscuela.crearTitular("Roberto Rodriguez", 18764389, "Belgrano 234", "aa@hotmail.com", "2222");
-	sistemaEscuela.crearTitular("Ricardo Benitez", 15765098, "Sarmiento 234", "aa@gmail.com", "333");
+	sistemaEscuela.crearTitular("Roberto Rodriguez", 345, "Belgrano 234", "aa@hotmail.com", "2222");
+	sistemaEscuela.crearTitular("Ricardo Benitez", 567, "Sarmiento 234", "aa@gmail.com", "333");
 	
 	Escolaridad esc1 = new Escolaridad("Turno maniana", 1500);
 	HibernateEscolaridadDAO.getInstancia().grabarEscolaridad(esc1);
@@ -45,9 +45,9 @@ public class Main {
 	Escolaridad esc3 = new Escolaridad("Doble Turno", 2000);
 	HibernateEscolaridadDAO.getInstancia().grabarEscolaridad(esc3);
 	
-	sistemaEscuela.crearAlumno("Alumno1", 0, "dire1", "mail", "telefono", 0);
-	sistemaEscuela.crearAlumno("Alumno2", 0, "dire2", "mail2","telefono", 0);
-	sistemaEscuela.crearAlumno("Alumno3", 0, "dire3", "mail3","telefono", 0);
+	sistemaEscuela.crearAlumno("Alumno1", 123, "dire1", "mail", "telefono", esc1.getId());
+	sistemaEscuela.crearAlumno("Alumno2", 123, "dire2", "mail2","telefono", esc1.getId());
+	sistemaEscuela.crearAlumno("Alumno3", 345, "dire3", "mail3","telefono", esc2.getId());
 	
 	sistemaEscuela.crearEmpleado(12875398, "Profesor", "Albert Einstein", "Av 9 de Julio 12", "asd@asd.com", "4556",20000);
 	sistemaEscuela.crearEmpleado(33435678, "Profesor", "Jirafales", "Av 9 de Julio 13", "asd2@asd.com", "5555",25000);
@@ -66,6 +66,15 @@ public class Main {
 	Adicional ad6 = new Adicional("Teatro", 200);
 	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad6);
 	
+	sistemaEscuela.asginarInscripcion(1,2);
+	sistemaEscuela.asginarInscripcion(1,3);
+	sistemaEscuela.asginarInscripcion(1,4);
+	
+	sistemaEscuela.facturarAlumno(1, "A");
+	
+	
 	}
+	
+	
 
 }

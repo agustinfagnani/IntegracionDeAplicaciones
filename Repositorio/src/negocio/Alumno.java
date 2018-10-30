@@ -26,7 +26,7 @@ public class Alumno implements Serializable{
 	@JoinColumn(name="id")
 	private Escolaridad escolaridad;
 
-	@ManyToMany (cascade=CascadeType.ALL)
+	@ManyToMany (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name="alumno_adicional", joinColumns={@JoinColumn(name="legajo")}, inverseJoinColumns={@JoinColumn(name="id")})
 	private List<Adicional> adicionales;
 

@@ -43,12 +43,13 @@ public class Factura implements Serializable{
 	public Factura(Alumno a, String tipo) {
 		this.tipo = tipo;
 		this.fechaEmision = LocalDateTime.now();
+		this.alumno = a;
 		this.items = new ArrayList<ItemFactura>();
 		
-		this.items.add(new ItemFactura(this, a.getEscolaridad().getDescripcion(), a.getEscolaridad().getCosto()));
+		this.items.add(new ItemFactura(a.getEscolaridad().getDescripcion(), a.getEscolaridad().getCosto()));
 	
 		for(Adicional ad: a.getAdicionales()) {
-			this.items.add(new ItemFactura(this, ad.getDescripcion(), ad.getCosto()));
+			this.items.add(new ItemFactura(ad.getDescripcion(), ad.getCosto()));
 		}
 		
 		this.fechaPago = null;
