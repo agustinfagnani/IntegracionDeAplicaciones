@@ -106,7 +106,9 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 	}
 	
 	public Factura facturarAlumno(int legajo, String tipo) {
-		Factura f = new Factura(legajo, tipo);
+		Alumno a = HibernateAlumnoDAO.getInstancia().buscarAlumno(legajo);
+		Factura f = new Factura(a, tipo);
+		HibernateFacturaDAO.getInstancia().grabarFactura(f);
 		return f;
 	}
 	
