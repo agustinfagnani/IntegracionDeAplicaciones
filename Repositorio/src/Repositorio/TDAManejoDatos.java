@@ -11,6 +11,7 @@ import bean.dao.HibernateTitularDAO;
 import negocio.Adicional;
 import negocio.Alumno;
 import negocio.Escolaridad;
+import negocio.Factura;
 import negocio.Titular;
 
 
@@ -35,4 +36,6 @@ public interface TDAManejoDatos extends Remote
 	public List<Adicional> getAdicionales() throws RemoteException;
 	
 	public void asginarInscripcion(int legajo, int id) throws RemoteException;
+	
+	public Factura facturarAlumno(int legajo, String tipo) throws RemoteException;
 }
