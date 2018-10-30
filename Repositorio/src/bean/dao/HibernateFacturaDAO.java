@@ -5,6 +5,8 @@ import java.util.List;
 import hbt.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+
 import negocio.Factura;
 
 
@@ -47,6 +49,16 @@ public class HibernateFacturaDAO {
 		session.getTransaction().commit();
 		session.close();
 		
+	}
+	
+	public Factura buscarFactura(int idFactura){
+		Session session = sf.openSession();
+		Query<Factura> query = session.createQuery("From Factura where id = :id");
+		query.setParameter("id", idFactura);
+		Factura factura = (Factura) query.uniqueResult();
+		session.close();
+		
+		return factura;
 	}
 
 }
