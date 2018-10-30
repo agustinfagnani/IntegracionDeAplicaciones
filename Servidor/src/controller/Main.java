@@ -7,6 +7,7 @@ import bean.dao.HibernateEscolaridadDAO;
 import exception.EmpleadoYaExisteException;
 import exception.EscolaridadNoExisteException;
 import exception.TitularNoExisteException;
+import exception.TitularYaExisteException;
 import hbt.HibernateUtil;
 import negocio.Adicional;
 import negocio.Escolaridad;
@@ -34,9 +35,16 @@ public class Main {
 	Escolaridad esc3 = new Escolaridad("Doble Turno", 123);
 	HibernateEscolaridadDAO.getInstancia().grabarEscolaridad(esc3);
 	*/
-	sistemaEscuela.crearTitular("Alfredo Fernandez", 123, "San Martin 234", "aa@yahoo.com", "1111");
-	sistemaEscuela.crearTitular("Roberto Rodriguez", 345, "Belgrano 234", "aa@hotmail.com", "2222");
-	sistemaEscuela.crearTitular("Ricardo Benitez", 567, "Sarmiento 234", "aa@gmail.com", "333");
+	try {
+		sistemaEscuela.crearTitular("Alfredo Fernandez", 123, "San Martin 234", "aa@yahoo.com", "1111");
+		sistemaEscuela.crearTitular("Ricardo Benitez", 567, "Sarmiento 234", "aa@gmail.com", "333");
+		sistemaEscuela.crearTitular("Roberto Rodriguez", 345, "Belgrano 234", "aa@hotmail.com", "2222");
+
+	} catch (TitularYaExisteException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	
 	
 	Escolaridad esc1 = new Escolaridad("Turno maniana", 1500);
 	HibernateEscolaridadDAO.getInstancia().grabarEscolaridad(esc1);
@@ -86,7 +94,7 @@ public class Main {
 	sistemaEscuela.asginarInscripcion(1,3);
 	sistemaEscuela.asginarInscripcion(1,4);
 	
-	sistemaEscuela.facturarAlumno(1, "A");
+	sistemaEscuela.facturar(11, 2017);
 	
 	
 	}

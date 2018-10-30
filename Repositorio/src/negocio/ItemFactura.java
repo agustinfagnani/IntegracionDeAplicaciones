@@ -20,6 +20,10 @@ public class ItemFactura implements Serializable{
 	@Column(name="costo")
 	private float costo;
 	
+	@OneToOne
+	@JoinColumn(name="legajo")
+	private Alumno alumno;
+	
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +32,9 @@ public class ItemFactura implements Serializable{
 	public ItemFactura(){
 	}
 	
-	public ItemFactura(String d, float c){
+	public ItemFactura(Alumno a,String d, float c){
 		//this.factura = f;
+		this.alumno = a;
 		this.descripcion = d;
 		this.costo = c;
 	}
@@ -48,6 +53,10 @@ public class ItemFactura implements Serializable{
 
 	public void setCosto(float costo) {
 		this.costo = costo;
+	}
+
+	public Alumno getAlumno() {
+		return this.alumno;
 	}
 	
 	
