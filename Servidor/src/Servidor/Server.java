@@ -2,9 +2,11 @@ package Servidor;
 // para publicar alumnos
 import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
+import java.util.ArrayList;
 
 import Repositorio.TDAManejoDatos;
 import controller.SistemaEscuela;
+import negocio.Adicional;
 
 
 
@@ -25,7 +27,6 @@ public class Server {
     	try {
     		LocateRegistry.createRegistry(1099);	
             TDAManejoDatos gestionAlumnos = new SistemaEscuela();
-//          Nombre publico para trabajar
             Naming.rebind ("//localhost/GestionAlumnos", gestionAlumnos);
             System.out.println("Fijado en //localhost/GestionAlumnos");
 		} catch (Exception e) {
