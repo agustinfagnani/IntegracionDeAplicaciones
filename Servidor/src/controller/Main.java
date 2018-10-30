@@ -4,6 +4,8 @@ import java.rmi.RemoteException;
 
 import bean.dao.HibernateAdicionalDAO;
 import bean.dao.HibernateEscolaridadDAO;
+import exception.AdicionalNoExisteException;
+import exception.AlumnoNoExisteException;
 import exception.EmpleadoYaExisteException;
 import exception.EscolaridadNoExisteException;
 import exception.TitularNoExisteException;
@@ -90,9 +92,14 @@ public class Main {
 	Adicional ad6 = new Adicional("Teatro", 200);
 	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad6);
 	
-	sistemaEscuela.asignarInscripcion(1,2);
-	sistemaEscuela.asignarInscripcion(1,3);
-	sistemaEscuela.asignarInscripcion(1,4);
+	try {
+		sistemaEscuela.asignarInscripcion(1,2);
+		sistemaEscuela.asignarInscripcion(1,3);
+		sistemaEscuela.asignarInscripcion(1,4);
+	} catch (AlumnoNoExisteException | AdicionalNoExisteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	
 	sistemaEscuela.facturar(11, 2017);
 	
