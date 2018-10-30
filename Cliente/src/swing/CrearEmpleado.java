@@ -27,6 +27,7 @@ public class CrearEmpleado extends JFrame {
 	private JTextField txtMail;
 	private JTextField txtTelefono;
 	private JTextField txtCargo;
+	private JTextField txtDni;
 
 	/**
 	 * Launch the application.
@@ -111,6 +112,13 @@ public class CrearEmpleado extends JFrame {
 		txtCargo = new JTextField();
 		txtCargo.setFont(new Font("Century Gothic", Font.ITALIC, 15));
 		txtCargo.setColumns(10);
+		
+		txtDni = new JTextField();
+		txtDni.setFont(new Font("Century Gothic", Font.ITALIC, 15));
+		txtDni.setColumns(10);
+		
+		JLabel lblDni = new JLabel("DNI");
+		lblDni.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -139,18 +147,26 @@ public class CrearEmpleado extends JFrame {
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(textField, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
 										.addComponent(txtDireccion, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))))
-							.addGap(79)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblSalario)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-									.addComponent(lblMail, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-									.addComponent(lblCargo)))
-							.addGap(50)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(82)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblMail, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblCargo))
+									.addGap(50))
+								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(lblDni, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+									.addGap(41)))
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtDni, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtCargo, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-									.addComponent(txtSalario, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-									.addComponent(txtMail, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)))))
+								.addComponent(txtMail, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(246)
+							.addComponent(lblSalario)
+							.addGap(37)
+							.addComponent(txtSalario, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -158,13 +174,19 @@ public class CrearEmpleado extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblCrearEmpleado)
-					.addGap(72)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtSalario, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblSalario)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-					.addGap(45)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(72)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
+							.addGap(45))
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblDni, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtDni, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+							.addGap(48)))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtMail, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblDireccion, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
@@ -176,7 +198,11 @@ public class CrearEmpleado extends JFrame {
 						.addComponent(lblTelefono, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtTelefono, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtCargo, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblSalario)
+						.addComponent(txtSalario, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
