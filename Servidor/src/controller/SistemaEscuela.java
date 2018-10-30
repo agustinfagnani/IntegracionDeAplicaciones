@@ -15,6 +15,7 @@ import bean.dao.HibernateTitularDAO;
 import exception.EmpleadoYaExisteException;
 import exception.EscolaridadNoExisteException;
 import exception.TitularNoExisteException;
+import exception.TitularYaExisteException;
 import negocio.Escolaridad;
 import negocio.Factura;
 import negocio.Titular;
@@ -99,7 +100,9 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 		
 	}
 	
-	public void crearTitular(String nombre, int dNI, String direccion, String mail, String telefono) {
+	public void crearTitular(String nombre, int dNI, String direccion, String mail, String telefono) throws TitularYaExisteException {
+		if(HibernateTitularDAO.getInstancia().buscarTitular(dNI) == null)
+			throw new TitularYaExisteException();
 		Titular newTitular = new Titular(nombre, dNI, direccion, mail, telefono);	
 		HibernateTitularDAO.getInstancia().grabarTitular(newTitular);
 	
@@ -113,7 +116,7 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 		
 	}
 	
-	public Factura facturarAlumno(int legajo, String tipo) {
+	public Factura facturarAlumno(int legajo, String tipo, int periodo) {
 		Alumno a = HibernateAlumnoDAO.getInstancia().buscarAlumno(legajo);
 		Factura f = new Factura(a, tipo);
 		HibernateFacturaDAO.getInstancia().grabarFactura(f);
