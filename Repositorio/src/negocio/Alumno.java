@@ -1,6 +1,7 @@
 package negocio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -47,6 +48,7 @@ public class Alumno implements Serializable{
 		this.mail = mail;
 		this.telefono = tel;
 		this.escolaridad = esc;
+		this.adicionales = new ArrayList<Adicional>();
 		
 	}
 
@@ -81,14 +83,11 @@ public class Alumno implements Serializable{
 	public void setEscolaridad(Escolaridad escolaridad) {
 		this.escolaridad = escolaridad;
 	}
-
-	public List<Adicional> getAdicionales() {
-		return adicionales;
+	
+	public void addAdicional(Adicional a) {
+		adicionales.add(a);
 	}
 
-	public void setAdicionales(List<Adicional> adicionales) {
-		this.adicionales = adicionales;
-	}
 
 	@Override
 	public String toString() {

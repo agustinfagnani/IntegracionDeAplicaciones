@@ -8,6 +8,7 @@ import java.util.Set;
 
 import bean.dao.HibernateAlumnoDAO;
 import bean.dao.HibernateTitularDAO;
+import negocio.Adicional;
 import negocio.Alumno;
 import negocio.Escolaridad;
 import negocio.Titular;
@@ -28,4 +29,10 @@ public interface TDAManejoDatos extends Remote
 	public List<Titular> getTitulares() throws RemoteException;
 	
 	public List<Escolaridad> getEscolaridades() throws RemoteException;
+	
+	public List<Alumno> getAlumnos() throws RemoteException;
+	
+	public List<Adicional> getAdicionales() throws RemoteException;
+	
+	public void asginarInscripcion(int legajo, int id) throws RemoteException;
 }

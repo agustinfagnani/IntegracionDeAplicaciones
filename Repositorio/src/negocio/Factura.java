@@ -34,6 +34,10 @@ public class Factura implements Serializable{
 	public Factura(){
 	}
 	
+	public Factura(int legajo, String tipo) {
+		
+	}
+	
 	public int getNumero() {
 		return numero;
 	}
