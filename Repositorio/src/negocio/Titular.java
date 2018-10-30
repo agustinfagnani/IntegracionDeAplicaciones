@@ -1,6 +1,8 @@
 package negocio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -24,6 +26,9 @@ public class Titular implements Serializable{
 	@Column(name="telefono")
 	private String telefono;
 	
+	@OneToMany (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Alumno> alumnos;
+	
 	public Titular(){
 	}
 	
@@ -33,6 +38,7 @@ public class Titular implements Serializable{
 		this.direccion = dire;
 		this.mail = mail;
 		this.telefono = tel;
+		this.alumnos = new ArrayList<Alumno>();
 	}
 	public String getNombre() {
 		return nombre;
@@ -72,6 +78,14 @@ public class Titular implements Serializable{
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+	
+	public void addAlumno(Alumno a) {
+		alumnos.add(a);
+	}
+
+	public List<Alumno> getAlumnos() {
+		return alumnos;
 	}
 	
 	

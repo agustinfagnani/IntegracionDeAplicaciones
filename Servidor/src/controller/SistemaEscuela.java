@@ -49,8 +49,9 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 		Escolaridad e = HibernateEscolaridadDAO.getInstancia().buscarEscolaridad(idEscolarida);
 		if(e==null)
 			throw new EscolaridadNoExisteException();
-		Alumno newAlumno = new Alumno(nombre, t, direccion, mail, telefono, e);
-		HibernateAlumnoDAO.getInstancia().grabarAlumno(newAlumno);
+		Alumno newAlumno = new Alumno(nombre, direccion, mail, telefono, e);
+		t.addAlumno(newAlumno);
+		HibernateTitularDAO.getInstancia().grabarTitular(t);
 		
 		
 	}
@@ -129,8 +130,8 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 	}
 	
 	public void facturar(int periodo, int anio) {
-		for(Alumno a: HibernateAlumnoDAO.getInstancia().leerAlumnos()) {
-			if(HibernateFacturaDAO.getInstancia().buscarFactura(periodo, anio, a.getLegajo()) == null) {
+		for(Titular a: HibernateTitularDAO.getInstancia().leerTitulares()) {
+			if(HibernateFacturaDAO.getInstancia().buscarFactura(periodo, anio, a.getDNI()) == null) {
 				Factura f = new Factura(a, periodo, anio);
 				HibernateFacturaDAO.getInstancia().grabarFactura(f);
 			}

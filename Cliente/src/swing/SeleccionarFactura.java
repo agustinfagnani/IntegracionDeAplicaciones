@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import Cliente.Cliente;
 import negocio.Alumno;
 import negocio.Factura;
+import negocio.Titular;
 
 import javax.swing.JComboBox;
 import java.awt.Toolkit;
@@ -26,17 +27,18 @@ import java.rmi.RemoteException;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import negocio.Escolaridad;
 
-public class Facturar extends JFrame {
+public class SeleccionarFactura extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
 	private JComboBox comboBox, comboBox_1;
+	private JComboBox <Titular> cmBoxTitular;
 
 	/**
 	 * Create the frame.
 	 */
-	public Facturar() {
+	public SeleccionarFactura() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Facturar.class.getResource("/images/Escuela.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -74,17 +76,9 @@ public class Facturar extends JFrame {
 		comboBox.setForeground(Color.WHITE);
 		comboBox.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		comboBox.setBackground(Color.BLACK);
-		comboBox.addItem("Enero");
-		comboBox.addItem("Febrero");
-		comboBox.addItem("Marzo");
-		comboBox.addItem("Abril");
-		comboBox.addItem("Mayo");
-		comboBox.addItem("Junio");
-		comboBox.addItem("Julio");
-		comboBox.addItem("Agosto");
-		comboBox.addItem("Septiembre");
-		comboBox.addItem("Octubre");
-		comboBox.addItem("Diciembre");
+		
+		for(int i=1;i<13;i++)
+			comboBox.addItem(i);
 		
 		comboBox_1 = new JComboBox();
 		comboBox_1.setForeground(Color.WHITE);
@@ -93,6 +87,21 @@ public class Facturar extends JFrame {
 		
 		for(int i=2018;i<2022;i++)
 			comboBox_1.addItem(i);
+		
+		JLabel lblTitular = new JLabel("Titular");
+		lblTitular.setFont(new Font("Century Gothic", Font.ITALIC, 20));
+		
+		cmBoxTitular = new JComboBox<Titular>();
+		cmBoxTitular.setForeground(Color.WHITE);
+		cmBoxTitular.setFont(new Font("Century Gothic", Font.ITALIC, 20));
+		cmBoxTitular.setBackground(Color.BLACK);
+		
+		try {
+			for(Titular t: Cliente.getInstance().getTitulares())
+				cmBoxTitular.addItem(t);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(new JFrame(),"Falla al cargar titulares", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -110,12 +119,14 @@ public class Facturar extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(148)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblAno, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblPeriodo, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblAno, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lblTitular, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
 							.addGap(57)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 298, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 298, GroupLayout.PREFERRED_SIZE))))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(cmBoxTitular, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(comboBox, 0, 298, Short.MAX_VALUE)
+								.addComponent(comboBox_1, 0, 298, Short.MAX_VALUE))))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -123,15 +134,19 @@ public class Facturar extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(26)
 					.addComponent(lblFacturar)
-					.addGap(79)
+					.addGap(66)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblTitular, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cmBoxTitular, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+					.addGap(58)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblPeriodo, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-					.addGap(89)
+					.addGap(57)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblAno, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
@@ -157,9 +172,8 @@ public class Facturar extends JFrame {
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
 				try {
-					
-					Cliente.getInstance().facturar();
-					Menu frame = new Menu();
+					Factura f = Cliente.getInstance().getFactura(cmBoxTitular.getSelectedItem(),cm);
+					VerFactura frame = new VerFactura(f);
 					frame.setVisible(true);
 					facturar.setVisible(false);
 				} catch (RemoteException e1) {

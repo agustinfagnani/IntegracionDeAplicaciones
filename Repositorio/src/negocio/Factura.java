@@ -40,24 +40,25 @@ public class Factura implements Serializable{
 	private List<ItemFactura> items;
 	
 	@OneToOne (cascade=CascadeType.ALL)
-	@JoinColumn(name="legajo")
-	private Alumno alumno;
+	@JoinColumn(name="dni")
+	private Titular titular;
 	
 	public Factura(){
 	}
 	
-	public Factura(Alumno a, int periodo, int anio) {
+	public Factura(Titular t, int periodo, int anio) {
 		this.tipo = "A";
 		this.fechaEmision = LocalDateTime.now();
-		this.alumno = a;
+		this.titular = t;
 		this.items = new ArrayList<ItemFactura>();
 		
+		for(Alumno a: t.getAlumnos()) {
+			this.items.add(new ItemFactura(a,a.getEscolaridad().getDescripcion(), a.getEscolaridad().getCosto()));
+			for(Adicional ad: a.getAdicionales()) {
+				this.items.add(new ItemFactura(a,ad.getDescripcion(), ad.getCosto()));
+			}
+		}	
 		
-		this.items.add(new ItemFactura(a.getEscolaridad().getDescripcion(), a.getEscolaridad().getCosto()));
-	
-		for(Adicional ad: a.getAdicionales()) {
-			this.items.add(new ItemFactura(ad.getDescripcion(), ad.getCosto()));
-		}
 		
 		this.fechaPago = null;
 	}
@@ -92,10 +93,6 @@ public class Factura implements Serializable{
 	public void setFechaPago(LocalDateTime fechaPago) {
 		this.fechaPago = fechaPago;
 	}
-
-	public Alumno getAlumno() {
-		return alumno;
-	}
 	
 	
 	
@@ -110,10 +107,10 @@ public class Factura implements Serializable{
 	@Override
 	public String toString() {
 		String state= "----------------------------------------------------------\n";
-		state = state + "Descripcion" + " | " + "Costo" + "\n";
+		state = state + "Alumno" + " | " + "Descripcion" + " | " + "Costo" + "\n";
 		state = state + "----------------------------------------------------------\n";
 		for(ItemFactura i: items) {
-			state = state + i.getDescripcion() + " | " + i.getCosto() + "\n";
+			state = state + i.getAlumno().getNombre() + i.getDescripcion() + " | " + i.getCosto() + "\n";
 		}
 		state = state + "----------------------------------------------------------\n";
 		
