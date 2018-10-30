@@ -2,11 +2,8 @@ package Servidor;
 // para publicar alumnos
 import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
-import java.util.ArrayList;
-
 import Repositorio.TDAManejoDatos;
 import controller.SistemaEscuela;
-import negocio.Adicional;
 
 
 

@@ -21,12 +21,7 @@ import javax.swing.JButton;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-
 import javax.swing.JTextPane;
-import javax.swing.JTextArea;
 
 public class VerFactura extends JFrame {
 

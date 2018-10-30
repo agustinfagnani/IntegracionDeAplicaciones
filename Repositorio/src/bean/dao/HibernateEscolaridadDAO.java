@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import negocio.Escolaridad;
-import negocio.Titular;
 
 
 public class HibernateEscolaridadDAO {

@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import org.omg.CORBA.SystemException;
-
 @Entity
 @Table(name="Escolaridad")
 public class Escolaridad extends Cuota implements Serializable{

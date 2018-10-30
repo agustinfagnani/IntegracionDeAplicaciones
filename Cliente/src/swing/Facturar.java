@@ -9,28 +9,24 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
 
 import Cliente.Cliente;
-import negocio.Alumno;
-import negocio.Factura;
-
 import javax.swing.JComboBox;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import negocio.Escolaridad;
 
 public class Facturar extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
 	private JComboBox<Integer> comboBox_1;
 

@@ -3,7 +3,6 @@ package bean.srv;
 
 import java.util.List;
 
-import bean.dao.HibernateAdicionalDAO;
 import bean.dao.HibernateFacturaDAO;
 import negocio.Factura;
 

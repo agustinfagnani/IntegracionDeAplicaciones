@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
@@ -17,7 +16,6 @@ import javax.swing.border.EmptyBorder;
 import Cliente.Cliente;
 import exception.PeriodoNoFacturadoException;
 import exception.TitularNoExisteException;
-import negocio.Alumno;
 import negocio.Factura;
 import negocio.Titular;
 
@@ -27,7 +25,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import negocio.Escolaridad;
 
 public class SeleccionarFactura extends JFrame {
 

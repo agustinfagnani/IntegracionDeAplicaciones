@@ -22,7 +22,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class CrearInscripcion extends JFrame {
 

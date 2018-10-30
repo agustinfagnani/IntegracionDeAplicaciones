@@ -2,12 +2,7 @@ package Repositorio;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
-import bean.dao.HibernateAlumnoDAO;
-import bean.dao.HibernateTitularDAO;
 import exception.AdicionalNoExisteException;
 import exception.AdicionalYaAsignadoException;
 import exception.AlumnoNoExisteException;
