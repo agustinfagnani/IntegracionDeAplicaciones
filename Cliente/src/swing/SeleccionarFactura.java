@@ -76,17 +76,9 @@ public class SeleccionarFactura extends JFrame {
 		comboBox.setForeground(Color.WHITE);
 		comboBox.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		comboBox.setBackground(Color.BLACK);
-		comboBox.addItem("Enero");
-		comboBox.addItem("Febrero");
-		comboBox.addItem("Marzo");
-		comboBox.addItem("Abril");
-		comboBox.addItem("Mayo");
-		comboBox.addItem("Junio");
-		comboBox.addItem("Julio");
-		comboBox.addItem("Agosto");
-		comboBox.addItem("Septiembre");
-		comboBox.addItem("Octubre");
-		comboBox.addItem("Diciembre");
+		
+		for(int i=1;i<13;i++)
+			comboBox.addItem(i);
 		
 		comboBox_1 = new JComboBox();
 		comboBox_1.setForeground(Color.WHITE);
@@ -180,7 +172,7 @@ public class SeleccionarFactura extends JFrame {
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
 				try {
-					Factura f = Cliente.getInstance().getFactura();
+					Factura f = Cliente.getInstance().getFactura(cmBoxTitular.getSelectedItem(),cm);
 					VerFactura frame = new VerFactura(f);
 					frame.setVisible(true);
 					facturar.setVisible(false);

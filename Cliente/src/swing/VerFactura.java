@@ -103,7 +103,7 @@ public class VerFactura extends JFrame {
 		JLabel lblPeriodo = new JLabel("Periodo");
 		lblPeriodo.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		
-		JLabel lblPeriodo2 = new JLabel(f.getPeriodo());
+		JLabel lblPeriodo2 = new JLabel("0"+Integer.toString(f.getPeriodo()));
 		lblPeriodo2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPeriodo2.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 25));
 		
