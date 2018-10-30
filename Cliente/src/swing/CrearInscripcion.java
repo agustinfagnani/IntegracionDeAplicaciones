@@ -185,7 +185,7 @@ public class CrearInscripcion extends JFrame {
 				Alumno alum= (Alumno) cmBoxLegajo.getSelectedItem();
 				Adicional adic =(Adicional) comboBox.getSelectedItem();
 				try {
-					Cliente.getInstance().asginarInscripcion(alum.getLegajo(), adic.getId());
+					Cliente.getInstance().asignarInscripcion(alum.getLegajo(), adic.getId());
 					Menu frame = new Menu();
 					frame.setVisible(true);
 					crearInscripcion.setVisible(false);
