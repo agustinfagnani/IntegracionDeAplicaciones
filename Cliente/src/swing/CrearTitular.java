@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Cliente.Cliente;
+import exception.TitularYaExisteException;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -190,6 +191,8 @@ public class CrearTitular extends JFrame {
 					Cliente.getInstance().crearTitular(txtNombre.getText(), Integer.parseInt(txtDni.getText()), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText());
 				} catch (NumberFormatException | RemoteException e1) {
 					JOptionPane.showMessageDialog(new JFrame(),"El DNI ingresado es invalido", "Error", JOptionPane.ERROR_MESSAGE);
+				} catch (TitularYaExisteException e1) {
+					JOptionPane.showMessageDialog(new JFrame(),"El titular ya existe", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
