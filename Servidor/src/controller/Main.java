@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import bean.dao.HibernateAdicionalDAO;
 import bean.dao.HibernateEscolaridadDAO;
+import exception.EmpleadoYaExisteException;
 import exception.EscolaridadNoExisteException;
 import exception.TitularNoExisteException;
 import hbt.HibernateUtil;
@@ -58,9 +59,15 @@ public class Main {
 	}
 
 	
-	sistemaEscuela.crearEmpleado(12875398, "Profesor", "Albert Einstein", "Av 9 de Julio 12", "asd@asd.com", "4556",20000);
-	sistemaEscuela.crearEmpleado(33435678, "Profesor", "Jirafales", "Av 9 de Julio 13", "asd2@asd.com", "5555",25000);
-	sistemaEscuela.crearEmpleado(30987777, "Kiosquero", "Cacho", "Av 9 de Julio 14", "asd3@asd.com", "6666",50000);
+	try {
+		sistemaEscuela.crearEmpleado(12875398, "Profesor", "Albert Einstein", "Av 9 de Julio 12", "asd@asd.com", "4556",20000);
+		sistemaEscuela.crearEmpleado(33435678, "Profesor", "Jirafales", "Av 9 de Julio 13", "asd2@asd.com", "5555",25000);
+		sistemaEscuela.crearEmpleado(30987777, "Kiosquero", "Cacho", "Av 9 de Julio 14", "asd3@asd.com", "6666",50000);
+	} catch (EmpleadoYaExisteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
 
 	Adicional ad1 = new Adicional("Futbol", 200);
 	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad1);
