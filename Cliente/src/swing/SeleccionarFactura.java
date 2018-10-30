@@ -174,7 +174,8 @@ public class SeleccionarFactura extends JFrame {
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
 				try {
-					Factura f = Cliente.getInstance().verFacturaTitular(Integer.parseInt(cmBoxTitular.getSelectedItem().toString()),Integer.parseInt(comboBox.getSelectedItem().toString()),Integer.parseInt(comboBox_1.getSelectedItem().toString()));
+					Titular t= (Titular) cmBoxTitular.getSelectedItem();
+					Factura f = Cliente.getInstance().verFacturaTitular(t.getDNI(),Integer.parseInt(comboBox.getSelectedItem().toString()),Integer.parseInt(comboBox_1.getSelectedItem().toString()));
 					VerFactura frame = new VerFactura(f);
 					frame.setVisible(true);
 					facturar.setVisible(false);
