@@ -14,6 +14,11 @@ public class ItemFactura implements Serializable{
 	private Factura factura;
 	*/
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2353664703089860092L;
+
 	@Column(name="descripcion")
 	private String descripcion;
 	

@@ -7,6 +7,11 @@ import javax.persistence.*;
 @MappedSuperclass
 public class Cuota implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6995926315578434565L;
+
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

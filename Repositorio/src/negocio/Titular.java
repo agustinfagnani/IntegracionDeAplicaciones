@@ -10,6 +10,11 @@ import javax.persistence.*;
 @Table(name="Titulares")
 public class Titular implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7095914413390747256L;
+
 	@Column(name="nombre")
 	private String nombre;
 	

@@ -8,6 +8,11 @@ import javax.persistence.*;
 @Table(name="Empleados")
 public class Empleado implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2125026968248785555L;
+
 	@Column(name="DNI")
 	private int  DNI;
 

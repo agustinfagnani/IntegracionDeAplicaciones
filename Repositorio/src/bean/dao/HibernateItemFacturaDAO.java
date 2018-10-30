@@ -18,16 +18,7 @@ public class HibernateItemFacturaDAO {
 		} 
 		return instancia;
 	}
-	
-	public void grabarItemFactura(List<ItemFactura> ItemFactura){
-		Session session = sf.openSession();
-		session.beginTransaction();
-		for(ItemFactura item:ItemFactura)
-			session.merge(ItemFactura);
-		session.flush();
-		session.getTransaction().commit();
-		session.close();
-	}
+
 	
 	public List<ItemFactura> leerItemFactura(){
 		Session session = sf.openSession();
