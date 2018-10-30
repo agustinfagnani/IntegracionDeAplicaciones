@@ -24,6 +24,12 @@ public class Factura implements Serializable{
 	@Column(name="tipo")
 	private String tipo;
 	
+	@Column(name="periodo")
+	private int periodo;
+	
+	@Column(name="anio")
+	private int anio;	
+	
 	@Column(name="fechaEmision")
 	private LocalDateTime fechaEmision;
 	
@@ -40,11 +46,12 @@ public class Factura implements Serializable{
 	public Factura(){
 	}
 	
-	public Factura(Alumno a, String tipo) {
-		this.tipo = tipo;
+	public Factura(Alumno a, int periodo, int anio) {
+		this.tipo = "A";
 		this.fechaEmision = LocalDateTime.now();
 		this.alumno = a;
 		this.items = new ArrayList<ItemFactura>();
+		
 		
 		this.items.add(new ItemFactura(a.getEscolaridad().getDescripcion(), a.getEscolaridad().getCosto()));
 	
