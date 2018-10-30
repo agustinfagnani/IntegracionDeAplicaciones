@@ -5,6 +5,7 @@ import java.util.List;
 import hbt.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import negocio.Alumno;
 
@@ -60,6 +61,16 @@ public class HibernateAlumnoDAO {
 		session.getTransaction().commit();
 		session.close();
 		
+	}
+	
+	public Alumno buscarAlumno(int legajoAlumno){
+		Session session = sf.openSession();
+		Query<Alumno> query = session.createQuery("From Alumno where legajo = :legajo");
+		query.setParameter("legajo", legajoAlumno);
+		Alumno alumno = (Alumno) query.uniqueResult();
+		session.close();
+		
+		return alumno;
 	}
 
 }
