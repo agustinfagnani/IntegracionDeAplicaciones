@@ -5,7 +5,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Cliente.Cliente;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
@@ -17,6 +22,7 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 public class CrearTitular extends JFrame {
 
@@ -24,7 +30,7 @@ public class CrearTitular extends JFrame {
 	
 	private JPanel contentPane;
 	private JTextField txtDni;
-	private JTextField textField;
+	private JTextField txtNombre;
 	private JTextField txtDireccion;
 	private JTextField txtMail;
 	private JTextField txtTelefono;
@@ -87,9 +93,9 @@ public class CrearTitular extends JFrame {
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Century Gothic", Font.ITALIC, 15));
-		textField.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setFont(new Font("Century Gothic", Font.ITALIC, 15));
+		txtNombre.setColumns(10);
 		
 		JLabel lblDireccion = new JLabel("Direccion");
 		lblDireccion.setFont(new Font("Century Gothic", Font.ITALIC, 20));
@@ -137,7 +143,7 @@ public class CrearTitular extends JFrame {
 										.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(textField, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+										.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
 										.addComponent(txtDireccion, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))))
 							.addGap(79)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -157,7 +163,7 @@ public class CrearTitular extends JFrame {
 					.addGap(72)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtDni, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblDni))
 					.addGap(45)
@@ -195,10 +201,14 @@ public class CrearTitular extends JFrame {
 				crearTitular.setVisible(false);
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
-				//Persistir
-				Menu frame = new Menu();
-				frame.setVisible(true);
-				crearTitular.setVisible(false);
+				try {
+					Menu frame = new Menu();
+					frame.setVisible(true);
+					crearTitular.setVisible(false);
+					Cliente.getInstance().crearTitular(txtNombre.getText(), Integer.parseInt(txtDni.getText()), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText());
+				} catch (NumberFormatException | RemoteException e1) {
+					JOptionPane.showMessageDialog(new JFrame(),"El DNI ingresado es invalido", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 		
