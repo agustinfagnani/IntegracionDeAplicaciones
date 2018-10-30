@@ -13,6 +13,7 @@ import bean.dao.HibernateEscolaridadDAO;
 import bean.dao.HibernateFacturaDAO;
 import bean.dao.HibernateTitularDAO;
 import exception.AdicionalNoExisteException;
+import exception.AdicionalYaAsignadoException;
 import exception.AlumnoNoExisteException;
 import exception.EmpleadoYaExisteException;
 import exception.EscolaridadNoExisteException;
@@ -147,7 +148,7 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 		HibernateFacturaDAO.getInstancia().grabarFactura(f);
 	}
 	
-	public void asignarInscripcion(int legajo, int id) throws AlumnoNoExisteException, AdicionalNoExisteException {
+	public void asignarInscripcion(int legajo, int id) throws AlumnoNoExisteException, AdicionalNoExisteException, AdicionalYaAsignadoException {
 		Alumno a = HibernateAlumnoDAO.getInstancia().buscarAlumno(legajo);
 		if(a==null)
 			throw new AlumnoNoExisteException();

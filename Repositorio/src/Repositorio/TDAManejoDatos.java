@@ -9,6 +9,7 @@ import java.util.Set;
 import bean.dao.HibernateAlumnoDAO;
 import bean.dao.HibernateTitularDAO;
 import exception.AdicionalNoExisteException;
+import exception.AdicionalYaAsignadoException;
 import exception.AlumnoNoExisteException;
 import exception.EmpleadoYaExisteException;
 import exception.EscolaridadNoExisteException;
@@ -43,7 +44,7 @@ public interface TDAManejoDatos extends Remote
 	
 	public List<Adicional> getAdicionales() throws RemoteException;
 	
-	public void asignarInscripcion(int legajo, int id) throws RemoteException, AlumnoNoExisteException, AdicionalNoExisteException;
+	public void asignarInscripcion(int legajo, int id) throws RemoteException, AlumnoNoExisteException, AdicionalNoExisteException, AdicionalYaAsignadoException;
 	
 	public Factura verFacturaTitular(int dni, int periodo, int anio) throws RemoteException, PeriodoNoFacturadoException, TitularNoExisteException;
 	
