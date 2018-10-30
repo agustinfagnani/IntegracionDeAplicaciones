@@ -23,10 +23,6 @@ public class Alumno implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int legajo;
 
-	@OneToOne (cascade=CascadeType.ALL)
-	@JoinColumn(name="dni")
-	private Titular titular;
-
 	@OneToOne 
 	@JoinColumn(name="id")
 	private Escolaridad escolaridad;
@@ -46,9 +42,8 @@ public class Alumno implements Serializable{
 	
 	public Alumno(){
 	}
-	public Alumno(String nombre, Titular titular, String dire, String mail, String tel, Escolaridad esc){
+	public Alumno(String nombre, String dire, String mail, String tel, Escolaridad esc){
 		this.nombre = nombre;
-		this.titular = titular;
 		this.direccion = dire;
 		this.mail = mail;
 		this.telefono = tel;
@@ -71,14 +66,6 @@ public class Alumno implements Serializable{
 
 	public void setLegajo(int legajo) {
 		this.legajo = legajo;
-	}
-
-	public Titular getTitular() {
-		return titular;
-	}
-
-	public void setTitular(Titular titular) {
-		this.titular = titular;
 	}
 
 	public Escolaridad getEscolaridad() {
