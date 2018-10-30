@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import bean.dao.HibernateAdicionalDAO;
 import bean.dao.HibernateEscolaridadDAO;
 import exception.AdicionalNoExisteException;
+import exception.AdicionalYaAsignadoException;
 import exception.AlumnoNoExisteException;
 import exception.EmpleadoYaExisteException;
 import exception.EscolaridadNoExisteException;
@@ -97,6 +98,9 @@ public class Main {
 		sistemaEscuela.asignarInscripcion(1,3);
 		sistemaEscuela.asignarInscripcion(1,4);
 	} catch (AlumnoNoExisteException | AdicionalNoExisteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (AdicionalYaAsignadoException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
