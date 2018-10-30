@@ -12,8 +12,10 @@ import bean.dao.HibernateEmpleadoDAO;
 import bean.dao.HibernateEscolaridadDAO;
 import bean.dao.HibernateFacturaDAO;
 import bean.dao.HibernateTitularDAO;
+import exception.AlumnoNoExisteException;
 import exception.EmpleadoYaExisteException;
 import exception.EscolaridadNoExisteException;
+import exception.PeriodoNoFacturadoException;
 import exception.TitularNoExisteException;
 import exception.TitularYaExisteException;
 import negocio.Escolaridad;
@@ -116,12 +118,23 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 		
 	}
 	
-	public Factura facturarAlumno(int legajo, String tipo, int periodo) {
+	public Factura verFacturaAlumno(int legajo, int periodo, int anio) throws AlumnoNoExisteException, PeriodoNoFacturadoException {
 		Alumno a = HibernateAlumnoDAO.getInstancia().buscarAlumno(legajo);
-		Factura f = new Factura(a, tipo);
-		HibernateFacturaDAO.getInstancia().grabarFactura(f);
-		ArrayList<Factura> fs = (ArrayList<Factura>) HibernateFacturaDAO.getInstancia().leerFactura();
-		return fs.get(fs.size()-1);
+		if(a==null)
+			throw new AlumnoNoExisteException();
+		Factura f = HibernateFacturaDAO.getInstancia().buscarFactura(periodo, anio, legajo);
+		if(f==null)
+			throw new PeriodoNoFacturadoException();
+		return f;
+	}
+	
+	public void facturar(int periodo, int anio) {
+		for(Alumno a: HibernateAlumnoDAO.getInstancia().leerAlumnos()) {
+			if(HibernateFacturaDAO.getInstancia().buscarFactura(periodo, anio, a.getLegajo()) == null) {
+				Factura f = new Factura(a, periodo, anio);
+				HibernateFacturaDAO.getInstancia().grabarFactura(f);
+			}
+		}
 	}
 	
 	public void pagarFactura(int numero) {
