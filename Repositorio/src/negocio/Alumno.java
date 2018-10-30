@@ -90,6 +90,15 @@ public class Alumno implements Serializable{
 		this.adicionales = adicionales;
 	}
 
+	@Override
+	public String toString() {
+		return "Alumno [nombre="+nombre+",Legajo" + legajo+"]";
+	}
+	public boolean sosAlumn(int legajo) {
+		
+		return this.legajo == legajo;
+
+	}
 
 
 }

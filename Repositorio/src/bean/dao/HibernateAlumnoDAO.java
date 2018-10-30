@@ -30,6 +30,19 @@ public class HibernateAlumnoDAO {
 		session.close();
 	}
 	
+	public Alumno cargarAlumno(int legajo) {
+		Session session = sf.openSession();
+		session.beginTransaction();
+		Alumno alumn = session.get(Alumno.class, legajo);
+		session.flush();
+		session.getTransaction().commit();
+		session.close();
+		if (alumn != null)
+			return alumn;
+		return null;
+	}
+
+	
 	public List<Alumno> leerAlumnos(){
 		Session session = sf.openSession();
 		@SuppressWarnings("unchecked")
