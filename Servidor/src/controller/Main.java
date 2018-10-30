@@ -4,6 +4,8 @@ import java.rmi.RemoteException;
 
 import bean.dao.HibernateAdicionalDAO;
 import bean.dao.HibernateEscolaridadDAO;
+import exception.EscolaridadNoExisteException;
+import exception.TitularNoExisteException;
 import hbt.HibernateUtil;
 import negocio.Adicional;
 import negocio.Escolaridad;
@@ -42,9 +44,19 @@ public class Main {
 	Escolaridad esc3 = new Escolaridad("Doble Turno", 2000);
 	HibernateEscolaridadDAO.getInstancia().grabarEscolaridad(esc3);
 	
-	sistemaEscuela.crearAlumno("Alumno1", 123, "dire1", "mail", "telefono", esc1.getId());
-	sistemaEscuela.crearAlumno("Alumno2", 123, "dire2", "mail2","telefono", esc1.getId());
-	sistemaEscuela.crearAlumno("Alumno3", 345, "dire3", "mail3","telefono", esc2.getId());
+
+	try {
+		sistemaEscuela.crearAlumno("Alumno2", 123, "dire2", "mail2","telefono", esc1.getId());
+		sistemaEscuela.crearAlumno("Alumno1", 123, "dire1", "mail", "telefono", esc1.getId());
+		sistemaEscuela.crearAlumno("Alumno3", 345, "dire3", "mail3","telefono", esc2.getId());
+	} catch (TitularNoExisteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (EscolaridadNoExisteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
 	
 	sistemaEscuela.crearEmpleado(12875398, "Profesor", "Albert Einstein", "Av 9 de Julio 12", "asd@asd.com", "4556",20000);
 	sistemaEscuela.crearEmpleado(33435678, "Profesor", "Jirafales", "Av 9 de Julio 13", "asd2@asd.com", "5555",25000);

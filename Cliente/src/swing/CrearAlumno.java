@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Cliente.Cliente;
+import exception.EscolaridadNoExisteException;
+import exception.TitularNoExisteException;
 import negocio.Escolaridad;
 
 import javax.swing.JLabel;
@@ -233,8 +235,16 @@ public class CrearAlumno extends JFrame {
 				//Persistir
 				Escolaridad escolaridad  = (Escolaridad) cmBoxEscolaridad.getSelectedItem();
 				try {
-					Cliente.getInstance().crearAlumno(textField.getText(), Integer.parseInt(txtDniTitular.getText()), txtDireccion.getText(), txtMail.getText(), 
-							txtTelefono.getText(),escolaridad.getId());
+					try {
+						Cliente.getInstance().crearAlumno(textField.getText(), Integer.parseInt(txtDniTitular.getText()), txtDireccion.getText(), txtMail.getText(), 
+								txtTelefono.getText(),escolaridad.getId());
+					} catch (TitularNoExisteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (EscolaridadNoExisteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					Menu frame = new Menu();
 					frame.setVisible(true);
 					crearAlumno.setVisible(false);
