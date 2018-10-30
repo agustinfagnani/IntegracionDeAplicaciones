@@ -74,7 +74,7 @@ public class VerFactura extends JFrame {
 		lblFchEmsion2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFchEmsion2.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 25));
 		
-		JLabel lblTitular2 = new JLabel(f.getAlumno().getTitular().getNombre());
+		JLabel lblTitular2 = new JLabel(f.getTitular().getNombre());
 		lblTitular2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitular2.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 25));
 		
@@ -111,7 +111,7 @@ public class VerFactura extends JFrame {
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 25));
 		
-		JLabel lblAno = new JLabel(f.getAnio());
+		JLabel lblAno = new JLabel(Integer.toString(f.getAnio()));
 		lblAno.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAno.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 25));
 		

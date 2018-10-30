@@ -94,8 +94,18 @@ public class Factura implements Serializable{
 		this.fechaPago = fechaPago;
 	}
 	
-	
-	
+	public int getPeriodo() {
+		return periodo;
+	}
+
+	public int getAnio() {
+		return anio;
+	}
+
+	public Titular getTitular() {
+		return titular;
+	}
+
 	public float getCostoTotal() {
 		float total = 0;
 		for(ItemFactura i: items) {
