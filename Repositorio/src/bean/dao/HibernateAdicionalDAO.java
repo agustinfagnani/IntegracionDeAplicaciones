@@ -5,6 +5,7 @@ import java.util.List;
 import hbt.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import negocio.Adicional;
 
@@ -47,6 +48,16 @@ public class HibernateAdicionalDAO {
 		session.getTransaction().commit();
 		session.close();
 		
+	}
+	
+	public Adicional buscarAdicional(int idAdicional){
+		Session session = sf.openSession();
+		Query<Adicional> query = session.createQuery("From Adicional where id = :id");
+		query.setParameter("id", idAdicional);
+		Adicional adicional = (Adicional) query.uniqueResult();
+		session.close();
+		
+		return adicional;
 	}
 
 }

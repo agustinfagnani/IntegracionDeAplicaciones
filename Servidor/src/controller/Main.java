@@ -2,10 +2,12 @@ package controller;
 
 import java.rmi.RemoteException;
 
+import bean.dao.HibernateAdicionalDAO;
 import bean.dao.HibernateAlumnoDAO;
 import bean.dao.HibernateEscolaridadDAO;
 import bean.dao.HibernateTitularDAO;
 import hbt.HibernateUtil;
+import negocio.Adicional;
 import negocio.Escolaridad;
 import negocio.Titular;
 
@@ -51,6 +53,18 @@ public class Main {
 	sistemaEscuela.crearEmpleado(33435678, "Profesor", "Jirafales", "Av 9 de Julio 13", "asd2@asd.com", "5555",25000);
 	sistemaEscuela.crearEmpleado(30987777, "Kiosquero", "Cacho", "Av 9 de Julio 14", "asd3@asd.com", "6666",50000);
 
+	Adicional ad1 = new Adicional("Futbol", 200);
+	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad1);
+	Adicional ad2 = new Adicional("Futbol", 200);
+	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad1);
+	Adicional ad3 = new Adicional("Futbol", 200);
+	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad1);
+	Adicional ad4 = new Adicional("Futbol", 200);
+	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad1);
+	Adicional ad5 = new Adicional("Futbol", 200);
+	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad1);
+	Adicional ad6 = new Adicional("Futbol", 200);
+	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad1);
 	
 	}
 
