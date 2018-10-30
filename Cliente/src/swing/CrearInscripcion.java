@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
 import Cliente.Cliente;
+import exception.AdicionalNoExisteException;
+import exception.AlumnoNoExisteException;
 import negocio.Adicional;
 import negocio.Alumno;
 import javax.swing.JComboBox;
@@ -191,6 +193,10 @@ public class CrearInscripcion extends JFrame {
 					crearInscripcion.setVisible(false);
 				} catch (RemoteException e1) {
 					JOptionPane.showMessageDialog(new JFrame(),"Falla al asignar el adicional", "Error", JOptionPane.ERROR_MESSAGE);
+				} catch (AlumnoNoExisteException e1) {
+					JOptionPane.showMessageDialog(new JFrame(),"El alumno no existe", "Error", JOptionPane.ERROR_MESSAGE);
+				} catch (AdicionalNoExisteException e1) {
+					JOptionPane.showMessageDialog(new JFrame(),"El adicional no existe", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
