@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Cliente.Cliente;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -15,6 +18,9 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
+import java.awt.event.ActionEvent;
 
 public class CrearEmpleado extends JFrame {
 
@@ -22,7 +28,7 @@ public class CrearEmpleado extends JFrame {
 	
 	private JPanel contentPane;
 	private JTextField txtSalario;
-	private JTextField textField;
+	private JTextField textNombre;
 	private JTextField txtDireccion;
 	private JTextField txtMail;
 	private JTextField txtTelefono;
@@ -69,6 +75,17 @@ public class CrearEmpleado extends JFrame {
 		txtSalario.setColumns(10);
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					Cliente.getInstance().crearEmpleado(Integer.parseInt(txtDni.getText()), txtCargo.getText(), textNombre.getText(), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText(), Float.parseFloat(txtSalario.getText()));
+				} catch (NumberFormatException | RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		btnAceptar.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		btnAceptar.setBackground(Color.BLACK);
 		btnAceptar.setForeground(Color.WHITE);
@@ -81,9 +98,9 @@ public class CrearEmpleado extends JFrame {
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Century Gothic", Font.ITALIC, 15));
-		textField.setColumns(10);
+		textNombre = new JTextField();
+		textNombre.setFont(new Font("Century Gothic", Font.ITALIC, 15));
+		textNombre.setColumns(10);
 		
 		JLabel lblDireccion = new JLabel("Direccion");
 		lblDireccion.setFont(new Font("Century Gothic", Font.ITALIC, 20));
@@ -145,7 +162,7 @@ public class CrearEmpleado extends JFrame {
 										.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(textField, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+										.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
 										.addComponent(txtDireccion, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))))
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(gl_contentPane.createSequentialGroup()
@@ -178,7 +195,7 @@ public class CrearEmpleado extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(72)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
 							.addGap(45))
 						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
