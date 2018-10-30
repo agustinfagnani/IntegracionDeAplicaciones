@@ -31,7 +31,8 @@ public class Facturar extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
-	private JComboBox comboBox, comboBox_1;
+	private JComboBox comboBox;
+	private JComboBox<Integer> comboBox_1;
 
 	/**
 	 * Create the frame.
@@ -74,19 +75,11 @@ public class Facturar extends JFrame {
 		comboBox.setForeground(Color.WHITE);
 		comboBox.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		comboBox.setBackground(Color.BLACK);
-		comboBox.addItem("Enero");
-		comboBox.addItem("Febrero");
-		comboBox.addItem("Marzo");
-		comboBox.addItem("Abril");
-		comboBox.addItem("Mayo");
-		comboBox.addItem("Junio");
-		comboBox.addItem("Julio");
-		comboBox.addItem("Agosto");
-		comboBox.addItem("Septiembre");
-		comboBox.addItem("Octubre");
-		comboBox.addItem("Diciembre");
+
+		for(int i=1;i<13;i++)
+			comboBox.addItem(i);
 		
-		comboBox_1 = new JComboBox();
+		comboBox_1 = new JComboBox<Integer>();
 		comboBox_1.setForeground(Color.WHITE);
 		comboBox_1.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		comboBox_1.setBackground(Color.BLACK);
@@ -157,8 +150,7 @@ public class Facturar extends JFrame {
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
 				try {
-					
-					Cliente.getInstance().facturar();
+					Cliente.getInstance().facturar(Integer.parseInt(comboBox.getSelectedItem().toString()),Integer.parseInt(comboBox_1.getSelectedItem().toString()));
 					Menu frame = new Menu();
 					frame.setVisible(true);
 					facturar.setVisible(false);
