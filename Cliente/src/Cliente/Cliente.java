@@ -2,15 +2,7 @@ package Cliente;
 
 import java.awt.EventQueue;
 import java.rmi.Naming;
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
-
 import Repositorio.TDAManejoDatos;
-import negocio.Alumno;
-import negocio.Escolaridad;
-import negocio.Titular;
 import swing.Menu;
 
 
