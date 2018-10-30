@@ -51,10 +51,10 @@ public class HibernateFacturaDAO {
 		
 	}
 	
-	public Factura buscarFactura(int idFactura){
+	public Factura buscarFactura(int numeroFactura){
 		Session session = sf.openSession();
-		Query<Factura> query = session.createQuery("From Factura where id = :id");
-		query.setParameter("id", idFactura);
+		Query<Factura> query = session.createQuery("From Factura where numero = :numero");
+		query.setParameter("numero", numeroFactura);
 		Factura factura = (Factura) query.uniqueResult();
 		session.close();
 		

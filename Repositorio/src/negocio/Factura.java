@@ -30,7 +30,7 @@ public class Factura implements Serializable{
 	@Column(name="fechaPago")
 	private LocalDateTime fechaPago;
 	
-	@OneToMany (cascade=CascadeType.ALL)
+	@OneToMany (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<ItemFactura> items;
 	
 	@OneToOne (cascade=CascadeType.ALL)
