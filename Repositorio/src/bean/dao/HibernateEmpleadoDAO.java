@@ -5,6 +5,8 @@ import java.util.List;
 import hbt.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+
 import negocio.Empleado;
 
 
@@ -47,6 +49,16 @@ public class HibernateEmpleadoDAO {
 		session.getTransaction().commit();
 		session.close();
 		
+	}
+	
+	public Empleado buscarEmpleado(int idEmpleado){
+		Session session = sf.openSession();
+		Query<Empleado> query = session.createQuery("From Empleado where id = :id");
+		query.setParameter("dni", idEmpleado);
+		Empleado empleado = (Empleado) query.uniqueResult();
+		session.close();
+		
+		return empleado;
 	}
 
 }
