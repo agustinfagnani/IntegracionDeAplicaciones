@@ -55,16 +55,16 @@ public class Main {
 
 	Adicional ad1 = new Adicional("Futbol", 200);
 	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad1);
-	Adicional ad2 = new Adicional("Futbol", 200);
-	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad1);
-	Adicional ad3 = new Adicional("Futbol", 200);
-	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad1);
-	Adicional ad4 = new Adicional("Futbol", 200);
-	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad1);
-	Adicional ad5 = new Adicional("Futbol", 200);
-	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad1);
-	Adicional ad6 = new Adicional("Futbol", 200);
-	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad1);
+	Adicional ad2 = new Adicional("Ingles", 200);
+	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad2);
+	Adicional ad3 = new Adicional("Desayuno", 100);
+	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad3);
+	Adicional ad4 = new Adicional("almuerzo", 150);
+	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad4);
+	Adicional ad5 = new Adicional("Merienda", 100);
+	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad5);
+	Adicional ad6 = new Adicional("Teatro", 200);
+	HibernateAdicionalDAO.getInstancia().grabarAdicional(ad6);
 	
 	}
 
