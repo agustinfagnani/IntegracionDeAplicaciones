@@ -5,8 +5,10 @@ import java.util.List;
 import hbt.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import negocio.Escolaridad;
+import negocio.Titular;
 
 
 public class HibernateEscolaridadDAO {
@@ -49,6 +51,16 @@ public class HibernateEscolaridadDAO {
 		session.getTransaction().commit();
 		session.close();
 		
+	}
+	
+	public Escolaridad buscarEscolaridad(int idEscolaridad){
+		Session session = sf.openSession();
+		Query<Escolaridad> query = session.createQuery("From Escolaridad where id = :id");
+		query.setParameter("id", idEscolaridad);
+		Escolaridad escolaridad = (Escolaridad) query.uniqueResult();
+		session.close();
+		
+		return escolaridad;
 	}
 
 }
