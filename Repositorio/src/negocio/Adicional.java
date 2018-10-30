@@ -8,11 +8,11 @@ import javax.persistence.*;
 @Table(name="Adicionales")
 public class Adicional extends Cuota implements Serializable {
 
-
+/*
 	@ManyToOne 
     @JoinColumn(name="legajo", nullable=false)
 	private Alumno alumno;
-
+*/
 	public Adicional(){	
 
 

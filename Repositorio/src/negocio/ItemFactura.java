@@ -8,9 +8,11 @@ import javax.persistence.*;
 @Table(name="ItemsFactura")
 public class ItemFactura implements Serializable{
 	
+	/*
 	@ManyToOne 
     @JoinColumn(name="numero", nullable=false)
 	private Factura factura;
+	*/
 	
 	@Column(name="descripcion")
 	private String descripcion;
@@ -26,8 +28,8 @@ public class ItemFactura implements Serializable{
 	public ItemFactura(){
 	}
 	
-	public ItemFactura(Factura f, String d, float c){
-		this.factura = f;
+	public ItemFactura(String d, float c){
+		//this.factura = f;
 		this.descripcion = d;
 		this.costo = c;
 	}

@@ -1,7 +1,10 @@
 package swing;
 
 import java.awt.BorderLayout;
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;

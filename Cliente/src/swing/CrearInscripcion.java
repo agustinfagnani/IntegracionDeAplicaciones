@@ -2,7 +2,6 @@ package swing;
 
 import java.awt.Color;
 import java.awt.Font;
-
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,11 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
-
 import Cliente.Cliente;
 import negocio.Adicional;
 import negocio.Alumno;
-
 import javax.swing.JComboBox;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
