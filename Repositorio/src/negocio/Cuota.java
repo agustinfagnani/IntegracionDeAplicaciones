@@ -10,13 +10,13 @@ public class Cuota implements Serializable{
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	protected int id;
 	
 	@Column(name="descripcion")
-	private String descripcion;
+	protected String descripcion;
 	
 	@Column(name="costo")
-	private float costo;
+	protected float costo;
 	
 	public Cuota(){
 	}
@@ -26,7 +26,10 @@ public class Cuota implements Serializable{
 		this.costo = costo;
 
 	}
-
+	public int getId() {
+		return id;
+	}	
+	
 	public String getDescripcion() {
 		return descripcion;
 	}

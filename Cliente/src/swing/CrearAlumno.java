@@ -54,9 +54,8 @@ public class CrearAlumno extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @throws RemoteException 
 	 */
-	public CrearAlumno() throws RemoteException {
+	public CrearAlumno() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearAlumno.class.getResource("/images/Escuela.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -134,8 +133,13 @@ public class CrearAlumno extends JFrame {
 		cmBoxEscolaridad.setBackground(Color.BLACK);
 		cmBoxEscolaridad.setFont(new Font("Century Gothic", Font.ITALIC, 20));
 		
-		for(Escolaridad e: Cliente.getInstance().getEscolaridades()){
-			cmBoxEscolaridad.addItem(e);
+		try {
+			for(Escolaridad e: Cliente.getInstance().getEscolaridades()){
+				cmBoxEscolaridad.addItem(e);
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
