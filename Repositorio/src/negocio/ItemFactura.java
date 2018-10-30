@@ -25,6 +25,12 @@ public class ItemFactura implements Serializable{
 
 	public ItemFactura(){
 	}
+	
+	public ItemFactura(Factura f, String d, float c){
+		this.factura = f;
+		this.descripcion = d;
+		this.costo = c;
+	}
 
 	public String getDescripcion() {
 		return descripcion;

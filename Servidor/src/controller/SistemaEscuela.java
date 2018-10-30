@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import Repositorio.TDAManejoDatos;
+import bean.dao.HibernateAdicionalDAO;
 import bean.dao.HibernateAlumnoDAO;
 import bean.dao.HibernateEmpleadoDAO;
 import bean.dao.HibernateEscolaridadDAO;
@@ -14,6 +15,7 @@ import bean.dao.HibernateTitularDAO;
 import negocio.Escolaridad;
 import negocio.Factura;
 import negocio.Titular;
+import negocio.Adicional;
 import negocio.Alumno;
 import negocio.Empleado;
 
@@ -50,6 +52,16 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 	
 	public List<Escolaridad> getEscolaridades(){
 		return HibernateEscolaridadDAO.getInstancia().leerEscolaridads();
+		
+	}
+	
+	public List<Alumno> getAlumnos(){
+		return HibernateAlumnoDAO.getInstancia().leerAlumnos();
+		
+	}
+	
+	public List<Adicional> getAdicionales(){
+		return HibernateAdicionalDAO.getInstancia().leerAdicionales();
 		
 	}
 	
@@ -93,8 +105,11 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 		
 	}
 	
-	public void facturarAlumno(int legajo) {
-		
+	public Factura facturarAlumno(int legajo, String tipo) {
+		Alumno a = HibernateAlumnoDAO.getInstancia().buscarAlumno(legajo);
+		Factura f = new Factura(a, tipo);
+		HibernateFacturaDAO.getInstancia().grabarFactura(f);
+		return f;
 	}
 	
 	public void pagarFactura(int numero) {
@@ -103,11 +118,10 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 		HibernateFacturaDAO.getInstancia().grabarFactura(f);
 	}
 	
-	public void asignarCuota(int legajo, int id) {
-		// HAY QUE TRAER LA CUOTA
-//		Alumno a = HibernateCuotaDAO.getInstancia().find(legajo);
-//		Cuota c = CuotaDAO.find(id);
-//		a.addCuota(c);
-//		AlumnoDAO.save(a);
+	public void asginarInscripcion(int legajo, int id) {
+		Alumno a = HibernateAlumnoDAO.getInstancia().buscarAlumno(legajo);
+		Adicional ad = HibernateAdicionalDAO.getInstancia().buscarAdicional(id);
+		a.addAdicional(ad);
+		HibernateAlumnoDAO.getInstancia().grabarAlumno(a);
 	}
 }
