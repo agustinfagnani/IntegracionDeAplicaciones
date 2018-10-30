@@ -122,7 +122,7 @@ public class Factura implements Serializable{
 		state = state + "Alumno" + " | " + "Descripcion" + " | " + "Costo" + "\n";
 		state = state + "----------------------------------------------------------\n";
 		for(ItemFactura i: items) {
-			state = state + i.getAlumno().getNombre() + i.getDescripcion() + " | " + i.getCosto() + "\n";
+			state = state + i.getAlumno().getNombre() + " | " + i.getDescripcion() + " | " + i.getCosto() + "\n";
 		}
 		state = state + "----------------------------------------------------------\n";
 		
