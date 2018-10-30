@@ -3,13 +3,10 @@ package controller;
 import java.rmi.RemoteException;
 
 import bean.dao.HibernateAdicionalDAO;
-import bean.dao.HibernateAlumnoDAO;
 import bean.dao.HibernateEscolaridadDAO;
-import bean.dao.HibernateTitularDAO;
 import hbt.HibernateUtil;
 import negocio.Adicional;
 import negocio.Escolaridad;
-import negocio.Titular;
 
 public class Main {
 
