@@ -60,4 +60,15 @@ public class HibernateAdicionalDAO {
 		return adicional;
 	}
 
+	public List<Integer> adicionalPorAlumno (int numeroAlumno){
+		Session session = sf.openSession();
+		Query query = session.createQuery("SELECT id FROM alumno_adicional WHERE legajo = num");
+		query.setParameter("num", numeroAlumno);
+		List<Integer> lista = query.list();
+		
+		return lista;
+		
+		
+	}
+	
 }

@@ -119,11 +119,11 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 		
 	}
 	
-	public Factura verFacturaAlumno(int legajo, int periodo, int anio) throws AlumnoNoExisteException, PeriodoNoFacturadoException {
-		Alumno a = HibernateAlumnoDAO.getInstancia().buscarAlumno(legajo);
+	public Factura verFacturaTitular(int dni, int periodo, int anio) throws PeriodoNoFacturadoException, TitularNoExisteException {
+		Titular a = HibernateTitularDAO.getInstancia().buscarTitular(dni);
 		if(a==null)
-			throw new AlumnoNoExisteException();
-		Factura f = HibernateFacturaDAO.getInstancia().buscarFactura(periodo, anio, legajo);
+			throw new TitularNoExisteException();
+		Factura f = HibernateFacturaDAO.getInstancia().buscarFactura(periodo, anio, dni);
 		if(f==null)
 			throw new PeriodoNoFacturadoException();
 		return f;
