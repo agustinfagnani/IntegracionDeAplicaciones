@@ -10,6 +10,11 @@ import javax.persistence.*;
 @Table(name="Alumnos")
 public class Alumno implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4297026360803308613L;
+
 	@Column(name="nombre")
 	private String nombre;
 

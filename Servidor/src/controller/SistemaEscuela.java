@@ -2,6 +2,7 @@ package controller;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.List;
 
 import Repositorio.TDAManejoDatos;
@@ -108,7 +109,8 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 		Alumno a = HibernateAlumnoDAO.getInstancia().buscarAlumno(legajo);
 		Factura f = new Factura(a, tipo);
 		HibernateFacturaDAO.getInstancia().grabarFactura(f);
-		return f;
+		ArrayList<Factura> fs = (ArrayList<Factura>) HibernateFacturaDAO.getInstancia().leerFactura();
+		return fs.get(fs.size()-1);
 	}
 	
 	public void pagarFactura(int numero) {

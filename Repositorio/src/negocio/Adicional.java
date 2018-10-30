@@ -8,7 +8,12 @@ import javax.persistence.*;
 @Table(name="Adicionales")
 public class Adicional extends Cuota implements Serializable {
 
-/*
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2329727390610009023L;
+
+	/*
 	@ManyToOne 
     @JoinColumn(name="legajo", nullable=false)
 	private Alumno alumno;
