@@ -5,6 +5,8 @@ import java.util.List;
 import hbt.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+
 import negocio.Titular;
 
 
@@ -47,6 +49,16 @@ public class HibernateTitularDAO {
 		session.getTransaction().commit();
 		session.close();
 		
+	}
+	
+	public Titular buscarTitular(int dniTitular){
+		Session session = sf.openSession();
+		Query<Titular> query = session.createQuery("From Titular where dni = :dni");
+		query.setParameter("dni", dniTitular);
+		Titular titular = (Titular) query.uniqueResult();
+		session.close();
+		
+		return titular;
 	}
 
 }
