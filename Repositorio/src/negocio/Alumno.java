@@ -25,8 +25,8 @@ public class Alumno implements Serializable{
 	@JoinColumn(name="id")
 	private Escolaridad escolaridad;
 
-	@OneToMany (cascade=CascadeType.ALL)
-	@JoinColumn(name="id")
+	@ManyToMany (cascade=CascadeType.ALL)
+	@JoinTable(name="alumno_adicional", joinColumns={@JoinColumn(name="legajo")}, inverseJoinColumns={@JoinColumn(name="id")})
 	private List<Adicional> adicionales;
 
 	@Column(name="direccion")
