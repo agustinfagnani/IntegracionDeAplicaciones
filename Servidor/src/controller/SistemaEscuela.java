@@ -12,6 +12,7 @@ import bean.dao.HibernateEmpleadoDAO;
 import bean.dao.HibernateEscolaridadDAO;
 import bean.dao.HibernateFacturaDAO;
 import bean.dao.HibernateTitularDAO;
+import exception.EmpleadoYaExisteException;
 import exception.EscolaridadNoExisteException;
 import exception.TitularNoExisteException;
 import negocio.Escolaridad;
@@ -80,8 +81,9 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 	}
 	
 
-	public void crearEmpleado(int DNI, String cargo, String nombre, String direccion, String mail, String telefono, float salario) {
-		
+	public void crearEmpleado(int DNI, String cargo, String nombre, String direccion, String mail, String telefono, float salario) throws EmpleadoYaExisteException {
+		if(HibernateEmpleadoDAO.getInstancia().buscarEmpleado(DNI) == null)
+			throw new EmpleadoYaExisteException();
 		Empleado newEmpleado = new Empleado(DNI, cargo, nombre, direccion, mail, telefono, salario);
 		HibernateEmpleadoDAO.getInstancia().grabarEmpleado(newEmpleado);
 		
