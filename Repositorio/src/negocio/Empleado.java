@@ -19,6 +19,9 @@ public class Empleado implements Serializable{
 	@Column(name="nombre")
 	private String nombre;
 	
+	@Column(name="apellido")
+	private String apellido;
+	
 	@Column(name="cargo")
 	private String cargo;
 	
@@ -61,6 +64,12 @@ public class Empleado implements Serializable{
 		this.nombre = nombre;
 	}
 
+	public String getApellido() {
+		return apellido;
+	}
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
 	public int getLegajo() {
 		return legajo;
 	}
