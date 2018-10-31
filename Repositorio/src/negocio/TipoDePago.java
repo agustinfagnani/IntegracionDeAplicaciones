@@ -1,7 +1,14 @@
 package negocio;
 
-public class TipoDePago {
+import javax.persistence.*;
 
+@MappedSuperclass
+public class TipoDePago {
+	
+	@Id
+	@Column(name="id")
+	private int id;
+	
 	public TipoDePago() {
 		
 	}
