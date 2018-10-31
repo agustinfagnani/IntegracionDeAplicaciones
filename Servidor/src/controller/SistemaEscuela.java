@@ -39,6 +39,8 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 	 */
 	private static final long serialVersionUID = 5L;
 	
+	private final String miCuit = "30715087738";
+	
 
 	public SistemaEscuela() throws RemoteException {
 		

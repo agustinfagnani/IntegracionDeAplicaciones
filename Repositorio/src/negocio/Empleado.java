@@ -118,6 +118,9 @@ public class Empleado implements Serializable{
 	public String toString(){
 		return "DNI: "+this.DNI+" - "+this.nombre; 
 	}
+	public int getDNI() {
+		return this.DNI;
+	}
 
 
 
