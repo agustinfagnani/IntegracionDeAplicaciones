@@ -9,7 +9,7 @@ import negocio.Empleado;
 
 public class PostPresencia {
 	
-	private String IP = "192.168.157.152";
+	private String IP = "192.168.157.150";
 	private final String miCuit = "30715087738";
     
 	CargaEmpleado carga;
