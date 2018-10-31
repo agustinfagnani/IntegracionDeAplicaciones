@@ -4,7 +4,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import org.json.JSONException;
 
 import exception.AdicionalNoExisteException;
 import exception.AdicionalYaAsignadoException;
@@ -33,7 +32,7 @@ public interface TDAManejoDatos extends Remote
 	
 	public void crearTitular(String nombre, int dNI, String direccion, String mail, String telefono, TipoDePago tipoDePago) throws RemoteException, TitularYaExisteException;
 	
-	public void crearEmpleado(int DNI, String cargo, String nombre, String apellido, String direccion, String mail, String telefono, float salario, String cbu)  throws RemoteException, EmpleadoYaExisteException, SistemaLiquidacionException, ErrorConeccionPresenciaException, JSONException;
+	public void crearEmpleado(int DNI, String cargo, String nombre, String apellido, String direccion, String mail, String telefono, float salario, String cbu)  throws RemoteException, EmpleadoYaExisteException, SistemaLiquidacionException, ErrorConeccionPresenciaException;
 	
 	public void pagarFactura(int numero)  throws RemoteException, FacturaNoExisteException;
 	
