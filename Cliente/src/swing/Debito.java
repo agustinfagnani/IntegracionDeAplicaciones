@@ -6,10 +6,10 @@ import javax.swing.border.EmptyBorder;
 
 import Atxy2k.CustomTextField.RestrictedTextField;
 import Cliente.Cliente;
-import exception.EmpleadoYaExisteException;
+import exception.TitularYaExisteException;
+import negocio.Deposito;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 
-public class Deposito extends JFrame {
+public class Debito extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -32,7 +32,7 @@ public class Deposito extends JFrame {
 	private JTextField txtCbu;
 
 
-	public Deposito(JFrame crearTitular, String nombre, int dni, String direccion, String mail, String telefono) {
+	public Debito(JFrame crearTitular, String nombre, int dni, String direccion, String mail, String telefono) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearAlumno.class.getResource("/images/Escuela.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 473, 287);
@@ -120,11 +120,19 @@ public class Deposito extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand().equals("Aceptar")) {
-				Cliente.getInstance().crearTitular(nombre, dni, direccion, mail, telefono, new Deposito(txtCbu.getText()));
-				Menu frame = new Menu();
-				frame.setVisible(true);
-				debito.setVisible(false);
-				crearTitular.setVisible(false);
+				try {
+					Cliente.getInstance().crearTitular(nombre, dni, direccion, mail, telefono, new Deposito(txtCbu.getText()));
+					Menu frame = new Menu();
+					frame.setVisible(true);
+					debito.setVisible(false);
+					crearTitular.setVisible(false);
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (TitularYaExisteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 		

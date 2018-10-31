@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import Atxy2k.CustomTextField.RestrictedTextField;
 import Cliente.Cliente;
 import exception.EmpleadoYaExisteException;
+import exception.SistemaLiquidacionException;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -262,6 +263,9 @@ public class CrearEmpleado extends JFrame {
 					JOptionPane.showMessageDialog(new JFrame(),"Falla al crear empleado", "Error", JOptionPane.ERROR_MESSAGE);
 				} catch (EmpleadoYaExisteException e1) {
 					JOptionPane.showMessageDialog(new JFrame(),"Empleado ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+				} catch (SistemaLiquidacionException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		}

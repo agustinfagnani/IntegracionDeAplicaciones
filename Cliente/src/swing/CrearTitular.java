@@ -4,9 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Cliente.Cliente;
-import exception.TitularYaExisteException;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -21,9 +18,7 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.RemoteException;
 import javax.swing.JComboBox;
-import negocio.Escolaridad;
 
 public class CrearTitular extends JFrame {
 
@@ -220,7 +215,7 @@ public class CrearTitular extends JFrame {
 				try {
 					
 					if(cmBoxFP.getSelectedItem().equals("Debito")) {
-						Deposito frame = new Deposito(crearTitular, txtNombre.getText(), Integer.parseInt(txtDni.getText()), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText());
+						Debito frame = new Debito(crearTitular, txtNombre.getText(), Integer.parseInt(txtDni.getText()), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText());
 						frame.setVisible(true);
 					}
 					if(cmBoxFP.getSelectedItem().equals("Credito")) {
