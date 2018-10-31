@@ -1,12 +1,10 @@
 package controller;
 
-import java.io.IOException;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
-
 import org.json.JSONException;
-
 import Repositorio.TDAManejoDatos;
 import bean.dao.HibernateAdicionalDAO;
 import bean.dao.HibernateAlumnoDAO;
