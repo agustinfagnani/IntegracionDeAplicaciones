@@ -34,16 +34,20 @@ public class Titular implements Serializable{
 	@OneToMany (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Alumno> alumnos;
 	
+	@OneToOne
+	private TipoDePago tipoDePago; 
+	
 	public Titular(){
 	}
 	
-	public Titular(String nombre, int DNI, String dire, String mail, String tel){
+	public Titular(String nombre, int DNI, String dire, String mail, String tel, TipoDePago tipoDePago){
 		this.nombre = nombre;
 		this.DNI = DNI;
 		this.direccion = dire;
 		this.mail = mail;
 		this.telefono = tel;
 		this.alumnos = new ArrayList<Alumno>();
+		this.tipoDePago = tipoDePago;
 	}
 	public String getNombre() {
 		return nombre;

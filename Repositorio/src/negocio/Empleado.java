@@ -19,6 +19,9 @@ public class Empleado implements Serializable{
 	@Column(name="nombre")
 	private String nombre;
 	
+	@Column(name="apellido")
+	private String apellido;
+	
 	@Column(name="cargo")
 	private String cargo;
 	
@@ -39,14 +42,18 @@ public class Empleado implements Serializable{
 
 	@Column(name="salario")
 	private float salario;
+	
+	@Column(name="cbu") //debe tener 22 caracteres
+	private String cbu;
 
 	public Empleado(){
 
 	}
-	public Empleado(int DNI, String cargo, String nombre, String dire, String mail, String tel, float salario){
+	public Empleado(int DNI, String cargo, String nombre, String apellido, String dire, String mail, String tel, float salario){
 		this.DNI=DNI;
 		this.cargo = cargo;
 		this.nombre = nombre;
+		this.apellido = apellido;
 		this.direccion=dire;
 		this.mail = mail;
 		this.telefono = tel;
@@ -61,6 +68,12 @@ public class Empleado implements Serializable{
 		this.nombre = nombre;
 	}
 
+	public String getApellido() {
+		return apellido;
+	}
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
 	public int getLegajo() {
 		return legajo;
 	}

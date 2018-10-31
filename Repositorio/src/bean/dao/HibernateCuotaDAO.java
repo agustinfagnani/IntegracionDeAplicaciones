@@ -31,7 +31,6 @@ public class HibernateCuotaDAO {
 	
 	public List<Cuota> leerCuotas(){
 		Session session = sf.openSession();
-		@SuppressWarnings("unchecked")
 		List<Cuota> list = session.createQuery("from Cuota").list();
 		session.close();
 		return list;
