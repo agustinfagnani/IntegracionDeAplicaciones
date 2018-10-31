@@ -16,6 +16,7 @@ import exception.AdicionalNoExisteException;
 import exception.AdicionalYaAsignadoException;
 import exception.AlumnoNoExisteException;
 import exception.EmpleadoYaExisteException;
+import exception.ErrorConeccionPresenciaException;
 import exception.EscolaridadNoExisteException;
 import exception.FacturaNoExisteException;
 import exception.PeriodoNoFacturadoException;
@@ -23,6 +24,7 @@ import exception.SistemaLiquidacionException;
 import exception.TitularNoExisteException;
 import exception.TitularYaExisteException;
 import integracion.PostLiquidacion;
+import integracion.PostPresencia;
 import negocio.Escolaridad;
 import negocio.Factura;
 import negocio.TipoDePago;
@@ -93,12 +95,12 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 	}
 	
 
-	public void crearEmpleado(int DNI, String cargo, String nombre, String apellido, String direccion, String mail, String telefono, float salario, String cbu) throws EmpleadoYaExisteException, SistemaLiquidacionException {
+	public void crearEmpleado(int DNI, String cargo, String nombre, String apellido, String direccion, String mail, String telefono, float salario, String cbu) throws EmpleadoYaExisteException, SistemaLiquidacionException, ErrorConeccionPresenciaException {
 		if(HibernateEmpleadoDAO.getInstancia().buscarEmpleado(DNI) != null)
 			throw new EmpleadoYaExisteException();
 		Empleado newEmpleado = new Empleado(DNI, cargo, nombre, apellido, direccion, mail, telefono, salario, cbu);
 		new PostLiquidacion(newEmpleado);
-
+		new PostPresencia(newEmpleado);
 		HibernateEmpleadoDAO.getInstancia().grabarEmpleado(newEmpleado);
 		
 	}
