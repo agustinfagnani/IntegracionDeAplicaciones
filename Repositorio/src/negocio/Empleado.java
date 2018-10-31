@@ -46,10 +46,11 @@ public class Empleado implements Serializable{
 	public Empleado(){
 
 	}
-	public Empleado(int DNI, String cargo, String nombre, String dire, String mail, String tel, float salario){
+	public Empleado(int DNI, String cargo, String nombre, String apellido, String dire, String mail, String tel, float salario){
 		this.DNI=DNI;
 		this.cargo = cargo;
 		this.nombre = nombre;
+		this.apellido = apellido;
 		this.direccion=dire;
 		this.mail = mail;
 		this.telefono = tel;
