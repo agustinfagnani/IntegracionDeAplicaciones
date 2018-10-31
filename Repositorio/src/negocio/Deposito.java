@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name="depositos")
+@DiscriminatorValue(value="Deposito")
 public class Deposito extends TipoDePago implements Serializable {
 	/**
 	 * 
