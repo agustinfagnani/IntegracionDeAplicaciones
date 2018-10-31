@@ -17,9 +17,13 @@ public class Credito extends TipoDePago implements Serializable {
 	@Column(name="codSeg")
 	private int codSeg;
 	
+	public Credito(){
+	}
+	
 	public Credito(String numero, int codSeg) {
 		super();
 		this.numero = numero;
+		this.codSeg = codSeg;
 	}
 	
 	public String getNumeroTarjeta() {
@@ -28,5 +32,9 @@ public class Credito extends TipoDePago implements Serializable {
 	
 	public int getCodSeg() {
 		return this.codSeg;
+	}
+	
+	public boolean sosCredito(){
+		return true;
 	}
 }
