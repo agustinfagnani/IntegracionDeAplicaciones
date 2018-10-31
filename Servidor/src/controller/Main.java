@@ -8,7 +8,9 @@ import exception.AdicionalNoExisteException;
 import exception.AdicionalYaAsignadoException;
 import exception.AlumnoNoExisteException;
 import exception.EmpleadoYaExisteException;
+import exception.ErrorConeccionPresenciaException;
 import exception.EscolaridadNoExisteException;
+import exception.SistemaLiquidacionException;
 import exception.TitularNoExisteException;
 import exception.TitularYaExisteException;
 import hbt.HibernateUtil;
@@ -79,6 +81,12 @@ public class Main {
 		sistemaEscuela.crearEmpleado(33435678, "Profesor", "Profesor", "Jirafales", "Av 9 de Julio 13", "asd2@asd.com", "5555",25000,"098765432109876543276");
 		sistemaEscuela.crearEmpleado(30987777, "Kiosquero", "Cacho", "Fernandez", "Av 9 de Julio 14", "asd3@asd.com", "6666",50000,"9999999999999999999999");
 	} catch (EmpleadoYaExisteException e) {
+		e.printStackTrace();
+	} catch (SistemaLiquidacionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (ErrorConeccionPresenciaException e) {
+		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	
