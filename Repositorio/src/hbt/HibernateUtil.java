@@ -28,6 +28,11 @@ public class HibernateUtil
             config.addAnnotatedClass(Factura.class);
             config.addAnnotatedClass(ItemFactura.class);
             
+            config.addAnnotatedClass(TipoDePago.class);
+            config.addAnnotatedClass(Credito.class);
+            config.addAnnotatedClass(Deposito.class);
+            
+            
             sessionFactory = config.buildSessionFactory();
                  
         }

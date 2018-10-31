@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name="depositos")
+@DiscriminatorValue(value="Deposito")
 public class Deposito extends TipoDePago implements Serializable {
 	/**
 	 * 
@@ -14,6 +14,9 @@ public class Deposito extends TipoDePago implements Serializable {
 	@Column(name="cbu")
 	private String cbu; //22 Digitos
 	
+	public Deposito(){
+	}
+	
 	public Deposito(String cbu) {
 		super();
 		this.cbu = cbu;
@@ -21,5 +24,9 @@ public class Deposito extends TipoDePago implements Serializable {
 	
 	public String getCBU() {
 		return this.cbu;
+	}
+	
+	public boolean sosDeposito(){
+		return true;
 	}
 }

@@ -2,7 +2,9 @@ package negocio;
 
 import javax.persistence.*;
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="tipo")
 public class TipoDePago {
 	
 	@Id

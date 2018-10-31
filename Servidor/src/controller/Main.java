@@ -41,9 +41,9 @@ public class Main {
 	*/
 	try {
 		
-		TipoDePago tipo1 = new Credito("1234567812345678", 567);
-		TipoDePago tipo2 = new Deposito("1234567891234567891234");
-		TipoDePago tipo3 = new Credito("9876543298765432", 001);
+		Credito tipo1 = new Credito("1234567812345678", 567);
+		Deposito tipo2 = new Deposito("1234567891234567891234");
+		Credito tipo3 = new Credito("9876543298765432", 001);
 		
 		
 		sistemaEscuela.crearTitular("Alfredo Fernandez", 123, "San Martin 234", "aa@yahoo.com", "1111", tipo1);
@@ -75,9 +75,9 @@ public class Main {
 
 	
 	try {
-		sistemaEscuela.crearEmpleado(12875398, "Profesor", "Albert", "Einstein", "Av 9 de Julio 12", "asd@asd.com", "4556",20000);
-		sistemaEscuela.crearEmpleado(33435678, "Profesor", "Profesor", "Jirafales", "Av 9 de Julio 13", "asd2@asd.com", "5555",25000);
-		sistemaEscuela.crearEmpleado(30987777, "Kiosquero", "Cacho", "Fernandez", "Av 9 de Julio 14", "asd3@asd.com", "6666",50000);
+		sistemaEscuela.crearEmpleado(12875398, "Profesor", "Albert", "Einstein", "Av 9 de Julio 12", "asd@asd.com", "4556",20000, "1234567890123456789012");
+		sistemaEscuela.crearEmpleado(33435678, "Profesor", "Profesor", "Jirafales", "Av 9 de Julio 13", "asd2@asd.com", "5555",25000,"098765432109876543276");
+		sistemaEscuela.crearEmpleado(30987777, "Kiosquero", "Cacho", "Fernandez", "Av 9 de Julio 14", "asd3@asd.com", "6666",50000,"9999999999999999999999");
 	} catch (EmpleadoYaExisteException e) {
 		e.printStackTrace();
 	}

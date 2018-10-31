@@ -34,7 +34,8 @@ public class Titular implements Serializable{
 	@OneToMany (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Alumno> alumnos;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="id")
 	private TipoDePago tipoDePago; 
 	
 	public Titular(){

@@ -49,7 +49,7 @@ public class Empleado implements Serializable{
 	public Empleado(){
 
 	}
-	public Empleado(int DNI, String cargo, String nombre, String apellido, String dire, String mail, String tel, float salario){
+	public Empleado(int DNI, String cargo, String nombre, String apellido, String dire, String mail, String tel, float salario, String cbu){
 		this.DNI=DNI;
 		this.cargo = cargo;
 		this.nombre = nombre;
@@ -58,6 +58,7 @@ public class Empleado implements Serializable{
 		this.mail = mail;
 		this.telefono = tel;
 		this.salario = salario;
+		this.cbu = cbu;
 	}
 
 	public String getNombre() {
