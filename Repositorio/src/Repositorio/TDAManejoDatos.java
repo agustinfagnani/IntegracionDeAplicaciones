@@ -7,6 +7,7 @@ import exception.AdicionalNoExisteException;
 import exception.AdicionalYaAsignadoException;
 import exception.AlumnoNoExisteException;
 import exception.EmpleadoYaExisteException;
+import exception.ErrorConeccionPresenciaException;
 import exception.EscolaridadNoExisteException;
 import exception.FacturaNoExisteException;
 import exception.PeriodoNoFacturadoException;
@@ -29,7 +30,7 @@ public interface TDAManejoDatos extends Remote
 	
 	public void crearTitular(String nombre, int dNI, String direccion, String mail, String telefono, TipoDePago tipoDePago) throws RemoteException, TitularYaExisteException;
 	
-	public void crearEmpleado(int DNI, String cargo, String nombre, String apellido, String direccion, String mail, String telefono, float salario, String cbu)  throws RemoteException, EmpleadoYaExisteException, SistemaLiquidacionException;
+	public void crearEmpleado(int DNI, String cargo, String nombre, String apellido, String direccion, String mail, String telefono, float salario, String cbu)  throws RemoteException, EmpleadoYaExisteException, SistemaLiquidacionException, ErrorConeccionPresenciaException;
 	
 	public void pagarFactura(int numero)  throws RemoteException, FacturaNoExisteException;
 	

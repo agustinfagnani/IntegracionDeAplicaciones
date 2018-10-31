@@ -1,4 +1,4 @@
-package controller;
+package integracion;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,7 +23,7 @@ import org.json.JSONObject;
 import exception.SistemaLiquidacionException;
 import negocio.Empleado;
 
-public class Post {
+public class PostLiquidacion {
 	
 	//curl -X POST https://sueldosya.herokuapp.com/employee -H 'Content-Type: application/json' -D {BODY}
 	/*{
@@ -38,7 +38,7 @@ public class Post {
     "name": "Esclavo1"
 }
 	 */
-	public Post(Empleado em) throws SistemaLiquidacionException {
+	public PostLiquidacion(Empleado em) throws SistemaLiquidacionException {
 		JSONObject json = new JSONObject();
 		json.accumulate("address", "Default Value");
 		json.accumulate("birth_date", "Default Value");

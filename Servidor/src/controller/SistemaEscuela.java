@@ -22,6 +22,7 @@ import exception.PeriodoNoFacturadoException;
 import exception.SistemaLiquidacionException;
 import exception.TitularNoExisteException;
 import exception.TitularYaExisteException;
+import integracion.PostLiquidacion;
 import negocio.Escolaridad;
 import negocio.Factura;
 import negocio.TipoDePago;
@@ -96,7 +97,7 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 		if(HibernateEmpleadoDAO.getInstancia().buscarEmpleado(DNI) != null)
 			throw new EmpleadoYaExisteException();
 		Empleado newEmpleado = new Empleado(DNI, cargo, nombre, apellido, direccion, mail, telefono, salario, cbu);
-		new Post(newEmpleado);
+		new PostLiquidacion(newEmpleado);
 
 		HibernateEmpleadoDAO.getInstancia().grabarEmpleado(newEmpleado);
 		
