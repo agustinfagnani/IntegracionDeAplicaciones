@@ -88,10 +88,10 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 	}
 	
 
-	public void crearEmpleado(int DNI, String cargo, String nombre, String apellido, String direccion, String mail, String telefono, float salario) throws EmpleadoYaExisteException {
+	public void crearEmpleado(int DNI, String cargo, String nombre, String apellido, String direccion, String mail, String telefono, float salario, String cbu) throws EmpleadoYaExisteException {
 		if(HibernateEmpleadoDAO.getInstancia().buscarEmpleado(DNI) != null)
 			throw new EmpleadoYaExisteException();
-		Empleado newEmpleado = new Empleado(DNI, cargo, nombre, apellido, direccion, mail, telefono, salario);
+		Empleado newEmpleado = new Empleado(DNI, cargo, nombre, apellido, direccion, mail, telefono, salario, cbu);
 		HibernateEmpleadoDAO.getInstancia().grabarEmpleado(newEmpleado);
 		
 	}

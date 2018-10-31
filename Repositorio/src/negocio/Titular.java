@@ -35,6 +35,7 @@ public class Titular implements Serializable{
 	private List<Alumno> alumnos;
 	
 	@OneToOne
+	@JoinColumn(name="id")
 	private TipoDePago tipoDePago; 
 	
 	public Titular(){

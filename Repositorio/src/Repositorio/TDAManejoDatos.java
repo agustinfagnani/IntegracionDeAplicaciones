@@ -28,7 +28,7 @@ public interface TDAManejoDatos extends Remote
 	
 	public void crearTitular(String nombre, int dNI, String direccion, String mail, String telefono, TipoDePago tipoDePago) throws RemoteException, TitularYaExisteException;
 	
-	public void crearEmpleado(int DNI, String cargo, String nombre, String apellido, String direccion, String mail, String telefono, float salario)  throws RemoteException, EmpleadoYaExisteException;
+	public void crearEmpleado(int DNI, String cargo, String nombre, String apellido, String direccion, String mail, String telefono, float salario, String cbu)  throws RemoteException, EmpleadoYaExisteException;
 	
 	public void pagarFactura(int numero)  throws RemoteException, FacturaNoExisteException;
 	
