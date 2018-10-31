@@ -4,14 +4,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.json.JSONException;
+
 import Atxy2k.CustomTextField.RestrictedTextField;
 import Cliente.Cliente;
 import exception.EmpleadoYaExisteException;
+import exception.ErrorConeccionPresenciaException;
 import exception.SistemaLiquidacionException;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
@@ -255,7 +256,12 @@ public class CrearEmpleado extends JFrame {
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
 				try {
-					Cliente.getInstance().crearEmpleado(Integer.parseInt(txtDni.getText()), txtCargo.getText(), textNombre.getText(),txtApellido.getText(), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText(), Float.parseFloat(txtSalario.getText()),txtCbu.getText());
+					try {
+						Cliente.getInstance().crearEmpleado(Integer.parseInt(txtDni.getText()), txtCargo.getText(), textNombre.getText(),txtApellido.getText(), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText(), Float.parseFloat(txtSalario.getText()),txtCbu.getText());
+					} catch (ErrorConeccionPresenciaException | JSONException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					Menu frame = new Menu();
 					frame.setVisible(true);
 					crearInscripcion.setVisible(false);

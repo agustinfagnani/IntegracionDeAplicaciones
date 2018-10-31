@@ -2,6 +2,8 @@ package controller;
 
 import java.rmi.RemoteException;
 
+import org.json.JSONException;
+
 import bean.dao.HibernateAdicionalDAO;
 import bean.dao.HibernateEscolaridadDAO;
 import exception.AdicionalNoExisteException;
