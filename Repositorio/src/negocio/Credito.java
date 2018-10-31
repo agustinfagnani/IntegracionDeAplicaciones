@@ -20,6 +20,7 @@ public class Credito extends TipoDePago implements Serializable {
 	public Credito(String numero, int codSeg) {
 		super();
 		this.numero = numero;
+		this.codSeg = codSeg;
 	}
 	
 	public String getNumeroTarjeta() {

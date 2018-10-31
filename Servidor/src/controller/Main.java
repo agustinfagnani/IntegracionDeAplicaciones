@@ -41,9 +41,9 @@ public class Main {
 	*/
 	try {
 		
-		TipoDePago tipo1 = new Credito("1234567812345678", 567);
-		TipoDePago tipo2 = new Deposito("1234567891234567891234");
-		TipoDePago tipo3 = new Credito("9876543298765432", 001);
+		Credito tipo1 = new Credito("1234567812345678", 567);
+		Deposito tipo2 = new Deposito("1234567891234567891234");
+		Credito tipo3 = new Credito("9876543298765432", 001);
 		
 		
 		sistemaEscuela.crearTitular("Alfredo Fernandez", 123, "San Martin 234", "aa@yahoo.com", "1111", tipo1);
