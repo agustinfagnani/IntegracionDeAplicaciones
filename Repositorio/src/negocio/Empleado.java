@@ -122,7 +122,9 @@ public class Empleado implements Serializable{
 	public int getDNI() {
 		return this.DNI;
 	}
-
+	public String getCBU() {
+		return this.cbu;
+	}
 
 
 }

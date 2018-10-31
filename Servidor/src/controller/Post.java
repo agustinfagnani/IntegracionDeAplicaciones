@@ -20,6 +20,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONObject;
 
+import exception.SistemaLiquidacionException;
 import negocio.Empleado;
 
 public class Post {
@@ -37,18 +38,7 @@ public class Post {
     "name": "Esclavo1"
 }
 	 */
-	public Post(Empleado em) throws IOException {
-		String payload = "{"
-				+ "\"address\": \"Default Value\",\n" + 
-				"\"birth_date\": \"Default Value\",\n" + 
-				"\"dni\": \"" + em.getDNI() +  "\",\n" + 
-				"\"payroll_type\": \"monthly\",\n" + 
-				"\"gross_salary\"" + em.getSalario() +  "\",\n" + 
-				"\"salary_per_hour\": null,\n" + 
-				"\"estimated_hours\": null,\n" + 
-				"\"deductions\": 17,\n" + 
-				"\"name\": \"" + em.getNombre() + " " + em.getApellido() + "\",\n" +
-				"\"client_id\":\"5bda09821592f30021b80684\"}";
+	public Post(Empleado em) throws SistemaLiquidacionException {
 		JSONObject json = new JSONObject();
 		json.accumulate("address", "Default Value");
 		json.accumulate("birth_date", "Default Value");
@@ -65,17 +55,26 @@ public class Post {
 		System.out.println(json.toString());
 		
 		
-        StringEntity entity = new StringEntity(json.toString());
+        StringEntity entity;
+		try {
+			entity = new StringEntity(json.toString());
+			HttpClient httpClient = HttpClientBuilder.create().build();
+	        HttpPost request = new HttpPost("https://sueldosya.herokuapp.com/employee");
+	        request.setHeader("Accept", "application/json");
+	        request.setHeader("Content-type", "application/json");
+	        request.setEntity(entity);
 
-        HttpClient httpClient = HttpClientBuilder.create().build();
-        HttpPost request = new HttpPost("https://sueldosya.herokuapp.com/employee");
-        request.setHeader("Accept", "application/json");
-        request.setHeader("Content-type", "application/json");
-        request.setEntity(entity);
+	        HttpResponse response = httpClient.execute(request);
+	        System.out.println(response.getStatusLine().getStatusCode());
+	        if(response.getStatusLine().getStatusCode() != 201) {
+        		System.out.println(response.getStatusLine().getStatusCode());
+        		throw new SistemaLiquidacionException();
+        }
+		} catch (IOException e) {
+			throw new SistemaLiquidacionException();
+		}
 
-        HttpResponse response = httpClient.execute(request);
-        System.out.println(response.getStatusLine().getStatusCode());
-        JSONObject myObject = new JSONObject(response);
-        System.out.println(myObject.toString());
+        
+       
 	}
 }

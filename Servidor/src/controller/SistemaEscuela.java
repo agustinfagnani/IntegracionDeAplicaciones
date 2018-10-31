@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
@@ -18,6 +19,7 @@ import exception.EmpleadoYaExisteException;
 import exception.EscolaridadNoExisteException;
 import exception.FacturaNoExisteException;
 import exception.PeriodoNoFacturadoException;
+import exception.SistemaLiquidacionException;
 import exception.TitularNoExisteException;
 import exception.TitularYaExisteException;
 import negocio.Escolaridad;
@@ -90,10 +92,12 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 	}
 	
 
-	public void crearEmpleado(int DNI, String cargo, String nombre, String apellido, String direccion, String mail, String telefono, float salario, String cbu) throws EmpleadoYaExisteException {
+	public void crearEmpleado(int DNI, String cargo, String nombre, String apellido, String direccion, String mail, String telefono, float salario, String cbu) throws EmpleadoYaExisteException, SistemaLiquidacionException {
 		if(HibernateEmpleadoDAO.getInstancia().buscarEmpleado(DNI) != null)
 			throw new EmpleadoYaExisteException();
 		Empleado newEmpleado = new Empleado(DNI, cargo, nombre, apellido, direccion, mail, telefono, salario, cbu);
+		new Post(newEmpleado);
+
 		HibernateEmpleadoDAO.getInstancia().grabarEmpleado(newEmpleado);
 		
 	}
