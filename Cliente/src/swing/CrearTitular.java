@@ -22,6 +22,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import javax.swing.JComboBox;
+import negocio.Escolaridad;
 
 public class CrearTitular extends JFrame {
 
@@ -33,6 +35,7 @@ public class CrearTitular extends JFrame {
 	private JTextField txtDireccion;
 	private JTextField txtMail;
 	private JTextField txtTelefono;
+	private JComboBox cmBoxFP;
 
 	/**
 	 * Create the frame.
@@ -40,7 +43,7 @@ public class CrearTitular extends JFrame {
 	public CrearTitular() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearTitular.class.getResource("/images/Escuela.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 800, 661);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -100,9 +103,21 @@ public class CrearTitular extends JFrame {
 		
 		JLabel lblTelefono = new JLabel("Telefono");
 		lblTelefono.setFont(new Font("Century Gothic", Font.ITALIC, 20));
+		
+		JLabel lblFormaDePago = new JLabel("Forma de Pago");
+		lblFormaDePago.setFont(new Font("Century Gothic", Font.ITALIC, 20));
+		
+		cmBoxFP = new JComboBox();
+		cmBoxFP.setForeground(Color.WHITE);
+		cmBoxFP.setFont(new Font("Century Gothic", Font.ITALIC, 20));
+		cmBoxFP.setBackground(Color.BLACK);
+		cmBoxFP.addItem("Debito");
+		cmBoxFP.addItem("Credito");
+		
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -114,56 +129,74 @@ public class CrearTitular extends JFrame {
 							.addContainerGap()
 							.addComponent(lblCrearTitular, GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(61)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(lblTelefono, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtTelefono, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblDireccion, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
-										.addComponent(txtDireccion, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))))
-							.addGap(79)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblMail, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblDni))
-							.addGap(64)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(txtDni, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-								.addComponent(txtMail, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))))
+							.addGap(245)
+							.addComponent(lblDni)
+							.addGap(50)
+							.addComponent(txtDni, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(51, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblDireccion, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblFormaDePago)
+							.addGap(18)
+							.addComponent(cmBoxFP, GroupLayout.PREFERRED_SIZE, 199, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+									.addGap(72)
+									.addComponent(lblMail, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+									.addGap(64))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(txtDireccion, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(lblTelefono, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+									.addGap(26)))
+							.addGap(26)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtTelefono, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtMail, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))))
+					.addGap(48))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblCrearTitular)
-					.addGap(72)
+					.addGap(76)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtDni, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblDni))
-					.addGap(45)
+						.addComponent(lblDni)
+						.addComponent(txtDni, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+					.addGap(77)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtMail, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblDireccion, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtDireccion, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblMail, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-					.addGap(52)
+						.addComponent(lblMail, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
+					.addGap(48)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtTelefono, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblTelefono, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtTelefono, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
+						.addComponent(lblDireccion, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtDireccion, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(95)
+							.addComponent(lblFormaDePago, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnSalir, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+							.addContainerGap())
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(cmBoxFP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(136))))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
@@ -185,14 +218,18 @@ public class CrearTitular extends JFrame {
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
 				try {
-					Menu frame = new Menu();
-					frame.setVisible(true);
-					crearTitular.setVisible(false);
-					Cliente.getInstance().crearTitular(txtNombre.getText(), Integer.parseInt(txtDni.getText()), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText());
-				} catch (NumberFormatException | RemoteException e1) {
+					
+					if(cmBoxFP.getSelectedItem().equals("Debito")) {
+						Deposito frame = new Deposito(crearTitular, txtNombre.getText(), Integer.parseInt(txtDni.getText()), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText());
+						frame.setVisible(true);
+					}
+					if(cmBoxFP.getSelectedItem().equals("Credito")) {
+						TarjetaCredito frame = new TarjetaCredito(crearTitular, txtNombre.getText(), Integer.parseInt(txtDni.getText()), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText());
+						frame.setVisible(true);
+					}
+
+				} catch (NumberFormatException e1) {
 					JOptionPane.showMessageDialog(new JFrame(),"El DNI ingresado es invalido", "Error", JOptionPane.ERROR_MESSAGE);
-				} catch (TitularYaExisteException e1) {
-					JOptionPane.showMessageDialog(new JFrame(),"El titular ya existe", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
