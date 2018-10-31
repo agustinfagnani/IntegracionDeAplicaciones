@@ -23,3 +23,7 @@ src/hibernate\.properties
 \.recommenders/caches/manual-mappings\.json
 
 \.recommenders/caches/identified-project-coordinates\.json
+
+Cliente/src/Cliente/ClienteCargaEmpleado\.java
+
+Cliente/src/interfaces/CargaEmpleado\.java

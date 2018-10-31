@@ -5,6 +5,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
+import org.json.JSONException;
+
 import Repositorio.TDAManejoDatos;
 import bean.dao.HibernateAdicionalDAO;
 import bean.dao.HibernateAlumnoDAO;
@@ -95,7 +97,7 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 	}
 	
 
-	public void crearEmpleado(int DNI, String cargo, String nombre, String apellido, String direccion, String mail, String telefono, float salario, String cbu) throws EmpleadoYaExisteException, SistemaLiquidacionException, ErrorConeccionPresenciaException {
+	public void crearEmpleado(int DNI, String cargo, String nombre, String apellido, String direccion, String mail, String telefono, float salario, String cbu) throws EmpleadoYaExisteException, SistemaLiquidacionException, ErrorConeccionPresenciaException, JSONException {
 		if(HibernateEmpleadoDAO.getInstancia().buscarEmpleado(DNI) != null)
 			throw new EmpleadoYaExisteException();
 		Empleado newEmpleado = new Empleado(DNI, cargo, nombre, apellido, direccion, mail, telefono, salario, cbu);
