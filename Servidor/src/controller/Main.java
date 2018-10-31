@@ -13,7 +13,10 @@ import exception.TitularNoExisteException;
 import exception.TitularYaExisteException;
 import hbt.HibernateUtil;
 import negocio.Adicional;
+import negocio.Credito;
+import negocio.Deposito;
 import negocio.Escolaridad;
+import negocio.TipoDePago;
 
 public class Main {
 
@@ -37,9 +40,15 @@ public class Main {
 	HibernateEscolaridadDAO.getInstancia().grabarEscolaridad(esc3);
 	*/
 	try {
-		sistemaEscuela.crearTitular("Alfredo Fernandez", 123, "San Martin 234", "aa@yahoo.com", "1111");
-		sistemaEscuela.crearTitular("Ricardo Benitez", 567, "Sarmiento 234", "aa@gmail.com", "333");
-		sistemaEscuela.crearTitular("Roberto Rodriguez", 345, "Belgrano 234", "aa@hotmail.com", "2222");
+		
+		TipoDePago tipo1 = new Credito("1234567812345678", 567);
+		TipoDePago tipo2 = new Deposito("1234567891234567891234");
+		TipoDePago tipo3 = new Credito("9876543298765432", 001);
+		
+		
+		sistemaEscuela.crearTitular("Alfredo Fernandez", 123, "San Martin 234", "aa@yahoo.com", "1111", tipo1);
+		sistemaEscuela.crearTitular("Ricardo Benitez", 567, "Sarmiento 234", "aa@gmail.com", "333", tipo2);
+		sistemaEscuela.crearTitular("Roberto Rodriguez", 345, "Belgrano 234", "aa@hotmail.com", "2222", tipo3);
 
 	} catch (TitularYaExisteException e1) {
 		e1.printStackTrace();
@@ -55,9 +64,9 @@ public class Main {
 	
 
 	try {
-		sistemaEscuela.crearAlumno("Alumno2", 123, "dire2", "mail2","telefono", esc1.getId());
-		sistemaEscuela.crearAlumno("Alumno1", 123, "dire1", "mail", "telefono", esc1.getId());
-		sistemaEscuela.crearAlumno("Alumno3", 345, "dire3", "mail3","telefono", esc2.getId());
+		sistemaEscuela.crearAlumno("Juan Perez", 123, "Su Casa", "mail@aa.com","4256575", esc1.getId());
+		sistemaEscuela.crearAlumno("Osvaldo Dominguez", 123, "San Martin 5775", "mail2@bb.com", "476768", esc1.getId());
+		sistemaEscuela.crearAlumno("Esteban Alvarez", 345, "abajo de un puente", "mail3@cc.com","498327362", esc2.getId());
 	} catch (TitularNoExisteException e) {
 		e.printStackTrace();
 	} catch (EscolaridadNoExisteException e) {
