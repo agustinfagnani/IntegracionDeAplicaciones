@@ -26,7 +26,6 @@ public class Facturar extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
-	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
 	private JComboBox<Integer> comboBox_1;
 

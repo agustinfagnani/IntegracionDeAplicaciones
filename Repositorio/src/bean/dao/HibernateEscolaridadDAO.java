@@ -34,7 +34,6 @@ public class HibernateEscolaridadDAO {
 	
 	public List<Escolaridad> leerEscolaridads(){
 		Session session = sf.openSession();
-		@SuppressWarnings("unchecked")
 		List<Escolaridad> list = session.createQuery("from Escolaridad").list();
 		session.close();
 		return list;

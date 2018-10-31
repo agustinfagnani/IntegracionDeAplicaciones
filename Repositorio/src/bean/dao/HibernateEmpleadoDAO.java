@@ -34,7 +34,6 @@ public class HibernateEmpleadoDAO {
 	
 	public List<Empleado> leerEmpleados(){
 		Session session = sf.openSession();
-		@SuppressWarnings("unchecked")
 		List<Empleado> list = session.createQuery("from Empleado").list();
 		session.close();
 		return list;

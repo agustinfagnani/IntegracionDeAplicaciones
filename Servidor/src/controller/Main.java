@@ -18,14 +18,12 @@ import negocio.Escolaridad;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 	HibernateUtil.getSessionFactory();
 	SistemaEscuela sistemaEscuela = null;
 	try {
 		sistemaEscuela = new SistemaEscuela();
 	} catch (RemoteException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	/*
@@ -44,7 +42,6 @@ public class Main {
 		sistemaEscuela.crearTitular("Roberto Rodriguez", 345, "Belgrano 234", "aa@hotmail.com", "2222");
 
 	} catch (TitularYaExisteException e1) {
-		// TODO Auto-generated catch block
 		e1.printStackTrace();
 	}
 	
@@ -62,10 +59,8 @@ public class Main {
 		sistemaEscuela.crearAlumno("Alumno1", 123, "dire1", "mail", "telefono", esc1.getId());
 		sistemaEscuela.crearAlumno("Alumno3", 345, "dire3", "mail3","telefono", esc2.getId());
 	} catch (TitularNoExisteException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (EscolaridadNoExisteException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 
@@ -75,7 +70,6 @@ public class Main {
 		sistemaEscuela.crearEmpleado(33435678, "Profesor", "Profesor", "Jirafales", "Av 9 de Julio 13", "asd2@asd.com", "5555",25000);
 		sistemaEscuela.crearEmpleado(30987777, "Kiosquero", "Cacho", "Fernandez", "Av 9 de Julio 14", "asd3@asd.com", "6666",50000);
 	} catch (EmpleadoYaExisteException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	
@@ -98,10 +92,8 @@ public class Main {
 		sistemaEscuela.asignarInscripcion(1,3);
 		sistemaEscuela.asignarInscripcion(1,4);
 	} catch (AlumnoNoExisteException | AdicionalNoExisteException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (AdicionalYaAsignadoException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	
