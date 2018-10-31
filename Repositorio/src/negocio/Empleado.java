@@ -42,6 +42,9 @@ public class Empleado implements Serializable{
 
 	@Column(name="salario")
 	private float salario;
+	
+	@Column(name="cbu") //debe tener 22 caracteres
+	private String cbu;
 
 	public Empleado(){
 
