@@ -256,12 +256,7 @@ public class CrearEmpleado extends JFrame {
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
 				try {
-					try {
-						Cliente.getInstance().crearEmpleado(Integer.parseInt(txtDni.getText()), txtCargo.getText(), textNombre.getText(),txtApellido.getText(), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText(), Float.parseFloat(txtSalario.getText()),txtCbu.getText());
-					} catch (ErrorConeccionPresenciaException | JSONException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					Cliente.getInstance().crearEmpleado(Integer.parseInt(txtDni.getText()), txtCargo.getText(), textNombre.getText(),txtApellido.getText(), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText(), Float.parseFloat(txtSalario.getText()),txtCbu.getText());
 					Menu frame = new Menu();
 					frame.setVisible(true);
 					crearInscripcion.setVisible(false);
@@ -270,6 +265,9 @@ public class CrearEmpleado extends JFrame {
 				} catch (EmpleadoYaExisteException e1) {
 					JOptionPane.showMessageDialog(new JFrame(),"Empleado ya existe", "Error", JOptionPane.ERROR_MESSAGE);
 				} catch (SistemaLiquidacionException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ErrorConeccionPresenciaException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
