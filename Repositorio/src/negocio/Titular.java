@@ -98,6 +98,10 @@ public class Titular implements Serializable{
 		return alumnos;
 	}
 	
+	public TipoDePago getTipoDePago() {
+		return tipoDePago;
+	}
+
 	@Override
 	public String toString(){
 		return "DNI:"+this.DNI+" - "+this.nombre; 
