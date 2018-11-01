@@ -1,18 +1,40 @@
 package integracion;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.Properties;
+
 import interfaces.CargaEmpleado;
 import exception.ErrorConeccionPresenciaException;
 import negocio.Empleado;
 
 public class PostPresencia {
 
-	private String IP = "192.168.215.224";
-	private final String miCuit = "30715087738";
 
-	CargaEmpleado carga;
+	private CargaEmpleado carga;
+	private String miCuit;
+	
+	
+	public boolean getStub() {  
+		
+		Properties prop = new Properties();
+		InputStream input = null;
 
-	public boolean getStub() {    	
+		try {
+
+			input = new FileInputStream("direcciones.properties");
+
+			// load a properties file
+			prop.load(input);
+		}
+		catch(Exception e){
+			
+		}
+			
+		String IP = prop.getProperty("ipPresentismo");
+		miCuit = prop.getProperty("miCuit");
+		
 		try {
 			carga = (CargaEmpleado)Naming.lookup ("//" + IP + "/CargaEmpleado");
 			return true;

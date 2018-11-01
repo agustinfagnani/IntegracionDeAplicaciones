@@ -1,14 +1,14 @@
 package integracion;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
-import java.time.ZoneId;
-import java.util.Date;
+import java.util.Properties;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONException;
@@ -16,17 +16,31 @@ import org.json.JSONObject;
 
 import exception.SistemaLiquidacionException;
 import negocio.Credito;
-import negocio.Deposito;
-import negocio.Empleado;
 import negocio.Factura;
-import negocio.Titular;
 
 public class PostTarjeta {
 
 	private final String  NROESCUELA = "11";
-	private final String  IP = "http://192.168.43.130:8090";
 
 	public PostTarjeta(Factura factura) throws SistemaLiquidacionException, JSONException {
+		
+		Properties prop = new Properties();
+		InputStream input = null;
+
+		try {
+
+			input = new FileInputStream("direcciones.properties");
+
+			// load a properties file
+			prop.load(input);
+		}
+		catch(Exception e){
+			
+		}
+			
+		String IP = prop.getProperty("ipTarjeta");
+		
+		
 		JSONObject json = new JSONObject();
 		json.accumulate("idEstablecimiento", NROESCUELA);// NroEstablecimiento
 		json.accumulate("codigoSeguridad", ((Credito)factura.getTitular().getTipoDePago()).getCodSeg());
