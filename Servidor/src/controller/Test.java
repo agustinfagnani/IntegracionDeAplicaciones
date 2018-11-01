@@ -1,7 +1,9 @@
 package controller;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class Test {
@@ -23,7 +25,7 @@ public class Test {
 	}	
 	
 	*/
-		
+	/*	
 	Properties prop = new Properties();
 	FileOutputStream output = null;
 
@@ -50,6 +52,28 @@ public class Test {
 			}
 		}
 	}
-	
+	*/
+		Properties prop = new Properties();
+		InputStream input = null;
+
+		try {
+
+			input = new FileInputStream("direcciones.properties");
+
+			// load a properties file
+			prop.load(input);
+		}
+		catch(Exception e){
+			
+		}
+			
+		String IP = prop.getProperty("ipBanco");
+		
+		System.out.println(IP);
+		
+		
+
+		
+		
 }
 }
