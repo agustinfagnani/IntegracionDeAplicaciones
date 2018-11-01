@@ -1,8 +1,6 @@
 package integracion;
-
 import java.rmi.Naming;
 import java.rmi.RemoteException;
-
 import Repositorio.CargaEmpleado;
 import exception.ErrorConeccionPresenciaException;
 import negocio.Empleado;
