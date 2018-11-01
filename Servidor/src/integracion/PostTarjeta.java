@@ -70,7 +70,8 @@ public class PostTarjeta {
 			HttpResponse response = httpClient.execute(request);
 			System.out.println(response.getStatusLine().getStatusCode());
 			System.out.println(response);
-			if(response.getStatusLine().getStatusCode() != 201) {
+			if(response.getStatusLine().getStatusCode() != 201 
+			|| response.getStatusLine().getStatusCode() != 200 ) {
 				System.out.println(response.getStatusLine().getStatusCode());
 				throw new SistemaTarjetaException();
 			}

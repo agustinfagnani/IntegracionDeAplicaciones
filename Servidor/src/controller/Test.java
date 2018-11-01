@@ -8,6 +8,7 @@ import java.util.Properties;
 
 import org.json.JSONException;
 
+import exception.SistemaBancoException;
 import exception.SistemaLiquidacionException;
 import integracion.PostBanco;
 import negocio.Alumno;
@@ -31,12 +32,11 @@ public class Test {
 	try {
 		PostBanco banco = new PostBanco(factura);
 //		PostTarjeta tarjeta = new PostTarjeta(factura);
-	} catch (SistemaLiquidacionException | JSONException el) {
+	} catch (SistemaBancoException e1) {
 		// TODO Auto-generated catch block
-		el.printStackTrace();
+		e1.printStackTrace();
 	}	
-	
-<<<<<<< HEAD
+
 	
 		
 //	Properties prop = new Properties();
@@ -66,8 +66,7 @@ public class Test {
 //		}
 //	}
 	
-=======
-	*/
+
 	/*	
 	Properties prop = new Properties();
 	FileOutputStream output = null;
@@ -106,7 +105,7 @@ public class Test {
 			// load a properties file
 			prop.load(input);
 		}
-		catch(Exception e){
+		catch(Exception e5){
 			
 		}
 			
@@ -116,8 +115,5 @@ public class Test {
 		
 		
 
-		
-		
->>>>>>> master
 }
 }
