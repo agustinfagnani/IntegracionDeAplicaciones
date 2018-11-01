@@ -1,7 +1,9 @@
 package controller;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 import org.json.JSONException;
@@ -34,6 +36,7 @@ public class Test {
 		el.printStackTrace();
 	}	
 	
+<<<<<<< HEAD
 	
 		
 //	Properties prop = new Properties();
@@ -63,5 +66,58 @@ public class Test {
 //		}
 //	}
 	
+=======
+	*/
+	/*	
+	Properties prop = new Properties();
+	FileOutputStream output = null;
+
+	try {
+
+		output = new FileOutputStream("direcciones.properties");
+
+		// set the properties value
+		prop.setProperty("ipBanco", "192.168.x.x");
+		prop.setProperty("ipTarjeta", "http://192.168.43.130:8090");
+		prop.setProperty("ipPresentismo", "192.168.215.224");
+		prop.setProperty("urlLiquidacion", "https://sueldosya.herokuapp.com/employee");
+		// save properties to project root folder
+		prop.store(output, null);
+
+	} catch (IOException io) {
+		io.printStackTrace();
+	} finally {
+		if (output != null) {
+			try {
+				output.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	*/
+		Properties prop = new Properties();
+		InputStream input = null;
+
+		try {
+
+			input = new FileInputStream("direcciones.properties");
+
+			// load a properties file
+			prop.load(input);
+		}
+		catch(Exception e){
+			
+		}
+			
+		String IP = prop.getProperty("ipBanco");
+		
+		System.out.println(IP);
+		
+		
+
+		
+		
+>>>>>>> master
 }
 }
