@@ -1,19 +1,17 @@
 package controller;
 
-import java.io.IOException;
-
 import org.json.JSONException;
-
 import exception.SistemaLiquidacionException;
-import integracion.PostBanco;
 import integracion.PostTarjeta;
 import negocio.Alumno;
 import negocio.Credito;
 import negocio.Deposito;
+<<<<<<< HEAD
 import negocio.Empleado;
 import negocio.Escolaridad;
+=======
+>>>>>>> master
 import negocio.Factura;
-import negocio.TipoDePago;
 import negocio.Titular;
 
 public class Test {
