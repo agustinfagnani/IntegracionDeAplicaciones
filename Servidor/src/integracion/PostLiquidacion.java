@@ -1,5 +1,9 @@
 package integracion;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -13,20 +17,25 @@ import negocio.Empleado;
 
 public class PostLiquidacion {
 
-	//curl -X POST https://sueldosya.herokuapp.com/employee -H 'Content-Type: application/json' -D {BODY}
-	/*{
-    "address": "Casa Esclavo1",
-    "birth_date": "11 de Noviembre",
-    "dni": "38745192",
-    "payroll_type": "monthly"|"per hour",
-    "gross_salary": 75,
-    "salary_per_hour": null,
-    "estimated_hours": null,
-    "deductions": 17,
-    "name": "Esclavo1"
-}
-	 */
 	public PostLiquidacion(Empleado em) throws SistemaLiquidacionException, JSONException {
+		
+		Properties prop = new Properties();
+		InputStream input = null;
+
+		try {
+
+			input = new FileInputStream("direcciones.properties");
+
+			// load a properties file
+			prop.load(input);
+		}
+		catch(Exception e){
+			
+		}
+			
+		String url = prop.getProperty("urlLiquidacion");
+		String clientId = prop.getProperty("clientIdLiquidacion");
+		
 		JSONObject json = new JSONObject();
 
 		json.accumulate("address", "Default Value");
@@ -38,7 +47,7 @@ public class PostLiquidacion {
 		json.accumulate("estimated_hours", null);
 		json.accumulate("deductions", 17);
 		json.accumulate("name", em.getNombre() + " " + em.getApellido());
-		json.accumulate("client_id", "5bda09821592f30021b80684");
+		json.accumulate("client_id", clientId);
 		json.accumulate("cbu", em.getCBU());
 
 
@@ -49,7 +58,7 @@ public class PostLiquidacion {
 		try {
 			entity = new StringEntity(json.toString());
 			HttpClient httpClient = HttpClientBuilder.create().build();
-			HttpPost request = new HttpPost("https://sueldosya.herokuapp.com/employee");
+			HttpPost request = new HttpPost(url);
 			request.setHeader("Accept", "application/json");
 			request.setHeader("Content-type", "application/json");
 			request.setEntity(entity);
