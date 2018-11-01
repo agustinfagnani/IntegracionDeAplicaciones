@@ -3,9 +3,6 @@ package swing;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import org.json.JSONException;
-
 import Atxy2k.CustomTextField.RestrictedTextField;
 import Cliente.Cliente;
 import exception.EmpleadoYaExisteException;
@@ -265,11 +262,9 @@ public class CrearEmpleado extends JFrame {
 				} catch (EmpleadoYaExisteException e1) {
 					JOptionPane.showMessageDialog(new JFrame(),"Empleado ya existe", "Error", JOptionPane.ERROR_MESSAGE);
 				} catch (SistemaLiquidacionException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(new JFrame(),"No se puede conectar con el sistema de liquidacion, comuniquese con el administrador.", "Error", JOptionPane.ERROR_MESSAGE);
 				} catch (ErrorConeccionPresenciaException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(new JFrame(),"No se puede conectar con el sistema de presentismo, comuniquese con el administrador.", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}

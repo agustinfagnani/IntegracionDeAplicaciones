@@ -232,7 +232,6 @@ public class CrearAlumno extends JFrame {
 				crearAlumno.setVisible(false);
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
-				//Persistir
 				Escolaridad escolaridad  = (Escolaridad) cmBoxEscolaridad.getSelectedItem();
 				try {
 					Cliente.getInstance().crearAlumno(textField.getText(), Integer.parseInt(txtDniTitular.getText()), txtDireccion.getText(), txtMail.getText(), 
@@ -241,11 +240,11 @@ public class CrearAlumno extends JFrame {
 					frame.setVisible(true);
 					crearAlumno.setVisible(false);
 				} catch (NumberFormatException | RemoteException e1) {
-					JOptionPane.showMessageDialog(new JFrame(),"Falla al crear Alumno", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(new JFrame(),"Falla al crear Alumno.", "Error", JOptionPane.ERROR_MESSAGE);
 				}catch (TitularNoExisteException e1) {
-					JOptionPane.showMessageDialog(new JFrame(),"Titular no existe", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(new JFrame(),"Titular no existe.", "Error", JOptionPane.ERROR_MESSAGE);
 				} catch (EscolaridadNoExisteException e1) {
-					JOptionPane.showMessageDialog(new JFrame(),"Escolaridad no existe", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(new JFrame(),"Escolaridad no existe.", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}

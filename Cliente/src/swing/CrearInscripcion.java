@@ -183,7 +183,6 @@ public class CrearInscripcion extends JFrame {
 				crearInscripcion.setVisible(false);
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
-				//Persistir
 				Alumno alum= (Alumno) cmBoxLegajo.getSelectedItem();
 				Adicional adic =(Adicional) comboBox.getSelectedItem();
 				try {
@@ -192,13 +191,13 @@ public class CrearInscripcion extends JFrame {
 					frame.setVisible(true);
 					crearInscripcion.setVisible(false);
 				} catch (RemoteException e1) {
-					JOptionPane.showMessageDialog(new JFrame(),"Falla al asignar el adicional", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(new JFrame(),"Falla al asignar el adicional.", "Error", JOptionPane.ERROR_MESSAGE);
 				} catch (AlumnoNoExisteException e1) {
-					JOptionPane.showMessageDialog(new JFrame(),"El alumno no existe", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(new JFrame(),"El alumno no existe.", "Error", JOptionPane.ERROR_MESSAGE);
 				} catch (AdicionalNoExisteException e1) {
-					JOptionPane.showMessageDialog(new JFrame(),"El adicional no existe", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(new JFrame(),"El adicional no existe.", "Error", JOptionPane.ERROR_MESSAGE);
 				} catch (AdicionalYaAsignadoException e1) {
-					JOptionPane.showMessageDialog(new JFrame(),"Ya inscripto", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(new JFrame(),"Ya inscripto.", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}

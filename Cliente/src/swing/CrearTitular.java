@@ -213,7 +213,6 @@ public class CrearTitular extends JFrame {
 			}
 			if(e.getActionCommand().equals("Aceptar")) {
 				try {
-					
 					if(cmBoxFP.getSelectedItem().equals("Debito")) {
 						Debito frame = new Debito(crearTitular, txtNombre.getText(), Integer.parseInt(txtDni.getText()), txtDireccion.getText(), txtMail.getText(), txtTelefono.getText());
 						frame.setVisible(true);

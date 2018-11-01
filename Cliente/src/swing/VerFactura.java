@@ -1,6 +1,5 @@
 package swing;
 
-import java.awt.Canvas;
 import java.awt.Color;
 
 import javax.swing.JFrame;
