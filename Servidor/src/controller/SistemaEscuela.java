@@ -3,6 +3,7 @@ package controller;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.json.JSONException;
@@ -160,6 +161,7 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 				if(f.getTitular().getTipoDePago().getClass()==Deposito.class){
 					try {
 						new PostBanco(f);
+						f.setFechaPago(LocalDateTime.now());
 						HibernateFacturaDAO.getInstancia().grabarFactura(f);
 					} catch (SistemaBancoException e) {
 						// TODO Auto-generated catch block
@@ -169,6 +171,7 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 				else{
 					try {
 						new PostTarjeta(f);
+						f.setFechaPago(LocalDateTime.now());
 						HibernateFacturaDAO.getInstancia().grabarFactura(f);
 					} catch (SistemaTarjetaException e) {
 						// TODO Auto-generated catch block
