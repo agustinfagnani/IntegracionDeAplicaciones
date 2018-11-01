@@ -1,6 +1,10 @@
 package integracion;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.ZoneId;
+import java.util.Date;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -17,21 +21,25 @@ import negocio.Factura;
 import negocio.Titular;
 
 public class PostTarjeta {
-	
+
 	private final String  NROESCUELA = "NROESTABLECIMIENTO";
-	private final String  IP = "192.168.157.xxx";
+	private final String  IP = "192.168.157.155";
 
 	public PostTarjeta(Factura factura) throws SistemaLiquidacionException, JSONException {
 		JSONObject json = new JSONObject();
+		Date fechaConsumo  =new Date();
+		fechaConsumo = Date.from(factura.getFechaEmision().atZone(ZoneId.systemDefault()).toInstant());
 
 		json.accumulate("idEstablecimiento", NROESCUELA);// NroEstablecimiento
-		json.accumulate("nroTarjeta", ((Credito)factura.getTitular().getTipoDePago()).getNumeroTarjeta());
 		json.accumulate("codigoSeguridad", ((Credito)factura.getTitular().getTipoDePago()).getCodSeg());
-		json.accumulate("fechaConsumo", factura.getFechaEmision());
-		json.accumulate("descripcion", factura.getPeriodo()+" - "+factura.getAnio());
-		json.accumulate("monto", factura.getCostoTotal());
+		json.accumulate("fechaConsumo", fechaConsumo);
+		json.accumulate("descripcion", "Escuela cuota: " 
+		                               +"Número de Factura: "
+		                               +factura.getNumero()
+		                               +" - Periodo: "+factura.getPeriodo()+" - "+factura.getAnio());
+		json.accumulate("monto", new BigDecimal(factura.getCostoTotal()));
 
-		
+
 		System.out.println(json.toString());
 
 
@@ -39,7 +47,7 @@ public class PostTarjeta {
 		try {
 			entity = new StringEntity(json.toString());
 			HttpClient httpClient = HttpClientBuilder.create().build();
-			HttpPost request = new HttpPost(IP+"/transferencia");
+			HttpPost request = new HttpPost(IP+"/tarjetas/"+((Credito)factura.getTitular().getTipoDePago()).getNumeroTarjeta()+"/consumosEnteros");
 			request.setHeader("Accept", "application/json");
 			request.setHeader("Content-type", "application/json");
 			request.setEntity(entity);
