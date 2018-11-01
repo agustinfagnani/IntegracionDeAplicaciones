@@ -5,12 +5,7 @@ import exception.SistemaLiquidacionException;
 import integracion.PostTarjeta;
 import negocio.Alumno;
 import negocio.Credito;
-import negocio.Deposito;
-<<<<<<< HEAD
-import negocio.Empleado;
 import negocio.Escolaridad;
-=======
->>>>>>> master
 import negocio.Factura;
 import negocio.Titular;
 
