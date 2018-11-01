@@ -10,24 +10,27 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import exception.SistemaLiquidacionException;
+import negocio.Credito;
 import negocio.Deposito;
 import negocio.Empleado;
 import negocio.Factura;
 import negocio.Titular;
 
-public class PostBanco {
+public class PostTarjeta {
 	
+	private final String  NROESCUELA = "NROESTABLECIMIENTO";
 	private final String  IP = "192.168.157.xxx";
 
-
-	public PostBanco(Factura factura) throws SistemaLiquidacionException, JSONException {
+	public PostTarjeta(Factura factura) throws SistemaLiquidacionException, JSONException {
 		JSONObject json = new JSONObject();
 
-		json.accumulate("cbuDestino", "1122334455667788990011");// CBU Escuela
-		json.accumulate("cbuOrigen", ((Deposito)(factura.getTitular().getTipoDePago())).getCBU());
+		json.accumulate("idEstablecimiento", NROESCUELA);// NroEstablecimiento
+		json.accumulate("nroTarjeta", ((Credito)factura.getTitular().getTipoDePago()).getNumeroTarjeta());
+		json.accumulate("codigoSeguridad", ((Credito)factura.getTitular().getTipoDePago()).getCodSeg());
+		json.accumulate("fechaConsumo", factura.getFechaEmision());
+		json.accumulate("descripcion", factura.getPeriodo()+" - "+factura.getAnio());
 		json.accumulate("monto", factura.getCostoTotal());
-		json.accumulate("nroFactura", factura.getNumero());
-		json.accumulate("fechaFactura", factura.getFechaEmision());
+
 		
 		System.out.println(json.toString());
 
