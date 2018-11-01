@@ -58,10 +58,10 @@ public class CargaDatos {
 	
 	Alumno alumno1 = new Alumno("Juan Perez", 123, "Su Casa", "mail@aa.com","4256575", esc1.getId());
 	Alumno alumno2 = new Alumno("Osvaldo Dominguez", 123, "San Martin 5775", "mail2@bb.com", "476768", esc1.getId());
-	Alumno alumno3 = new Alumno("Juan Perez", 123, "Su Casa", "mail@aa.com","4256575", esc1.getId());
-	Alumno alumno4 = new Alumno("Juan Perez", 123, "Su Casa", "mail@aa.com","4256575", esc1.getId());
-	Alumno alumno5 = new Alumno("Juan Perez", 123, "Su Casa", "mail@aa.com","4256575", esc1.getId());
-	Alumno alumno6 = new Alumno("Juan Perez", 123, "Su Casa", "mail@aa.com","4256575", esc1.getId());
+	Alumno alumno3 = new Alumno("Esteban Alvarez", 345, "abajo de un puente", "mail3@cc.com","498327362", esc2.getId());
+	Alumno alumno4 = new Alumno("Chavo del 8", 444, "Barril", "chavo@566.com","437687787", esc3.getId());
+	Alumno alumno5 = new Alumno("Juan Perez", 123, "Su Casa", "mail@aa.com","4328767", esc2.getId());
+	Alumno alumno6 = new Alumno("Juan Perez", 123, "Su Casa", "mail@aa.com","6094378437438", esc1.getId());
 	
 	
 	
