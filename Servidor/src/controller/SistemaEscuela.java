@@ -99,13 +99,14 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 		if(HibernateEmpleadoDAO.getInstancia().buscarEmpleado(DNI) != null)
 			throw new EmpleadoYaExisteException();
 		Empleado newEmpleado = new Empleado(DNI, cargo, nombre, apellido, direccion, mail, telefono, salario, cbu);
+		new PostPresencia(newEmpleado);
 		try {
 			new PostLiquidacion(newEmpleado);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		new PostPresencia(newEmpleado); 
+		 
 		HibernateEmpleadoDAO.getInstancia().grabarEmpleado(newEmpleado);
 		
 	}

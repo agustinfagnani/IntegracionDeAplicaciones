@@ -1,13 +1,13 @@
 package integracion;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
-import Repositorio.CargaEmpleado;
+import interfaces.CargaEmpleado;
 import exception.ErrorConeccionPresenciaException;
 import negocio.Empleado;
 
 public class PostPresencia {
 
-	private String IP = "192.168.157.150";
+	private String IP = "192.168.215.224";
 	private final String miCuit = "30715087738";
 
 	CargaEmpleado carga;
