@@ -10,6 +10,7 @@ import exception.TitularYaExisteException;
 import negocio.Deposito;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -127,11 +128,9 @@ public class Debito extends JFrame {
 					debito.setVisible(false);
 					crearTitular.setVisible(false);
 				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(new JFrame(),"No se puede crear el titular.", "Error", JOptionPane.ERROR_MESSAGE);
 				} catch (TitularYaExisteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(new JFrame(),"El titular ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
