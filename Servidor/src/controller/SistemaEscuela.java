@@ -165,7 +165,7 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 						HibernateFacturaDAO.getInstancia().grabarFactura(f);
 					} catch (SistemaBancoException e) {
 						// TODO Auto-generated catch block
-						System.out.println("No se pudo Facturar - Número de Factura: "+f.getNumero());
+						System.out.println("No se pudo Facturar - Titular: "+f.getTitular().getNombre());
 					}
 				}
 				else{
@@ -175,7 +175,7 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 						HibernateFacturaDAO.getInstancia().grabarFactura(f);
 					} catch (SistemaTarjetaException e) {
 						// TODO Auto-generated catch block
-						System.out.println("No se pudo Facturar - Número de Factura: "+f.getNumero());
+						System.out.println("No se pudo Facturar - Titular: "+f.getTitular().getNombre());
 
 					}
 				}

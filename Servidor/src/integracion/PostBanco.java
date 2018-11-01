@@ -44,15 +44,22 @@ public class PostBanco {
 		
 		JSONObject json = new JSONObject();
 
-		json.accumulate("destino", "1122334455667788990011");// CBU Escuela
-		json.accumulate("origen", ((Deposito)(factura.getTitular().getTipoDePago())).getCBU());
-		json.accumulate("monto", new BigDecimal(factura.getCostoTotal()));
-		json.accumulate("descripcion", "Escuela cuota: " 
-                +"Número de Factura: "
-                +factura.getNumero()
-                +" - Periodo: "+factura.getPeriodo()+" - "+factura.getAnio());
+		
+		try {
+			json.accumulate("destino", "1122334455667788990011");// CBU Escuela
+			json.accumulate("origen", ((Deposito)(factura.getTitular().getTipoDePago())).getCBU());
+			json.accumulate("monto", new BigDecimal(factura.getCostoTotal()));
+			json.accumulate("descripcion", "Escuela cuota: " 
+			        +"Nro de Factura: "
+			        +factura.getNumero()
+			        +" - Periodo: "+factura.getPeriodo()+" - "+factura.getAnio());
+
+			json.accumulate("fecha", factura.getFechaEmision().toLocalDate());
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 //		json.accumulate("fecha", factura.getFechaEmision());
-		json.accumulate("fecha", factura.getFechaEmision().toLocalDate());
 		
 		System.out.println(json.toString());
 

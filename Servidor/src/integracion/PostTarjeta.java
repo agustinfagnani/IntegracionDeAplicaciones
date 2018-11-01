@@ -44,15 +44,21 @@ public class PostTarjeta {
 		
 		
 		JSONObject json = new JSONObject();
-		json.accumulate("idEstablecimiento", NROESCUELA);// NroEstablecimiento
-		json.accumulate("codigoSeguridad", ((Credito)factura.getTitular().getTipoDePago()).getCodSeg());
-		json.accumulate("fecha", factura.getFechaEmision().toLocalDate());
-		json.accumulate("descripcion", "Escuela cuota: " 
-		                               +"Número de Factura: "
-		                               +factura.getNumero()
-		                               +" - Periodo: "+factura.getPeriodo()+" - "+factura.getAnio());
-		json.accumulate("monto", new BigDecimal(factura.getCostoTotal()));
+		try {
+			json.accumulate("fecha", factura.getFechaEmision().toLocalDate());
+			json.accumulate("idEstablecimiento", NROESCUELA);// NroEstablecimiento
+			json.accumulate("codigoSeguridad", ((Credito)factura.getTitular().getTipoDePago()).getCodSeg());
+			json.accumulate("descripcion", "Escuela cuota: " 
+                    +"Nro de Factura: "
+                    +factura.getNumero()
+                    +" - Periodo: "+factura.getPeriodo()+" - "+factura.getAnio());
+			json.accumulate("monto", new BigDecimal(factura.getCostoTotal()));
 
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		System.out.println(json.toString());
 		String link = IP+"/tarjetas/"+((Credito)factura.getTitular().getTipoDePago()).getNumeroTarjeta()+"/consumosEnteros";
 
@@ -70,8 +76,7 @@ public class PostTarjeta {
 			HttpResponse response = httpClient.execute(request);
 			System.out.println(response.getStatusLine().getStatusCode());
 			System.out.println(response);
-			if(response.getStatusLine().getStatusCode() != 201 
-			|| response.getStatusLine().getStatusCode() != 200 ) {
+			if(response.getStatusLine().getStatusCode() != 201 && response.getStatusLine().getStatusCode() != 200 ) {
 				System.out.println(response.getStatusLine().getStatusCode());
 				throw new SistemaTarjetaException();
 			}
