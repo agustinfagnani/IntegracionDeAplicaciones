@@ -105,7 +105,7 @@ public class SistemaEscuela extends UnicastRemoteObject implements TDAManejoDato
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		new PostPresencia(newEmpleado);
+		new PostPresencia(newEmpleado); 
 		HibernateEmpleadoDAO.getInstancia().grabarEmpleado(newEmpleado);
 		
 	}
