@@ -14,7 +14,9 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import exception.SistemaBancoException;
 import exception.SistemaLiquidacionException;
+import exception.SistemaTarjetaException;
 import negocio.Credito;
 import negocio.Factura;
 
@@ -22,7 +24,7 @@ public class PostTarjeta {
 
 	private final String  NROESCUELA = "11";
 
-	public PostTarjeta(Factura factura) throws SistemaLiquidacionException, JSONException {
+	public PostTarjeta(Factura factura) throws  SistemaTarjetaException {
 		
 		Properties prop = new Properties();
 		InputStream input = null;
@@ -68,9 +70,12 @@ public class PostTarjeta {
 			HttpResponse response = httpClient.execute(request);
 			System.out.println(response.getStatusLine().getStatusCode());
 			System.out.println(response);
-
+			if(response.getStatusLine().getStatusCode() != 201) {
+				System.out.println(response.getStatusLine().getStatusCode());
+				throw new SistemaTarjetaException();
+			}
 		} catch (IOException e) {
-			throw new SistemaLiquidacionException();
+			throw new SistemaTarjetaException();
 		}
 
 		
