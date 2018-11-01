@@ -23,7 +23,7 @@ import negocio.Titular;
 public class PostTarjeta {
 
 	private final String  NROESCUELA = "NROESTABLECIMIENTO";
-	private final String  IP = "192.168.157.155";
+	private final String  IP = "192.168.157.77:8090";
 
 	public PostTarjeta(Factura factura) throws SistemaLiquidacionException, JSONException {
 		JSONObject json = new JSONObject();
